@@ -1,0 +1,55 @@
+
+img{max-width:100%;}
+
+.fa {
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+}
+
+.fa-map-marker:before {
+    content: "\f041";
+}
+.fa-user-circle:before {
+    content: "\f2bd";
+}
+.fa-spinner:before {
+    content: "\f110";
+}
+.fa-check:before {
+    content: "\f00c";
+    color:green;
+}
+@font-face {
+      font-family: "FontAwesome";
+      src: url('../lib/download/fontawesome-webfont.woff');
+}
+
+a[href="#"]{
+    text-decoration: none;
+    position: relative;
+    font-family: FontAwesome;
+
+}
+a[href="#"]:hover:after{
+    position: absolute;
+    content:attr(data-title);
+    left: 0;
+    top: 100%;
+    width: 5em;
+    font-family: FontAwesome;
+    /* z-index: 1; */
+}
+a[href="#"].title-pencil:hover:after{
+    content:"\f040"attr(data-title);  
+}
+a[href="#"].title-question:hover:after {
+    content: "\f059"attr(data-title);
+}
+a[href="#"].title-top:hover:after{
+    top:auto;
+    bottom: 100%;
+}
+html{
+        overflow-x: hidden;
+        height: 100%;
+}

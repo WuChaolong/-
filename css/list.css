@@ -1,0 +1,42 @@
+.puctures{
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+.puctures img{
+    max-height:250px;
+    display: inline;
+    margin-right: .5em;
+    max-width: 90%;
+}
+dl{
+    line-height:1.5em;
+    word-break: break-word;
+}
+dt{
+    font-size: 1.3em;
+}
+.name{
+    margin-right:.5em;
+    float: left;
+}
+[ng-repeat] dt:before {
+    content: "\f110";
+    font-family: FontAwesome;
+}
+[ng-repeat].ng-scope dt:before {
+    content: "";
+}
+details {
+  text-align: right;
+  line-height:2em;
+}
+/* summary::-webkit-details-marker{
+  display: none
+}
+summary:after {
+  content: "◄";
+/*   font-size:.8em; */
+}
+details[open] summary:after {
+  content: "▼";
+} */

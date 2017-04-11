@@ -1,0 +1,13 @@
+
+.starter{
+    text-align: right;
+    margin-bottom: 1em;
+}
+.starter:before{
+    content:"——";
+}
+h1 span{
+    display:block;
+    margin-bottom: .5em;
+}
+/* body{background-image: url(../lib/download/openbook.png);background-size: 20% auto;background-repeat: repeat-x;background-position: bottom;} */
