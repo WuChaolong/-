@@ -201,7 +201,7 @@ function githupPut(url,data,success){
                httpRequest = null;
         }
         httpRequest.open('PUT',url,true);
-        httpRequest.setRequestHeader("Authorization","token 945cdecd618ea91ce798a2bf821c14bf988afd39");
+        httpRequest.setRequestHeader("Authorization","token dcd5f360e3f4a29ab3cef01db3a45bfb90c42579");
         httpRequest.setRequestHeader("Content-Type","application/json; charset=utf-8");
 
         httpRequest.send(JSON.stringify(data));
