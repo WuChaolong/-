@@ -2,16 +2,17 @@
 <html id="ng-app" ng-app="app"> <!-- id="ng-app" IE<8 -->
     <head>
         <title>我们的书</title>
+        <link rel="icon" href="download/logo.png">
         <meta id="meta" name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="css/main.css" />
         <link rel="stylesheet" href="css/list.css" />
         
 
-        <script src="lib/download/angular.js"></script>
+        <script src="download/angular.min.js"></script>
         
-        <script src="lib/download/firebase.js"></script>
-        <script src="lib/download/angularfire.js"></script>
-        <script src="lib/sms-link/sms-link.min.js"></script>
+        <script src="download/firebase.min.js"></script>
+        <script src="download/angularfire.min.js"></script>
+        <script src="js/sms-link.min.js"></script>
         <script src="js/list.js"></script>
     </head>
     <body  ng-controller="AppController" >
@@ -27,7 +28,7 @@
 
                 <details>
                         <summary>得到</summary>
-                        <a ng-href="sms://{{book.user.tel}}?body=我喜欢你三特上分享的“{{book.description.slice(0, 4)}}...”，周三晚上7点鹰潭拉芳舍的书友会一起吗？"  onclick="new SMSLink.link().replaceAll();">邀请一起书友会</a>
+                        <a ng-href="sms://{{book.user.tel}}?body=我喜欢你三牛寺上分享的“{{book.description.slice(0, 4)}}...”，周三晚上7点鹰潭拉芳舍的书友会一起吗？"  onclick="new SMSLink.link().replaceAll();">邀请一起书友会</a>
                                 或者<a href="#" data-title="设计中..." class="title-pencil">快递过来</a>
                 </details>
                 

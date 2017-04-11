@@ -21,7 +21,7 @@ img{max-width:100%;}
 }
 @font-face {
       font-family: "FontAwesome";
-      src: url('../lib/download/fontawesome-webfont.woff');
+      src: url('../download/fontawesome-webfont.woff');
 }
 
 a[href="#"]{
