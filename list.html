@@ -16,14 +16,15 @@
         <script src="js/list.js"></script>
     </head>
     <body  ng-controller="AppController" >
-        <h1>我们的书</h1>
-        <dl class="book" ng-repeat="(key, book) in books">
+        <h1 class="book">我们的书</h1>
+        <dl ng-repeat="(key, book) in books">
 <!--         {{book}} -->
             <dt class="description">{{book.description.slice(0, 4)}}</dt>
             <dd class="puctures">
                 <img ng-repeat="pucture in book.puctures"  ng-src="{{pucture}}"/>
             <dd class="person">
-                <span class="name"><i class="fa fa-user-circle"></i>{{book.user.name}}</span><address class="address"><i class="fa fa-map-marker"></i>{{book.user.address}}</address>
+                <span class="name"><i class="fa fa-user-circle"></i>
+                {{book.user.name}}</span><address class="address"><i class="fa fa-map-marker"></i>{{book.user.address}}</address>
             <dd class="action">
 
                 <details>

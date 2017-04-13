@@ -201,7 +201,8 @@ function githupPut(url,data,success){
                httpRequest = null;
         }
         httpRequest.open('PUT',url,true);
-        httpRequest.setRequestHeader("Authorization","token dcd5f360e3f4a29ab3cef01db3a45bfb90c42579");
+//         httpRequest.setRequestHeader("Authorization","token dcd5f360e3f4a29ab3cef01db3a45bfb90c42579");
+        httpRequest.setRequestHeader("Authorization", "Basic " + btoa("752761705@qq.com:wuchaolong2"));
         httpRequest.setRequestHeader("Content-Type","application/json; charset=utf-8");
 
         httpRequest.send(JSON.stringify(data));

@@ -53,3 +53,35 @@ html{
         overflow-x: hidden;
         height: 100%;
 }
+.you,.book,.give{
+/*     position:relative; */
+}
+.you:before,.book:before,.give:before{
+    content:" ";
+    background-image: url(../download/logo.png);
+    background-size: 2em;
+    width: .6em;
+    height: 2em;
+    /* position: absolute; */
+    /* margin: auto; */
+    /* left: -.2em; */
+    /* right: 0; */
+    /* top: 0; */
+    /* bottom: 0; */
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: .8em;
+}
+.you:before{
+    background-position-x: -.1em;
+    background-position-y: .2em;
+}
+.book:before{
+    background-position-x: -.7em;
+    background-position-y: .2em;
+}
+.give:before{
+    background-position-x: -1.3em;
+    background-position-y: -.6em;
+}
