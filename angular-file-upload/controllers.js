@@ -17,7 +17,7 @@ angular
             return {id:0-new Date().getTime()};
         }
 
-        var baseURI = 'https://book-2724e.firebaseio.com/test/';
+        var baseURI = 'https://book-2724e.firebaseio.com/sante/';
         var rootRef = new Firebase(baseURI);
 
         $scope.submit = function(book,me) {

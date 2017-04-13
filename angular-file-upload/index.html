@@ -64,7 +64,7 @@
 
                 <fieldset>
                     <legend>书现在哪？How someone get</legend>
-                    <p><label for="address">地址：<strong><abbr title="required">*</abbr></strong></label><input list="addressList" required minlength="4"  inputmode='katakana' autocomplete="street-address"  mozactionhint="next" name="address" ng-model="me.address"/>
+                    <p><label for="address">地址：<strong><abbr title="required">*</abbr></strong></label><input placeholder="快递员可能会来找" list="addressList" required minlength="4"  inputmode='katakana' autocomplete="street-address"  mozactionhint="next" name="address" ng-model="me.address"/>
                         <datalist id="addressList"></datalist>
                     <p><label for="name">联系人<strong><abbr title="required">*</abbr></strong></label><input required maxlength="11" inputmode='katakana' autocomplete="name" mozactionhint="next" name="name" ng-model="me.name"/>
                     <p><label name="tel">手机号<strong><abbr title="required">*</abbr></strong></label><input required maxlength="11" minlength="11" autocomplete="tel" mozactionhint="send" type="tel" name="tel" type="number" ng-model="me.tel"/>
@@ -72,7 +72,7 @@
                 </fieldset>
             </section>
             <section class="submit">
-                <p> <button type="submit">确定</button> <i class="fa fa-check" ng-show="submitSuccess"></i></p>
+                <p> <button type="submit">确定</button> <i class="fa fa-spinner" ng-show="status.submit"></i></p>
             </section>
         </form>
 
