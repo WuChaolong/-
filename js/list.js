@@ -20,7 +20,7 @@ angular
 
         var baseURI = 'https://book-2724e.firebaseio.com/test/';
         var rootRef = new Firebase(baseURI);
-        var books = $scope.books = $firebaseArray(rootRef.child('books/').orderByChild("id").limitToLast(10));
+        var books = $scope.books = $firebaseArray(rootRef.child('books/').orderByKey().limitToLast(10));
         books.$loaded(
           function(x) {
             $scope.loaded = true;
