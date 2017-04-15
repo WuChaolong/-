@@ -15,11 +15,11 @@
         <script src="js/sms-link.min.js"></script>
         <script src="js/list.js"></script>
     </head>
-    <body  ng-controller="AppController" >
+    <body ng-controller="AppController" >
         <h1 class="book">我们的书</h1>
         <dl ng-repeat="(key, book) in books">
 <!--         {{book}} -->
-            <dt class="description">{{book.description.slice(0, 4)}}</dt>
+            <dt class="description">{{book.description}}</dt>
             <dd class="puctures">
                 <img ng-repeat="pucture in book.puctures"  ng-src="{{pucture}}"/>
             <dd class="person">
