@@ -4,12 +4,14 @@
         <title>三牛寺的书</title>
         <link rel="icon" href="download/logo.png">
         <meta id="meta" name="viewport" content="width=device-width, initial-scale=1"/>
-
+        
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/list.css" />
         
     </head>
     <body ng-controller="AppController" >
         <h1 class="book">三牛寺的书</h1>
-        <dl ng-repeat="(key, book) in books">
+        <dl ng-repeat="(key, book) in books" class="init-hide">
 <!--         {{book}} -->
             <dt class="description">{{book.description}}</dt>
             <dd class="puctures">
@@ -35,9 +37,7 @@
         
         <script src="download/firebase.min.js"></script>
         <script src="download/angularfire.min.js"></script>
-        <script src="js/sms-link.min.js"></script>
         <script src="js/list.js"></script>
-        <link rel="stylesheet" href="css/main.css" />
-        <link rel="stylesheet" href="css/list.css" />
+        <script src="js/sms-link.min.js"></script>
 
 </html>

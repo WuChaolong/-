@@ -87,3 +87,9 @@ html{
     background-position-x: -1.3em;
     background-position-y: -.6em;
 }
+.init-hide{
+    display:none;
+}
+.init-hide.ng-scope{
+    display:initial;
+}

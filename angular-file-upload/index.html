@@ -4,19 +4,9 @@
         <title>我来施舍本书</title>
         <link rel="icon" href="../download/logo.png">
         <meta id="meta" name="viewport" content="width=device-width, initial-scale=1"/>
-
-
-<!--         <script src="console-sham.js"></script> -->
-
-        <script src="../download/angular.min.js"></script>
-        <script src="angular-file-upload.min.js"></script>
-        <script src="../download/firebase.min.js"></script>
         
-        <!-- ES5 shim for old browsers -->
-        <script src="es5-shim.min.js"></script>
-        <script src="controllers.js"></script>
+        <link rel="stylesheet" href="../css/main.css" />
 
-<!--         <script src="directives.js"></script> -->
     </head>
     <body  ng-controller="AppController" >
         <form ng-submit="submit(book,me)">
@@ -34,7 +24,7 @@
                         
                     </div>
                     <ul>
-                        <li ng-repeat="item in uploader.queue">
+                        <li ng-repeat="item in uploader.queue" class="init-hide">
                             <span title="Name">{{ item.file.name }}</span>
                             <span title="Size">{{ item.file.size/1024|number:0 }} KB</span>
                             <img class="reader" ng-src="{{item.reader}}" alt="{{ item.file.name }}"/>
@@ -77,7 +67,17 @@
         <div>
             
         </div>
-        <link rel="stylesheet" href="../css/main.css" />
+<!--         <script src="console-sham.js"></script> -->
+
+        <script src="../download/angular.min.js"></script>
+        <script src="angular-file-upload.min.js"></script>
+        <script src="../download/firebase.min.js"></script>
+        
+        <!-- ES5 shim for old browsers -->
+        <script src="es5-shim.min.js"></script>
+        <script src="controllers.js"></script>
+
+<!--         <script src="directives.js"></script> -->
         <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="form.css" />
     </body>
