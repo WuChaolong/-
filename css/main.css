@@ -23,7 +23,9 @@ img{max-width:100%;}
       font-family: "FontAwesome";
       src: url('../download/fontawesome-webfont.woff');
 }
-
+a{
+    font-size:1.2em;
+}
 a[href="#"]{
     text-decoration: none;
     position: relative;
