@@ -93,3 +93,10 @@ html{
 .init-hide.ng-scope{
     display:initial;
 }
+
+@media (min-width: 800px) {
+  body{
+        width: 800px;
+        margin:auto;
+  }
+}
