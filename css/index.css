@@ -10,3 +10,9 @@ h1 span{
     display:block;
     margin-bottom: .5em;
 }
+.logo{
+    max-width: 5em;
+}
+.er{
+    max-width:10em;
+}
