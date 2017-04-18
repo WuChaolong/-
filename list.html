@@ -11,6 +11,7 @@
     </head>
     <body ng-controller="AppController" >
         <h1 class="book">三牛寺的书</h1>
+<!--         <p>rules,三牛寺的书是非卖品，爱心多者优先看. -->
         <dl ng-repeat="(key, book) in books" class="init-hide">
 <!--         {{book}} -->
             <dt class="description">{{book.description}}</dt>
@@ -20,9 +21,8 @@
                 <span class="name"><i class="fa fa-user-circle"></i>
                 {{book.user.name}}</span><address class="address"><i class="fa fa-map-marker"></i>{{book.user.address}}</address>
             <dd class="action">
-
                 <details>
-                        <summary>得到</summary>
+                        <summary>想看</summary>
                         <a ng-href="sms://{{book.user.tel}}?body=我喜欢你三牛寺上捐赠的“{{book.description.slice(0, 4)}}...”，周三晚上7点鹰潭拉芳舍的书友会一起吗？"  onclick="new SMSLink.link().replaceAll();">邀请一起书友会</a>
                                 或者<a href="#" data-title="设计中..." class="title-pencil">快递过来</a>
                 </details>

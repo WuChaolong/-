@@ -100,3 +100,35 @@ html{
         margin:auto;
   }
 }
+
+.book.translate-y:before{
+  animation-duration: 3s;
+  animation-name: translate-y;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+.book.translate-x:before{
+  animation-duration: 3s;
+  animation-name: translate-x;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes translate-y {
+  from {
+    transform: translate(0,0); 
+  }
+
+  to {
+    transform: translate(0,3em);
+  }
+}
+@keyframes translate-x {
+  from {
+    transform: translate(0,0); 
+  }
+
+  to {
+    transform: translate(8em,0);
+  }
+}
