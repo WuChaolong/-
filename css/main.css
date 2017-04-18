@@ -1,11 +1,16 @@
-
+body{
+  word-b;
+  word-break: break-word;
+}
 img{max-width:100%;}
 
 .fa {
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
 }
-
+.fa-commenting-o:before{
+  content: "\f27b";
+}
 .fa-map-marker:before {
     content: "\f041";
 }
@@ -35,7 +40,7 @@ a[href="#"]{
 a[href="#"]:hover:after{
     position: absolute;
     content:attr(data-title);
-    left: 0;
+    right: 0;
     top: 100%;
     width: 5em;
     font-family: FontAwesome;

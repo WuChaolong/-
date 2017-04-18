@@ -9,3 +9,18 @@ if(me){
     }
 }
 
+function gotData(data) {
+    var o = null;
+    for(var key in data){
+        o = data[key];
+    }
+    if(o==null){
+        return;
+    }
+    document.getElementById("chatFrist").innerHTML=
+        '<a href="chat/" class="link-chat fa fa-commenting-o"></a>'
+            +'<span id="chatFristText"></span>'
+            +'<span class="starter" id="chatFristName"></span>';
+    document.getElementById("chatFristText").innerText=o.text;
+    document.getElementById("chatFristName").innerText=o.name;
+}
