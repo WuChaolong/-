@@ -1,9 +1,5 @@
 
-.starter{
-    float: right;
-    margin-bottom: 1em;
-    display: inline-block;
-}
+.starter{}
 .starter:before{
     content:"——";
 }
@@ -18,8 +14,9 @@ h1 span{
     max-width:10em;
 }
 #chatFrist{
-    line-height: 1.5em;
 }
-.link-chat{
+#chatFristText{
+}
+a.link-chat{
     font-size:2em;
 }

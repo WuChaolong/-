@@ -1,5 +1,4 @@
 body{
-  word-b;
   word-break: break-word;
 }
 img{max-width:100%;}
@@ -28,7 +27,7 @@ img{max-width:100%;}
       font-family: "FontAwesome";
       src: url('../download/fontawesome-webfont.woff');
 }
-a{
+a[href]{
     font-size:1.2em;
 }
 a[href="#"]{
@@ -45,6 +44,7 @@ a[href="#"]:hover:after{
     width: 5em;
     font-family: FontAwesome;
     /* z-index: 1; */
+    text-align: left;
 }
 a[href="#"].title-pencil:hover:after{
     content:"\f040"attr(data-title);  
@@ -101,8 +101,16 @@ html{
 
 @media (min-width: 800px) {
   body{
-        width: 800px;
+        max-width: 800px;
         margin:auto;
+  }
+}
+@media (min-width: 330px) {
+  a[href].book.translate-x:before{
+    animation-duration: 3s;
+    animation-name: translate-x;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
   }
 }
 
@@ -112,12 +120,7 @@ html{
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
-.book.translate-x:before{
-  animation-duration: 3s;
-  animation-name: translate-x;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
+
 
 @keyframes translate-y {
   from {
