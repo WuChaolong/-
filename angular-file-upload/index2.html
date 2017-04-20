@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html id="ng-app" ng-app="app"> <!-- id="ng-app" IE<8 -->
+    <head>
+        <title>我来捐赠本书</title>
+        <link rel="icon" href="../download/logo.png">
+        <meta id="meta" name="viewport" content="width=device-width, initial-scale=1"/>
+        
+        <link rel="stylesheet" href="../css/main.css" />
+        <link rel="stylesheet" href="form.css" />
+
+    </head>
+    <body  ng-controller="AppController" >
+        <form ng-submit="submit(book,me)">
+            <h1><em ng-bind="me.name?me.name:'我'" class="you">我</em>来<em  class="give">捐赠</em>些<em  class="book">书</em></h1>
+
+            <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
+            <section>
+                <h2></h2>
+                <fieldset  nv-file-drop="" uploader="uploader">
+
+                    <legend>书的照片 Upload <strong><abbr title="required">*</abbr></strong></legend>
+                    <div ng-show="uploader.isHTML5">
+                        <input ng-required="!uploader.queue.length" nv-file-drop="" nv-file-over="" uploader="uploader" options="{url: '/foo'}" over-class="other-over-zone" class="other-drop-zone zone" 
+                            title="One more drop zone with its own settings (and indication)" name="fileInput" type="file" nv-file-select="" uploader="uploader" multiple accept="image/*" capture/>
+                        
+                    </div>
+                    <ul>
+                        <li ng-repeat="item in uploader.queue" class="init-hide">
+                            <span title="Name">{{ item.file.name }}</span>
+                            <span title="Size">{{ item.file.size/1024|number:0 }} KB</span>
+                            <img class="reader" ng-src="{{item.reader}}" alt="{{ item.file.name }}"/>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"/>
+                            </div>
+                            <input required type="checkbox" name="pucture" ng-checked="item.progress==100"/>
+                        </li>
+                    </ul>                    
+
+
+                </fieldset>
+            </section>
+
+            <section>
+
+                <fieldset>
+                    <legend>书籍描述 Details<strong><abbr title="required">*</abbr></strong></legend>
+                    <textarea required rows="6" inputmode="katakana" name="description" ng-model="book.description" placeholder="例如：书的名字,{{me.name?me.name:'我'}}的读后总结或推荐理由...等等"></textarea>
+
+                </fieldset>
+            </section>
+
+            <section>
+
+                <fieldset>
+                    <legend>书现在哪？How someone get</legend>
+                    <p><label for="address">地址：<strong><abbr title="required">*</abbr></strong></label><input placeholder="快递员可能会来找" list="addressList" required minlength="4"  inputmode='katakana' autocomplete="street-address"  mozactionhint="next" name="address" ng-model="me.address"/>
+                        <datalist id="addressList"></datalist>
+                    <p><label for="name">联系人<strong><abbr title="required">*</abbr></strong></label><input required maxlength="11" inputmode='katakana' autocomplete="name" mozactionhint="next" name="name" ng-model="me.name"/>
+                    <p><label name="tel">手机号<strong><abbr title="required">*</abbr></strong></label><input required maxlength="11" minlength="11" autocomplete="tel" mozactionhint="send" type="tel" name="tel" type="number" ng-model="me.tel"/>
+
+                </fieldset>
+            </section>
+            <section class="submit">
+                <p> <button type="submit">确定</button> <i class="fa fa-spinner" ng-show="status.submit"></i></p>
+            </section>
+        </form>
+
+        <div>
+            
+        </div>
+<!--         <script src="console-sham.js"></script> -->
+
+        <script src="../download/angular.min.js"></script>
+        <script src="angular-file-upload.min.js"></script>
+        <script src="../download/firebase.min.js"></script>
+        
+        <!-- ES5 shim for old browsers -->
+        <script src="es5-shim.min.js"></script>
+        <script src="controllers.js"></script>
+
+<!--         <script src="directives.js"></script> -->
+        <link rel="stylesheet" href="style.css" />
+    </body>
+</html>

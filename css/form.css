@@ -1,0 +1,142 @@
+h1 {
+    margin-top: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+form {
+    margin: 0 auto;
+    width: 100%;
+    /* padding: 1em; */
+    /* border: 1px solid #CCC; */
+    border-radius: 1em;
+    display:inline-block;
+}
+
+section {
+    margin-top: 1em;
+}
+
+label span {
+    display: inline-block;
+    width: 120px;
+    text-align: right;
+}
+
+input, textarea {
+    font: 1.2em sans-serif;
+    line-height: 1.5em;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #999;
+}
+
+input[type=checkbox], input[type=radio] {
+    width: auto;
+    border: none;
+}
+input[name=pucture]{
+      position: absolute;
+}
+
+input:focus, textarea:focus {
+    border-color: #000;
+}
+
+textarea {
+    vertical-align: top;
+    height: 5em;
+    resize: vertical;
+}
+
+fieldset {
+    /* width: 250px; */
+    /*           box-sizing: border-box; */
+    /*           margin-left: 136px; */
+    border: 1px solid #999;
+    display: inherit;
+}
+
+button {
+    /* margin: auto; */
+    /* display: inherit; */
+    font-size: 1.2em;
+    padding: .2em 1em;
+    min-width: 6em;
+}
+button .fa{
+  display:none;
+}
+button[disabled] .fa{
+  display:initial;
+}
+label {
+  position: relative;
+}
+
+label em {
+  position: absolute;
+  right: 5px;
+  top: 20px;
+}
+.submit{
+      text-align:center;
+}
+
+@media (min-width: 800px) {
+  body{
+        width: 800px;
+        margin:auto;
+  }
+}
+#bookList{
+      min-width: initial;
+      display: none;
+}
+#bookList div{
+    overflow-x: scroll;
+    white-space: nowrap;
+    padding: .2em;
+}
+
+#bookList label{
+  display: inline-block;
+  text-align: center;
+  margin-right: .5em;
+  max-width: 6em;
+  /* word-break: break-word; */
+  overflow: hidden;
+  white-space: normal;
+  vertical-align: top;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+#bookList input:checked + label{box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.2);/* box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2); */}
+#bookList img{
+  display: block;
+  width: 100%;
+}
+#bookList span{
+  display: block;
+  white-space: nowrap;
+  max-width: 100%;
+  width: inherit;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5em;
+  /* text-decoration: none; */
+  /* padding-left: .5em; */
+  /* padding-right: .5em; */
+}
+#bookList input{
+  vertical-align: super;
+}
+#bookList a{
+  vertical-align: super;
+  text-decoration: none;
+}

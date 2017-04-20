@@ -5,7 +5,7 @@ if(me){
     var youDocs = document.getElementsByClassName("you");
     for(var i =0;i<youDocs.length;i++){
         var youDoc = youDocs[i];
-        youDoc.innerText = me.name;
+        youDoc.innerText = me.username;
     }
 }
 

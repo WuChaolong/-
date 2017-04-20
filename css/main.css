@@ -5,7 +5,7 @@ img{max-width:100%;}
 
 .fa {
     font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
+    font-size: initial;
 }
 .fa-commenting-o:before{
   content: "\f27b";
@@ -23,6 +23,12 @@ img{max-width:100%;}
     content: "\f00c";
     color:green;
 }
+.fa-link:before {
+    content: "\f0c1";
+}
+.fa-search:before {
+    content: "\f002";
+}
 @font-face {
       font-family: "FontAwesome";
       src: url('../download/fontawesome-webfont.woff');
@@ -34,12 +40,14 @@ a[href="#"]{
     text-decoration: none;
     position: relative;
     font-family: FontAwesome;
-
+    white-space: normal;
 }
 a[href="#"]:hover:after{
     position: absolute;
     content:attr(data-title);
     right: 0;
+    /* left: 0; */
+    margin: auto;
     top: 100%;
     width: 5em;
     font-family: FontAwesome;
@@ -96,47 +104,12 @@ html{
     display:none;
 }
 .init-hide.ng-scope{
-    display:initial;
+    display: initial;
 }
 
 @media (min-width: 800px) {
   body{
         max-width: 800px;
         margin:auto;
-  }
-}
-@media (min-width: 330px) {
-  a[href].book.translate-x:before{
-    animation-duration: 3s;
-    animation-name: translate-x;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-  }
-}
-
-.book.translate-y:before{
-  animation-duration: 3s;
-  animation-name: translate-y;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-
-@keyframes translate-y {
-  from {
-    transform: translate(0,0); 
-  }
-
-  to {
-    transform: translate(0,3em);
-  }
-}
-@keyframes translate-x {
-  from {
-    transform: translate(0,0); 
-  }
-
-  to {
-    transform: translate(8em,0);
   }
 }

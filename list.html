@@ -11,23 +11,31 @@
     </head>
     <body ng-controller="AppController" >
         <h1 class="book">三牛寺的书</h1>
-<!--         <p>rules,三牛寺的书是非卖品，爱心多者优先看. -->
-        <dl ng-repeat="(key, book) in books" class="init-hide">
-<!--         {{book}} -->
-            <dt class="description">{{book.description}}</dt>
-            <dd class="puctures">
-                <img ng-repeat="pucture in book.puctures"  ng-src="{{pucture}}"/>
+
+
+        <dl ng-repeat="(key, book) in books" class="init-hide" >
+            <dt>{{book.description}}</dt>
+            <dd  class="turn-boook" ng-show="book.search">
+                <div class="description"><img ng-src="{{book.search.image}}"/></div>            
+                <div class="turn-over">
+                        <span title="{{book.search.summary}}">{{book.search.summary.slice(0,46)+"..."}}</span>
+                        
+                        <a class="search-alt" ng-href="{{book.search.alt}}" title="来源">
+                        <i class="fa fa-search">douban</i></a>
+                </div>
+            </dd>
             <dd class="person">
-                <span class="name"><i class="fa fa-user-circle"></i>
-                {{book.user.name}}</span><address class="address"><i class="fa fa-map-marker"></i>{{book.user.address}}</address>
-            <dd class="action">
+                        
                 <details>
-                        <summary>想看</summary>
-                        <a ng-href="sms://{{book.user.tel}}?body=我喜欢你三牛寺上捐赠的“{{book.description.slice(0, 4)}}...”，周三晚上7点鹰潭拉芳舍的书友会一起参加吗？"  onclick="new SMSLink.link().replaceAll();">邀请一起书友会</a>
-                                或者<a href="#" data-title="设计中,正在试‘一键’得到" class="title-pencil">快递过来</a>
+                        <summary><span class="name"><i class="fa fa-user-circle"></i>
+                        {{book.username}}</span><address class="address"><i class="fa fa-map-marker"></i>{{book.address.slice(0, 6)}}</address></summary>
+                        我想要？<a href="#" data-title="设计中,正在试‘一键’得到" class="title-pencil">快递过来</a>
                 </details>
-                
+            
         </dl>
+
+        
+
         <i class="fa fa-spinner" ng-hide="loaded">loading</i>
 
 
@@ -36,7 +44,7 @@
         <script src="download/firebase.min.js"></script>
         <script src="download/angularfire.min.js"></script>
         <script src="js/list.js"></script>
-        <script src="js/sms-link.min.js"></script>
+<!--         <script src="js/sms-link.min.js"></script> -->
         
     </body>
 

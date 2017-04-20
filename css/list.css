@@ -1,23 +1,10 @@
-.puctures{
-    overflow-x: scroll;
-    white-space: nowrap;
-}
-.puctures img{
-    max-height:250px;
-    display: inline;
-    margin-right: .5em;
-    max-width: 90%;
-}
-dl{
-    line-height:1.5em;
-    word-break: break-word;
-}
-dt{
-    font-size: 1.3em;
+details {
+  /* text-align: right; */
+  line-height:2em;
 }
 .name{
-    margin-right:.5em;
-    float: left;
+    /* margin-right:.5em; */
+    /* float: left; */
 }
 [ng-repeat] dt:before {
     content: "\f110";
@@ -26,17 +13,77 @@ dt{
 [ng-repeat].ng-scope dt:before {
     content: "";
 }
-details {
-  text-align: right;
-  line-height:2em;
+.description img{width: 100%;}
+.search-alt{
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+  /* background-color: rgba(255,255, 255, 0.6); */
 }
-/* summary::-webkit-details-marker{
-  display: none
+.turn-boook{display: inline-block;width: 8em;box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);height: 11.3em;white-space: nowrap;position: relative;/* transform: rotateY(180deg); */transition: transform 1s;animation-timing-function: linear;/* margin-left: 1em; */}
+dl.init-hide.ng-scope {
+  display: block;
+  /* white-space: nowrap; */
+  overflow-x: overlay;
+  overflow-y: overlay;
+  padding: .5em;
 }
-summary:after {
-  content: "◄";
-/*   font-size:.8em; */
+dt {
+  font-size:1.5em;
+  line-height:1.5em;
 }
-details[open] summary:after {
-  content: "▼";
-} */
+.ng-hide +.person{
+  width: 100%;
+}
+dd{
+      display: inline-block;
+      vertical-align: top;
+      margin-left: .5em;
+}
+.turn-boook:hover{
+  transform: rotateY(180deg);
+}
+
+.description,.turn-over{
+  margin-left: 0;
+  display: -webkit-box;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  white-space: normal;
+  background-color: rgba(255, 255, 255, .8);
+}
+.description{
+  text-align: center;
+  font-size: 1.2em;
+  /* padding: .5em; */
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+}
+.turn-over{
+  transform: rotateY(180deg);
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  text-align: left;
+  transition: z-index 1s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.turn-boook:hover .turn-over{
+  z-index: 1;
+}
+
+.action{
+}
+.turn-over img{position: absolute;right: 0;left: 0;margin: auto;width: 100%;z-index: -1;}
+.person .address {
+    display: inline;
+    margin-left:.5em;
+}
