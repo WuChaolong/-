@@ -56,7 +56,7 @@ function loaded(){
 function showBookList(textarea){
     document.getElementById("forBookList").classList.add("ng-scope");
     var q = getQ(textarea.value);
-    var uri = "http://charon-node.herokuapp.com/cross?api=https://api.douban.com/v2/book/search?q="+q;
+    var uri = "//charon-node.herokuapp.com/cross?api=https://api.douban.com/v2/book/search?q="+q;
     get(uri,function(data){
         console.log(data);
         try{
@@ -107,7 +107,7 @@ function geoFindMe(input) {
       console.log("getCurrentPosition error");
   }
   function addressByItude(latitude,longitude){
-    var uri = "http://charon-node.herokuapp.com/cross?api=https://maps.googleapis.com/maps/api/geocode/json?language=zh-CN&latlng="
+    var uri = "//charon-node.herokuapp.com/cross?api=https://maps.googleapis.com/maps/api/geocode/json?language=zh-CN&latlng="
         +latitude+","+longitude+"&key=AIzaSyAU-cH7LlZPJKoL1m8lUXH3EsVZjnqZRq0";
     get(uri,function(data){
         console.log(data);
@@ -148,7 +148,10 @@ function addressByResult(result){
 function get(uri,fn){
     var request = new XMLHttpRequest();
     request.open("GET", uri);
-    request.send();
+    try{
+      request.send();
+    }catch(e){
+    }
     request.onload = function(e) {
         if (this.status == 200) {
           fn(this.response);
