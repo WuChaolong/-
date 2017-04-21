@@ -29,7 +29,8 @@
                 <details>
                         <summary><span class="name"><i class="fa fa-user-circle"></i>
                         {{book.username}}</span><address class="address"><i class="fa fa-map-marker"></i>{{book.address.slice(0, 6)}}</address></summary>
-                        想要？<a href="#" data-title="设计中,正在试‘一键’得到" class="title-pencil">快递过来</a>
+                        想要？<a ng-href="sms://{{book.tel}}?body=我喜欢你三牛寺上捐赠的“{{book.description.slice(0, 4)}}...”，周三晚上7点鹰潭拉芳舍的书友会一起参加吗？"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
+                        或者<a href="#" data-title="设计中,正在试‘一键’得到" class="title-pencil">快递过来</a>
                 </details>
             
         </dl>
@@ -44,7 +45,7 @@
         <script src="download/firebase.min.js"></script>
         <script src="download/angularfire.min.js"></script>
         <script src="js/list.js"></script>
-<!--         <script src="js/sms-link.min.js"></script> -->
+        <script src="js/sms-link.min.js"></script>
         
     </body>
 
