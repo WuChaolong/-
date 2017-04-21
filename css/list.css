@@ -70,16 +70,22 @@ dd{
   z-index: 0;
   left: 0;
   top: 0;
-  text-align: left;
+  text-align: right;
   transition: z-index 1s;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding: .5em;
+  box-sizing: border-box;
 }
 
 .turn-boook:hover .turn-over{
   z-index: 1;
 }
 
+.turn-over span{
+  text-align: left;
+  display: inline-block;
+}
 .action{
 }
 .turn-over img{position: absolute;right: 0;left: 0;margin: auto;width: 100%;z-index: -1;}
