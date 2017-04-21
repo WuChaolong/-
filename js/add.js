@@ -94,6 +94,11 @@ function geoFindMe(input) {
   if (!navigator.geolocation){
     return;
   }
+  
+  document.getElementById("forGeo").classList.add("ng-scope");
+
+  navigator.geolocation.getCurrentPosition(success, error);
+
 
   function success(position) {
     var latitude  = position.coords.latitude;
@@ -105,6 +110,7 @@ function geoFindMe(input) {
 
   function error() {
       console.log("getCurrentPosition error");
+      document.getElementById("forGeo").classList.remove("ng-scope");
   }
   function addressByItude(latitude,longitude){
     var uri = "//charon-node.herokuapp.com/cross?api=https://maps.googleapis.com/maps/api/geocode/json?language=zh-CN&latlng="
@@ -117,13 +123,14 @@ function geoFindMe(input) {
             if(address){
                 input.value = address;
             }
+
         }catch(e){
-            
+
         }
+
+           document.getElementById("forGeo").classList.remove("ng-scope");
     });
   }
-
-  navigator.geolocation.getCurrentPosition(success, error);
 }
 
 function addressByResult(result){
