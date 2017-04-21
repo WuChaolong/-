@@ -40,9 +40,9 @@ input[type=text] {
 }
 
 em {
-  font-style: normal;
-  font-weight: bold;
-  color: black;
+  /* font-style: normal; */
+  /* font-weight: bold; */
+  /* color: black; */
   float: right;
 }
 em:before {
