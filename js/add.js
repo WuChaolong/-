@@ -43,7 +43,11 @@ function loaded(){
         });
         localStorage.setItem("me", me);
     }
-    var me = JSON.parse(localStorage.getItem("me"));
+        try{
+          var me = JSON.parse(localStorage.getItem("me"));
+        }catch(e){
+          
+        }
     if(me){
         var formInitData = {
             "address":me.address,
@@ -184,35 +188,7 @@ function formToObject(form) {
     }
     return result;
 }
-function submit(formElement) {
-    
-    return false;
 
-
-//     if(status.submit) return;
-//     me = me||{};book = book||{};
-//     status.submit = true;
-//     me.id = me.id||book.id;
-//     rootRef.child('users/' + me.id).set(me).then(function(){
-//         localStorage.setItem("me", JSON.stringify(me));
-//     });
-//     // Save data to the current local store
-
-//     book.userId = me.id;
-//     rootRef.child('books/'+book.id).set(book)
-//         .then(function() {
-//                 console.log('Synchronization succeeded');
-// //                         $scope.reset();
-// //                         location="/book/list.html";
-//                    $scope.submitSuccess = true;
-//                    window.goBack();
-//         })
-//         .catch(function(error) {
-//                 console.log('Synchronization failed');
-//                 $scope.status.submit = undefined;
-//         });
-
-};
 
 function goBack(e){
     var defaultLocation = "index.html";
