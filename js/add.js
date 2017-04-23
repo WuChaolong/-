@@ -1,17 +1,17 @@
-loaded();
+
 function loaded(){
     var formElement = document.querySelector("form");
     formElement.address.onfocus=function(e){
         if(this.value){
             return;
         }
-        geoFindMe(this);
+        geoFindMe(this,formElement.geo);
     }
-    formElement.description.onchange=function(e){
-//         if(this.value.split(/\s*,|;|\.|，|；|。\s*/).length>0){
-//           showBookList(this);
-//         }
-        showBookList(this);
+    formElement.description.oninput=function(e){
+        var regexp = /\s*,|;|\.|，|；|。\s*/;
+        if(e.data&&e.data.match(regexp)&&this.value.split(regexp).length==2){
+          showBookList(this);
+        }
     }
     formElement.onsubmit=function(e){
         var submitButton = formElement.querySelector("button[type=submit]");
@@ -39,20 +39,22 @@ function loaded(){
         var me = JSON.stringify({
             "address":book.address,
             "username":book.username,
-            "tel":book.tel
+            "tel":book.tel,
+            "geo":book.geo
         });
         localStorage.setItem("me", me);
     }
-        try{
-          var me = JSON.parse(localStorage.getItem("me"));
-        }catch(e){
-          
-        }
+    try{
+      var me = JSON.parse(localStorage.getItem("me"));
+    }catch(e){
+
+    }
     if(me){
         var formInitData = {
             "address":me.address,
             "username":me.username,
-            "tel":me.tel
+            "tel":me.tel,
+            "geo":me.geo
         }
         setFormValue(formElement,formInitData)
     }
@@ -83,17 +85,16 @@ function showBookList(textarea){
             html = html +'</div>';
             bookList.innerHTML=html;
             bookList.style.display="block";
-            document.getElementById("forBookList").classList.remove("ng-scope");
         }catch(e){
-                        document.getElementById("forBookList").classList.remove("ng-scope");
 
         }
+        document.getElementById("forBookList").classList.remove("ng-scope");
     });
 }
 function getQ(string){
     return string.split(/\s*,|;|\.|，|；|。\s*/)[0];
 }
-function geoFindMe(input) {
+function geoFindMe(input,geoHidden) {
 
   if (!navigator.geolocation){
     return;
@@ -107,8 +108,9 @@ function geoFindMe(input) {
   function success(position) {
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
-    addressByItude(latitude,longitude);
     console.log('<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>');
+    geoHidden.value = latitude+","+longitude;
+    addressByItude(latitude,longitude);
 
   }
 
@@ -177,7 +179,7 @@ function setFormValue(form,object){
         form[key].value = object[key];
     }
 }
-// function disableSubmit
+
 function formToObject(form) {
     var formData = new FormData(form),
         result = {};
