@@ -13,6 +13,12 @@ function loaded(){
           showBookList(this);
         }
     }
+    formElement.description.onblur=function(e){
+        var bookList = document.getElementById("bookList");
+        if(this.value&&!bookList.innerHTML){
+            showBookList(this);
+        }
+    }
     formElement.onsubmit=function(e){
         var submitButton = formElement.querySelector("button[type=submit]");
         submitButton.disabled="disabled";

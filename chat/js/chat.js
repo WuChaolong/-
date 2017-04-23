@@ -18,9 +18,10 @@ $(function() {
       .text(message.name)).appendTo($("#messagesDiv"));
     $("#messagesDiv")[0].scrollTop = $("#messagesDiv")[0].scrollHeight;
   });
-
-  var me = JSON.parse(localStorage.getItem("me"));
+  try{
+    var me = JSON.parse(localStorage.getItem("me"));
+  }catch(e){}
   if(me){
-      $("#nameInput").val(me.name);
+      $("#nameInput").val(me.username);
   }
 });
