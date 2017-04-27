@@ -25,19 +25,41 @@
                 </div>
             </dd>
             <dd class="person">
-                        
-                <details>
-                        <summary><span class="name"><i class="fa fa-user-circle"></i>
-                        {{book.username}}</span><address class="address"><i class="fa fa-map-marker"></i>{{book.address.slice(0, 6)}}</address></summary>
-                        想要？<a ng-href="sms://{{book.tel}}?body=我喜欢你三牛寺上捐赠的“{{book.description.slice(0, 4)}}...”，周三晚上7点鹰潭拉芳舍的书友会一起参加吗？"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
-                        或者<a href="#" data-title="设计中,正在试‘一键’得到" class="title-pencil">快递过来</a>
-                </details>
+<!--                     {{!book.users}}|{{isShowGet(book)}} -->
+                    
+                    <details ng-class="{'show-get': !book.users&&isShowGet(book)}" ng-open="$index==0&&!book.users&&isShowGet(book)">
+                            <summary>
+                                <span class="name">{{book.username}}<i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                                <address class="address">{{book.address.slice(0, 6)}}<i class="fa fa-map-marker" aria-hidden="true"></i></address>
+                                <span class="time"><i class="date">{{-book.time|date:'MM-dd'}}</i></span>
+                                
+                             </summary>
+                             <div class="get" ng-show="!book.users&&isShowGet(book)">
+                                想要？<a ng-href="sms://{{book.tel}}?body=我喜欢你三牛寺上捐赠的“{{book.description.slice(0, 4)}}...”，周三晚上7点鹰潭拉芳舍的书友会一起参加吗？"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
+                                或者<button ng-click="mail(book)">快递送来</button>
+                            </div>
+                    </details>
+                    <details ng-repeat="(key, user) in book.users" class="other-user" ng-class="{'show-get': $last&&isShowGet(user)}" >
+                            <summary>
+<!--                                 {{book.currentUser==key}}|{{isShowGet(user)}} -->
+                                <span class="name"><i class="give"></i>{{user.name}}<i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                                <address class="address">{{user.address.slice(0, 6)}}<i class="fa " ng-class="user.status?user.status:'fa-map-marker'" aria-hidden="true"></i></address>
+                                <span class="time">
+                                    <i class="date">{{-user.time|date:'MM-dd'}}</i>
+                                </span>
+                             </summary>
+                             <div class="get" ng-show="$last&&isShowGet(user)">
+                                想要？<a ng-href="sms://{{user.tel}}?body=我喜欢你三牛寺上捐赠的“{{book.description.slice(0, 4)}}...”，周三晚上7点鹰潭拉芳舍的书友会一起参加吗？"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
+                                或者<button ng-click="mail(book,user)">快递送来</button>
+                            </div>
+                    </details>
+                     
             
         </dl>
 
         
 
-        <i class="fa fa-spinner" ng-hide="loaded">loading</i>
+        <i class="fa fa-spinner" ng-hide="loaded" aria-hidden="true"></i>
 
 
         <script src="download/angular.min.js"></script>

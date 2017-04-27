@@ -6,18 +6,27 @@ img{max-width:100%;}
 .fa {
     font: normal normal normal 14px/1 FontAwesome;
     font-size: initial;
+    display: inline-block;
+    position: relative;
 }
 .fa-commenting-o:before{
   content: "\f27b";
 }
 .fa-map-marker:before {
     content: "\f041";
+     */
+    margin-right: -.5em; */
+    margin-left: .;
+    font-size: 1.2em;
 }
 .fa-user-circle:before {
     content: "\f2bd";
 }
 .fa-spinner:before {
     content: "\f110";
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+    display: inline-block;
 }
 .fa-check:before {
     content: "\f00c";
@@ -29,9 +38,54 @@ img{max-width:100%;}
 .fa-search:before {
     content: "\f002";
 }
+.fa-truck:before {
+    content: "\f0d1";
+    transform: rotate(-90deg);
+    display: inline-block;
+    -webkit-animation: fa-right 2s infinite;
+    animation: fa-right 2s infinite;
+    animation-direction: alternate;
+}
+.fa-clock-o:before {
+    content: "\f017";
+}
+.fa-calendar:before {
+    content: "\f073";
+}
+.fa-pause:before {
+    content: "\f04c";
+}
+.fa-hourglass-start:before {
+    content: "\f251";
+}
+.fa-calendar-o:before {
+/*     content: "\f133"; */
+    font-size: 1.5em;
+    margin-right: -1.5em;
+    opacity: 0.6;
+}
 @font-face {
       font-family: "FontAwesome";
       src: url('../download/fontawesome-webfont.woff');
+}
+@keyframes fa-right {
+  from {
+    transform: rotate(-90deg)  translate(0,0); 
+  }
+
+  to {
+    transform:  rotate(-90deg) translate(2em,0);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
 }
 a[href]{
     font-size:1.2em;

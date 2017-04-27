@@ -17,7 +17,7 @@
             
             <section>
                 <fieldset>
-                    <legend>书籍描述 Details<strong><i id="forBookList" class="fa fa-spinner init-hide"></i><abbr title="required">*</abbr></strong></legend>
+                    <legend>书籍描述 Details<strong><i id="forBookList" class="fa fa-spinner init-hide" aria-hidden="true"></i><abbr title="required">*</abbr></strong></legend>
                     <textarea required rows="6" inputmode="katakana" name="description" placeholder="例如：书的名字，×××"></textarea>
 
                 </fieldset>
@@ -27,14 +27,14 @@
             <section>
                 <fieldset>
                     <legend>书现在哪？How someone get</legend>
-                    <p><label for="address">模糊的地址<strong><i id="forGeo" class="fa fa-spinner init-hide"></i><abbr title="required">*</abbr></strong></label><input placeholder="想要时快递员会来找" list="addressList" required minlength="4"  inputmode='katakana' autocomplete="street-address"  mozactionhint="next" name="address"/>
+                    <p><label for="address">模糊的地址<strong><i id="forGeo" class="fa fa-spinner  init-hide" aria-hidden="true"></i><abbr title="required">*</abbr></strong></label><input placeholder="想要时快递员会来找" list="addressList" required minlength="4"  inputmode='katakana' autocomplete="street-address"  mozactionhint="next" name="address"/>
                         <datalist id="addressList"></datalist>
                     <p><label for="username">你的名字<strong><abbr title="required">*</abbr></strong></label><input required placeholder="我已记不得你的名字，却还记得喜欢你" maxlength="11" inputmode='katakana' autocomplete="name" mozactionhint="next" name="username"/>
                     <p><label name="tel">手机号<strong><abbr title="required">*</abbr></strong></label><input required maxlength="11" minlength="11" autocomplete="tel" mozactionhint="send" type="tel" name="tel" type="number"/>
                 </fieldset>
             </section>
             <section class="submit">
-                <p><button type="submit">捐赠<i class="fa fa-spinner"></i></button></p>
+                <p><button type="submit">捐赠<i class="fa fa-spinner fa-spin" aria-hidden="true"></i></button></p>
             </section>
             <input type="hidden" name="geo"/>
         </form>

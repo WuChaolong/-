@@ -13,9 +13,9 @@ function loaded(){
           showBookList(this);
         }
     }
-    formElement.description.onblur=function(e){
+    formElement.description.onchange=function(e){
         var bookList = document.getElementById("bookList");
-        if(this.value&&!bookList.innerHTML){
+        if(this.value&&!bookList.innerHTML&&!document.getElementById("forBookList").classList.contains("ng-scope")){
             showBookList(this);
         }
     }
@@ -24,13 +24,12 @@ function loaded(){
         submitButton.disabled="disabled";
         e.preventDefault();
 
-
         var request = new XMLHttpRequest();
         request.open(formElement.method, formElement.action);
         var book = formToObject(formElement);
         book["time"]=0-new Date().getTime();
         try{
-          request.send(JSON.stringify(book));
+            request.send(JSON.stringify(book));
         }catch(e){
             submitButton.disabled="";
         }
