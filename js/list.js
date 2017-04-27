@@ -5,14 +5,14 @@ angular
 
 
     .module('app', ["firebase"])
-//     .config( [
-//         '$compileProvider',
-//         function( $compileProvider )
-//         {   
-//             $compileProvider.aHrefSanitizationWhitelist(/^\s*(sms|https?|ftp|mailto|chrome-extension):/);
-//             // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
-//         }
-//     ])
+    .config( [
+        '$compileProvider',
+        function( $compileProvider )
+        {   
+            $compileProvider.aHrefSanitizationWhitelist(/^\s*(sms|https?|ftp|mailto|chrome-extension):/);
+            // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
+        }
+    ])
 
     .controller('AppController', function($http,$scope,$firebaseObject,$firebaseArray) {
         
