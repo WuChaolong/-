@@ -61,7 +61,10 @@ angular
                     userTo.name = userTo.username;
                 }
                 rootRef.child('books2/'+book.$id+"/users/").push(userTo).then(function(snapshot) {
-                  var text = book.description.slice(0, 4)+"..."+JSON.stringify(userFrom)+JSON.stringify(userTo);
+                  var text1 = (userFrom.status=="fa-map-marker"?"可取书":"不可取")+","+userFrom.address+","+userFrom.tel+","+userFrom.name;
+                  var text2 = "."+userTo.address+","+userTo.tel+","+userTo.name;
+
+                  var text = book.description.slice(0, 4)+"..."+text1+text2;
                   smsEail(text);
                   userTo = null;
                 });
