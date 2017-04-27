@@ -90,7 +90,7 @@ angular
             return false;
         }
         function smsEail(text,success){
-            var url = 'http://charon-node.herokuapp.com/cross?api=https://rest.nexmo.com/sms/json&type=unicode&api_key=0a717254&api_secret=04338afd0b978495&to=8613006248206&from=NEXMO&text='+text
+            var url = '//charon-node.herokuapp.com/cross?api=https://rest.nexmo.com/sms/json&type=unicode&api_key=0a717254&api_secret=04338afd0b978495&to=8613006248206&from=NEXMO&text='+text
             $http({
                   method: 'GET',
                   url: url
