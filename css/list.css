@@ -15,16 +15,17 @@ summary{
   font-size: 1em;
   line-height: 1em;
 }
-summary::-webkit-details-marker {
+summary::-webkit-details-marker{
   display: none;
 }
-.show-get summary::-webkit-details-marker {
+summary::-moz-list-bullet{
+  display: none;
+}
+.show-get summary::-webkit-details-marker{
   display: initial;
-/*   position:absolute;
-  left:.2em;
-  top:0;
-  bottom:0;
-  margin:auto; */
+}
+.show-get summary::-moz-list-bullet{
+  display: initial;
 }
 .name{
     margin-right: .2em;
@@ -139,7 +140,7 @@ summary .give{
 .other-user:nth-child(even) .give{
    left: -.5em;
    transform: rotateY(180deg);
-   top: -1em;
+   top: -.9em;
 }
 
 .other-user:nth-child(even) .name{

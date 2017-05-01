@@ -35,7 +35,7 @@
                                 
                              </summary>
                              <div class="get" ng-show="!book.users&&isShowGet(book)">
-                                想要？<a ng-href="sms://{{book.tel}}?body=我喜欢你三牛寺上捐赠的“{{book.description.slice(0, 4)}}...”，周三晚上7点鹰潭拉芳舍的书友会一起参加吗？"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
+                                想要？<a ng-href="sms://{{book.tel}}?body=我喜欢你三牛寺的“{{book.description.slice(0, 4)}}...”，周三晚上7点鹰潭拉芳舍的书友会一起参加吗？"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
                                 或 <button ng-click="mail(book)">快递送来</button>
                             </div>
                     </details>
@@ -49,7 +49,7 @@
                                 </span>
                              </summary>
                              <div class="get" ng-show="$last&&isShowGet(user)">
-                                想要？<a ng-href="sms://{{user.tel}}?body=我喜欢你三牛寺上捐赠的“{{book.description.slice(0, 4)}}...”，周三晚上7点鹰潭拉芳舍的书友会一起参加吗？"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
+                                想要？<a ng-href="sms://{{user.tel}}?body=我喜欢你三牛寺的“{{book.description.slice(0, 4)}}...”，周三晚上7点鹰潭拉芳舍的书友会一起参加吗？"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
                                 或 <button ng-click="mail(book,user)">快递送来</button>
                             </div>
                     </details>
@@ -59,7 +59,7 @@
 
         
 
-        <i class="fa fa-spinner" ng-hide="loaded" aria-hidden="true"></i>
+        <i class="fa fa-spinner" ng-hide="loaded" aria-hidden="true">善良的ll，很庆幸你坐旁边，更庆幸你还捐了书，一直没来快递，不是简爱不好，而是没几个人知道。</i>
 
 
         <script src="download/angular.min.js"></script>

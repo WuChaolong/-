@@ -1,0 +1,27 @@
+button .fa-spinner{
+  display:none;
+}
+button[disabled] .fa{
+  display:initial;
+}
+input,button{
+    font: 1.5em sans-serif;
+    line-height: 1.5em;
+    box-sizing: border-box;
+}
+#login section{
+    display: inline-table;
+    white-space: nowrap;
+}
+#login summary{
+    line-height: 2em;
+}
+#login form{
+  overflow-x: scroll;
+  overflow-y: auto;
+}
+summary h1,summary h2{
+  display:inline-block;
+}
+details{text-align: center;}
+summary{text-align:left;}

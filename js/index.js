@@ -6,6 +6,9 @@ if(me){
     for(var i =0;i<youDocs.length;i++){
         var youDoc = youDocs[i];
         youDoc.innerText = me.username;
+        if(youDoc.href){
+            youDoc.removeAttribute("href");
+        }
     }
 }
 
@@ -20,7 +23,7 @@ function gotData(data) {
     document.getElementById("chatFrist").innerHTML=
         '<a href="chat/" class="link-chat fa fa-commenting-o"></a>'
             +'<span id="chatFristText"></span>'
-            +'<span class="starter" id="chatFristName"></span>';
+            +'<span class="name" id="chatFristName"></span>';
     document.getElementById("chatFristText").innerText=o.text;
     document.getElementById("chatFristName").innerText=o.name;
 }

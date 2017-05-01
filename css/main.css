@@ -64,6 +64,9 @@ img{max-width:100%;}
     margin-right: -1.5em;
     opacity: 0.6;
 }
+.fa-sign-in:before {
+    content: "\f090";
+}
 @font-face {
       font-family: "FontAwesome";
       src: url('../download/fontawesome-webfont.woff');
@@ -122,9 +125,7 @@ html{
         overflow-x: hidden;
         height: 100%;
 }
-.you,.book,.give{
-/*     position:relative; */
-}
+.you,.book,.give{position:relative;}
 .you:before,.book:before,.give:before{
     content:" ";
     background-image: url(../download/logo.png);

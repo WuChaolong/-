@@ -45,7 +45,8 @@ function loaded(){
             "address":book.address,
             "username":book.username,
             "tel":book.tel,
-            "geo":book.geo
+            "geo":book.geo,
+            "time":book.time
         });
         localStorage.setItem("me", me);
     }

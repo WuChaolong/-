@@ -13,8 +13,7 @@ h1 span{
 .er{
     max-width:10em;
 }
-#chatFrist{
-}
+#chatFrist{/* line-height: 2em; */}
 #chatFristText{
 }
 a.link-chat{
@@ -54,4 +53,9 @@ a.link-chat{
   to {
     transform: translate(8em,0);
   }
+}
+
+.name{/* float: right; */}
+.name:before{
+    content:"——";
 }

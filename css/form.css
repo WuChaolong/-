@@ -62,8 +62,6 @@ fieldset {
 }
 
 button {
-    /* margin: auto; */
-    /* display: inherit; */
     font-size: 1.2em;
     padding: .2em 1em;
     min-width: 6em;
