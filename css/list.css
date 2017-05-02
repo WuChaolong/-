@@ -165,3 +165,6 @@ address .fa:before{
 .date{
     font-size: .8em;
 }
+.fa-spinner{
+  font-size: 2em;
+}
