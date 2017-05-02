@@ -7,9 +7,17 @@ if(me){
         me.date = date.getMonth() + '.' + date.getDate();
     }
     document.body.innerHTML = Mustache.render(meTemplate, me);
+    var detailsLogin = document.querySelector('#login');
+    
 }else{
     var loginTemplate = document.getElementById("loginTemplate").innerHTML;
     document.body.innerHTML = loginTemplate;
+    
+    onOpen(document.querySelector('#login'),function(){
+        if(document.querySelector('#login').hasAttribute("open")){
+            document.querySelector('#tel').focus();
+        }
+    });
 }
 
 function login(form){
@@ -97,4 +105,22 @@ function goBack(e){
             e.preventPropagation();
     }
     return false; // stop event propagation and browser default event
+}
+
+    
+function onOpen(element,fn){
+    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.attributeName == "open") {
+          fn();
+          console.log("attributes changed")
+        }
+      });
+    });
+
+    observer.observe(element, {
+      attributes: true //configure it to listen to attribute changes
+    });
 }

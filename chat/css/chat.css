@@ -29,7 +29,7 @@ p {
  word-break: break-word;
 }
 
-input {
+input,textarea{
   font-size: 24px;
 }
 

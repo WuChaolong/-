@@ -14,17 +14,17 @@
 
 <script id="loginTemplate" type="x-tmpl-mustache">
     <h1 class="you">你是谁？</h1>
-    <details id="login" open>
-            <summary><h2>捐过书？</h2></summary>
+    <details id="login">
+            <summary><h2>捐过书</h2></summary>
             <form action="https://book-2724e.firebaseio.com/sante/books2.json?orderBy=%22tel%22&limitToLast=1&equalTo=" method="get" onsubmit="return login(this)">
                 <section>
-                        <input required maxlength="11" minlength="11" autocomplete="tel" mozactionhint="send" type="tel" name="tel" type="number" placeholder="当时留的手机号" size="11"/>
+                        <input id="tel" required maxlength="11" minlength="11" autocomplete="tel" mozactionhint="send" type="tel" name="tel" type="number" placeholder="当时留的手机号" size="11"/>
                         <button type="submit" id="loginSubmit">是我呀<i class="fa fa-spinner fa-spin" aria-hidden="true"></i></button></p>
                 </section>
             </form>
     </details>
     <details class="no">
-            <summary><h2>没有？</h2></summary>
+            <summary><h2>没有</h2></summary>
             <p>
             <i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i>
             罗汉阵

@@ -14,7 +14,7 @@ input,button{
     white-space: nowrap;
 }
 #login summary{
-    line-height: 2em;
+    /* line-height: 2em; */
 }
 #login form{
   overflow-x: scroll;
