@@ -1,6 +1,5 @@
 CACHE MANIFEST
 # v1.0
-
 download/angular.min.js
 download/firebase.min.js
 download/angularfire.min.js
@@ -9,6 +8,5 @@ download/logo.png
 download/fontawesome-webfont.woff
 download/jquery.min.js
 download/mustache.min.js
-
 NETWORK:
-FALLBACK:
+index.html
