@@ -74,24 +74,24 @@ function showBookList(textarea){
         console.log(data);
         try{
             var books= JSON.parse(data).books;
-            if(books.length==0){
-              return;
+            if(books){
+              var bookList = document.getElementById("bookList");
+              var html = '<legend>是这书吗？<i class="fa fa-search">douban</i></legend><div>';
+              for(var i=0;i<books.length;i++){
+                var book = books[i];
+                var value = JSON.stringify(book);
+                var checked = i===0?"":"";
+                html= html+ '<input type="radio" id="coding'+i
+                      +'" name="search" value=\''+value+'\''+checked+'><label for="coding'+i
+                      +'"><img src="'+book.image
+                      +'"/><a href="'+book.alt+'" target="_blank"><span class="fa fa-link">'+book.title
+                      +'</span></a></label>';
+              }
+              html = html +'</div>';
+              bookList.innerHTML=html;
+              bookList.style.display="block";
+            
             }
-            var bookList = document.getElementById("bookList");
-            var html = '<legend>是这书吗？<i class="fa fa-search">douban</i></legend><div>';
-            for(var i=0;i<books.length;i++){
-              var book = books[i];
-              var value = JSON.stringify(book);
-              var checked = i===0?"":"";
-              html= html+ '<input type="radio" id="coding'+i
-                    +'" name="search" value=\''+value+'\''+checked+'><label for="coding'+i
-                    +'"><img src="'+book.image
-                    +'"/><a href="'+book.alt+'" target="_blank"><span class="fa fa-link">'+book.title
-                    +'</span></a></label>';
-            }
-            html = html +'</div>';
-            bookList.innerHTML=html;
-            bookList.style.display="block";
         }catch(e){
 
         }
