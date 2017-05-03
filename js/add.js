@@ -9,7 +9,8 @@ function loaded(){
     }
     formElement.description.oninput=function(e){
         var regexp = /\s*,|;|\.|，|；|。\s*/;
-        if(e.data&&e.data.match(regexp)&&this.value.split(regexp).length==2){
+        var valueArr = this.value.split(regexp);
+        if(valueArr.length===2&&valueArr[1]===""){
           showBookList(this);
         }
     }
