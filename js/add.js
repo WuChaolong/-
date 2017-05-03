@@ -8,7 +8,9 @@ function loaded(){
         geoFindMe(this,formElement.geo);
     }
     formElement.description.oninput=function(e){
-        var regexp = /\s*,|;|\.|，|；|。\s*/;
+//         var regexp = /\s*,|;|\.|，|；|。\s*/;
+        
+        var regexp = /\s|,|;|\.|，|；|。/;
         var valueArr = this.value.split(regexp);
         if(valueArr.length===2&&valueArr[1]===""){
           showBookList(this);
@@ -90,7 +92,7 @@ function showBookList(textarea){
               html = html +'</div>';
               bookList.innerHTML=html;
               bookList.style.display="block";
-            
+
             }
         }catch(e){
 
@@ -99,7 +101,7 @@ function showBookList(textarea){
     });
 }
 function getQ(string){
-    return string.split(/\s*,|;|\.|，|；|。\s*/)[0];
+    return string.split(/\s|,|;|\.|，|；|。/)[0];
 }
 function geoFindMe(input,geoHidden) {
 
