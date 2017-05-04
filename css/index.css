@@ -3,9 +3,13 @@
 .starter:before{
     content:"——";
 }
-h1 span{
-    display:block;
+h1>span{
+    display: block;
     margin-bottom: .5em;
+    position: relative;
+}
+.we{
+  /* white-space: nowrap; */
 }
 .logo{
     max-width: 5em;
@@ -58,4 +62,46 @@ a.link-chat{
 .name{/* float: right; */}
 .name:before{
     content:"——";
+}
+.new-book{
+    display: inline-block;
+    width: 5em;
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+    height: 7em;
+    white-space: nowrap;
+    position: relative;
+    /* transform: rotateY(180deg); */
+    transition: transform 1s;
+    animation-timing-function: linear;
+    text-align: center;
+    line-height: 7em;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+.new-book:after{
+  content:"NEW";
+  position: absolute;
+  top: .7em;
+  left: 0;
+  line-height: 1em;
+  /* z-index: -1; */
+  font-size: .5em;
+  font-weight: normal;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.new-book:hover{
+  transform: rotateY(180deg);
+}
+#newBook{
+  display:none;
+}
+dl.main >dd {
+    display: inline-block;
+    vertical-align: middle;
+}
+dl.main >dd.jiyu{
+    display: block;
 }

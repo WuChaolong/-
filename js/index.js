@@ -1,15 +1,17 @@
-var me = JSON.parse(localStorage.getItem("me"));
-if(me){
-    var linkToList = document.getElementById("linkToList");
-    linkToList.href="list.html";
-    var youDocs = document.getElementsByClassName("you");
-    for(var i =0;i<youDocs.length;i++){
-        var youDoc = youDocs[i];
-        youDoc.innerText = me.username;
-        if(youDoc.href){
-            youDoc.removeAttribute("href");
+function loadMe(){
+    var me = JSON.parse(localStorage.getItem("me"));
+    if(me){
+        var linkToList = document.getElementById("linkToList");
+        linkToList.href="list.html";
+        var youDocs = document.getElementsByClassName("you");
+        for(var i =0;i<youDocs.length;i++){
+            var youDoc = youDocs[i];
+            youDoc.innerText = me.username;
+            if(youDoc.href){
+                youDoc.removeAttribute("href");
+            }
         }
-    }
+    }  
 }
 
 function gotChatData(data) {
@@ -29,14 +31,11 @@ function gotBookData(data){
     if(book==null){
         return;
     }
-    var bookTemplate = document.getElementById("bookTemplate").innerHTML;
-    Mustache.parse(bookTemplate);   // optional, speeds up future uses
-    if(book.search){
-        book.search=JSON.parse(book.search||"");
-        book.search["summarySlice"] = search.summary.slice(0,40)+"...";
-    }
 
-    document.getElementById("newBook").innerHTML = Mustache.render(bookTemplate, book);
+    var newBookD  = document.getElementById("newBook");
+    newBookD.style.display="inline-block";
+    newBookD.innerHTML = book.description.slice(0,4)+"...";
+    newBookD.title = book.description;
 }
 function getO(data){
     var o = null;

@@ -46,7 +46,8 @@ function login(form){
             "username":book.username,
             "tel":book.tel,
             "geo":book.geo,
-            "time":book.time
+            "time":book.time,
+            "allowMeet":book.allowMeet
         });
         localStorage.setItem("me", me);
         window.goBack();

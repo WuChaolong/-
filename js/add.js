@@ -49,7 +49,8 @@ function loaded(){
             "username":book.username,
             "tel":book.tel,
             "geo":book.geo,
-            "time":book.time
+            "time":book.time,
+            "allowMeet":book.allowMeet
         });
         localStorage.setItem("me", me);
     }
@@ -63,7 +64,8 @@ function loaded(){
             "address":me.address,
             "username":me.username,
             "tel":me.tel,
-            "geo":me.geo
+            "geo":me.geo,
+            "allowMeet":me.allowMeet
         }
         setFormValue(formElement,formInitData)
     }
@@ -185,7 +187,15 @@ function get(uri,fn){
 
 function setFormValue(form,object){
     for(var key in object){
-        form[key].value = object[key];
+      if(!form[key]){
+        continue;
+      }
+      if(form[key].type=="checkbox"){
+        form[key].checked=true;
+        continue;
+      }
+      form[key].value = object[key];
+
     }
 }
 

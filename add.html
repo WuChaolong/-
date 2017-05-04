@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>我来捐赠本书</title>
+        <title>捐书</title>
         <link rel="icon" href="download/logo.png">
         <meta id="meta" name="viewport" content="width=device-width, initial-scale=1"/>
         
@@ -9,16 +9,15 @@
         <link rel="stylesheet" href="css/form.css" />
 
     </head>
-    <body >
+    <body>
         <form id="addForm" method="post"  enctype='application/json' action="https://book-2724e.firebaseio.com/sante/books2.json">
-            <h1><em class="you">我</em>来<em  class="give">捐赠</em>本<em  class="book">书</em></h1>
+            <h1><em class="you">我</em><em  class="give">捐</em><em  class="book">书</em></h1>
 
-            <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
             
             <section>
                 <fieldset>
-                    <legend>书籍描述 Details<strong><i id="forBookList" class="fa fa-spinner init-hide" aria-hidden="true">douban</i><abbr title="required">*</abbr></strong></legend>
-                    <textarea required rows="6" inputmode="katakana" name="description" placeholder="例如：书的名字，×××"></textarea>
+                    <legend>描述 Details<strong><i id="forBookList" class="fa fa-spinner init-hide" aria-hidden="true">douban</i><abbr title="required">*</abbr></strong></legend>
+                    <textarea required rows="6" inputmode="katakana" name="description" placeholder="书的名字，×××"></textarea>
 
                 </fieldset>
                 <fieldset id="bookList"></fieldset>
@@ -27,10 +26,11 @@
             <section>
                 <fieldset>
                     <legend>书现在哪？How someone get</legend>
-                    <p><label for="address">模糊的地址<strong><i id="forGeo" class="fa fa-spinner  init-hide" aria-hidden="true"></i><abbr title="required">*</abbr></strong></label><input placeholder="想要时快递员会来找" list="addressList" required minlength="4"  inputmode='katakana' autocomplete="street-address"  mozactionhint="next" name="address"/>
+                    <p><label for="address">模糊的地址<strong><i id="forGeo" class="fa fa-spinner  init-hide" aria-hidden="true"></i><abbr title="required">*</abbr></strong></label><input id="address" placeholder="想要时快递员会来找" list="addressList" required minlength="4"  inputmode='katakana' autocomplete="street-address"  mozactionhint="next" name="address"/>
                         <datalist id="addressList"></datalist>
-                    <p><label for="username">你的名字<strong><abbr title="required">*</abbr></strong></label><input required placeholder="我已记不得你的名字，却还记得喜欢你" maxlength="11" inputmode='katakana' autocomplete="name" mozactionhint="next" name="username"/>
-                    <p><label name="tel">手机号<strong><abbr title="required">*</abbr></strong></label><input required maxlength="11" minlength="11" autocomplete="tel" mozactionhint="send" type="tel" name="tel" type="number"/>
+<!--                     <p><label for="allowMeet"><input id="allowMeet" name="allowMeet" type="checkbox" value="true"/>附近的人想要，约吗？</label> -->
+                    <p><label for="username">你的名字<strong><abbr title="required">*</abbr></strong></label><input id="username" required placeholder="我已记不得你的名字，却还记得喜欢你" maxlength="11" inputmode='katakana' autocomplete="name" mozactionhint="next" name="username"/>
+                    <p><label for="tel">手机号<strong><abbr title="required">*</abbr></strong></label><input id="tel" required maxlength="11" minlength="11" autocomplete="tel" mozactionhint="send" type="number" type="tel" name="tel"/>
                 </fieldset>
             </section>
             <section class="submit">
