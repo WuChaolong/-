@@ -35,8 +35,9 @@
                                 
                              </summary>
                              <div class="get" ng-show="!book.users&&isShowGet(book)">
-                                想要？<a ng-href="sms://{{book.tel}}?body=我喜欢你三牛寺的“{{book.description.slice(0, 4)}}...”，周三晚上7点鹰潭拉芳舍的书友会一起参加吗？"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
-                                或 <button ng-click="mail(book)">快递送来</button>
+<!--                                 ？<a ng-href="sms://{{book.tel}}?body=我喜欢你三牛寺的“{{book.description.slice(0, 4)}}...”"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
+                                或  -->
+                                <button ng-click="mail(book)">想要？</button>
                             </div>
                     </details>
                     <details ng-repeat="(key, user) in book.users" class="other-user" ng-class="{'show-get': $last&&isShowGet(user)}" >
@@ -49,8 +50,9 @@
                                 </span>
                              </summary>
                              <div class="get" ng-show="$last&&isShowGet(user)">
-                                想要？<a ng-href="sms://{{user.tel}}?body=我喜欢你三牛寺的“{{book.description.slice(0, 4)}}...”，周三晚上7点鹰潭拉芳舍的书友会一起参加吗？"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
-                                或 <button ng-click="mail(book,user)">快递送来</button>
+<!--                                 想要？<a ng-href="sms://{{user.tel}}?body=我喜欢你三牛寺的“{{book.description.slice(0, 4)}}...”"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
+                                或  -->
+                                <button ng-click="mail(book,user)">想要？</button>
                             </div>
                     </details>
                      

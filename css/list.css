@@ -1,5 +1,5 @@
 details {
-  /* text-align: right; */
+  text-align: right;
   /* line-height:2em; */
   /* display: inline-block; */
   /* position: relative; */
@@ -11,7 +11,7 @@ summary{
   box-sizing:border-box;
   position: relative;
   /* margin-left: -4.5em; */
-  text-align: right;
+  /* text-align: right; */
   font-size: 1em;
   line-height: 1em;
 }
