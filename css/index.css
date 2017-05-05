@@ -23,39 +23,49 @@ h1>span{
 a.link-chat{
     font-size:2em;
 }
-@media (min-width: 330px) {
-  a[href].book.translate-x:before{
-    animation-duration: 3s;
-    animation-name: translate-x;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-  }
+a[href] .book.translate-x:before{
+  animation-duration: 5s;
+  animation-name: translate-x;
+  animation-iteration-count: infinite;
+/*   animation-direction: alternate; */
+  animation-timing-function: linear;
 }
 
 .book.translate-y:before{
-  animation-duration: 3s;
+  animation-duration: 5s;
   animation-name: translate-y;
   animation-iteration-count: infinite;
-  animation-direction: alternate;
+/*   animation-direction: alternate; */
+  animation-timing-function: linear;
 }
 
 
 @keyframes translate-y {
-  from {
+  0% {
     transform: translate(0,0); 
   }
-
-  to {
-    transform: translate(0,3em);
+  25%   {
+    transform: translate(0,5.3em);
+  }
+  50%   {
+    transform: translate(5em,5.3em);
+  }
+  100% {
+    transform: translate(5em,5.3em);
   }
 }
 @keyframes translate-x {
-  from {
+  0% {
     transform: translate(0,0); 
   }
-
-  to {
-    transform: translate(8em,0);
+  25%  {
+    transform: translate(0em,-5.3em); 
+  }
+  50%  { 
+    transform: translate(-5em,-5.3em);
+  }
+  100%  {
+    transform: translate(-5em,-5.3em); 
   }
 }
 
@@ -114,4 +124,13 @@ dl.main >dd {
 }
 dl.main >dd.jiyu{
     display: block;
+}
+
+[href="add.html"]:before{
+  transform: rotateY(180deg);
+}
+
+.we .give:before{
+  transform: rotateX(180deg);
+  background-position-y: -.2em;
 }

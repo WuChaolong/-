@@ -90,7 +90,7 @@ img{max-width:100%;}
     transform: rotate(359deg);
   }
 }
-a[href]{
+a{
     font-size:1.2em;
 }
 a[href="#"]{
