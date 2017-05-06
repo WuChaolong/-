@@ -12,16 +12,21 @@
     <body ng-controller="AppController" >
         <h1 class="book">三牛寺的书</h1>
 
+        <p class="filter"><label for="jiushujie"><input ng-disabled="!loaded" ng-model="filter.jiushujie" id="jiushujie" name="jiushujie" type="checkbox"/><span>旧书街的</span></label>
 
+        <p ng-hide="loaded">
+<!--             善良的ll，很庆幸你坐旁边，更庆幸你还捐了书，一直没来快递，不是简爱不好，而是没几个人知道。 -->
+            <i class="fa fa-spinner" aria-hidden="true"></i>
+        </p>
         <dl ng-repeat="(key, book) in books" class="init-hide" >
             <dt>{{book.description}}</dt>
-            <dd  class="turn-boook" ng-init="book.search=parseSearch(book.search)" ng-if="book.search">
+            <dd  class="turn-boook" ng-if="book.search" ng-init="book.search=parseSearch(book.search)">
                 <div class="description"><img ng-src="{{book.search.image}}"/></div>            
                 <div class="turn-over">
                         <span title="{{book.search.summary}}">{{book.search.summary.slice(0,40)+"..."}}</span>
                         
-                        <a class="search-alt" ng-href="{{book.search.alt}}" title="来源">
-                        <i class="fa fa-link">douban</i></a>
+                        <a target="_blank" class="search-alt" ng-href="{{book.search.alt}}" title="来源">
+                            <i class="fa fa-link" ng-bind="sortUrl(book.search.alt)"></i></a>
                 </div>
             </dd>
             <dd class="person">
@@ -30,7 +35,7 @@
                     <details ng-class="{'show-get': !book.users&&!isMe(book)}" ng-open="$index==0&&!book.users&&!isMe(book)">
                             <summary>
                                 <span class="name">{{book.username}}<i class="fa fa-user-circle" aria-hidden="true"></i></span>
-                                <address class="address">{{book.address.slice(0, 6)}}<i class="fa fa-map-marker" aria-hidden="true"></i></address>
+                                <address class="address">{{book.address|sortAddress}}<i class="fa fa-map-marker" aria-hidden="true"></i></address>
                                 <span class="time"><i class="date">{{-book.time|date:'MM-dd'}}</i></span>
                             </summary>
                             <div class="get" ng-if="!book.users&&!isMe(book)">
@@ -43,7 +48,7 @@
                             <summary>
 <!--                                 {{book.currentUser==key}}|{{!isMe(user)}} -->
                                 <span class="name"><i class="give"></i>{{user.name}}<i class="fa fa-user-circle" aria-hidden="true"></i></span>
-                                <address class="address">{{user.address.slice(0, 6)}}<i class="fa " ng-class="user.status?user.status:'fa-map-marker'" aria-hidden="true"></i></address>
+                                <address class="address">{{user.address|sortAddress}}<i class="fa " ng-class="user.status?user.status:'fa-map-marker'" aria-hidden="true"></i></address>
                                 <span class="time">
                                     <i class="date">{{-user.time|date:'MM-dd'}}</i>
                                 </span>
@@ -60,11 +65,7 @@
             
         </dl>
 
-        <p ng-hide="loaded">
-<!--             善良的ll，很庆幸你坐旁边，更庆幸你还捐了书，一直没来快递，不是简爱不好，而是没几个人知道。 -->
-            <i class="fa fa-spinner" aria-hidden="true"></i>
-        </p>
-
+        
         <script src="download/angular.min.js"></script>
         
         <script src="download/firebase.min.js"></script>

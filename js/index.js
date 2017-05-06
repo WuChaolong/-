@@ -34,7 +34,7 @@ function gotBookData(data){
 
     var newBookD  = document.getElementById("newBook");
     newBookD.style.display="inline-block";
-    newBookD.innerHTML = book.description.slice(0,4);
+    newBookD.innerHTML = book.description.slice(0,3);
     newBookD.title = book.description;
 }
 function getO(data){

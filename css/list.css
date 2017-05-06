@@ -174,11 +174,18 @@ textarea{
     line-height: 1.5em;
     width: 100%;
     box-sizing: border-box;
-    border: 1px solid #999;
+    border: 0;
+    border-bottom: 2px dotted;
 }
 .words{
   text-align: left;
   font: 1.2em sans-serif;
   line-height: 1.5em;
   font-weight: bold;
+}
+.filter{
+  text-align:right;
+}
+.filter input[disabled]+span{
+  color:#999;
 }

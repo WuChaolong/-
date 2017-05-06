@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular
+var app = angular
 
 
     .module('app', ["firebase"])
@@ -14,30 +14,137 @@ angular
         }
     ])
 
-    .controller('AppController', function($scope,$firebaseArray) {
+    .controller('AppController', function($http,$scope,$firebaseArray) {
         
         
 
         var baseURI = 'https://book-2724e.firebaseio.com/sante/';
         var rootRef = new Firebase(baseURI);
-        var me = $scope.books = JSON.parse(localStorage.getItem("me"));
-        var books = $scope.books = $firebaseArray(rootRef.child('books2/').orderByChild("time").limitToLast(20));
-        books.$loaded(
-          function(x) {
-            $scope.loaded = true;
-          }, function(error) {
-            console.error("Error:", error);
-          });
-        function getUser(id){
-            return $firebaseObject(rootRef.child('users/' + id));
+        var me = $scope.me = JSON.parse(localStorage.getItem("me"));
+        loadFirebase();
+        function loadFirebase(){
+            $scope.books= $firebaseArray(rootRef.child('books2/').orderByChild("time").limitToLast(20));
+            $scope.books.$loaded(
+              function(x) {
+                $scope.loaded = true;
+              }, function(error) {
+                console.error("Error:", error);
+              });
         }
-        $scope.parseSearch = function(search) {
-            
-            return JSON.parse(search||null);;
-        };
+        
 
+        function loadJiushujie(){
+            $scope.loaded = false;
+            $scope.books= []
+
+            var json_data = {
+              "title": "title",
+              "imgs":["#yw0 .book_item img.book_pic"],
+              "searchAlts":["#yw0 .book_item .title>a"],
+              "descriptions":[{"elem":"#yw0 .book_item .title>a","value":"text"}],
+              "userImgs":[{"elem":"#yw0 .book_item .user_info_tiny img","value":"src"}],
+              "usernames":[{"elem":"#yw0 .book_item .user_info_tiny img","value":"alt"}],
+              "userSexs":[{"elem":"#yw0 .book_item .user_info_tiny span","value":"class"}],
+              "addresss":[{"elem":"#yw0 .book_item .user_info_tiny div:first-child","value":"html"}]
+            };
+            $http({
+                method: 'POST',
+                url: "https://www.jamapi.xyz",
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json;charset=utf-8'
+                },
+                data: {
+                  url: 'http://www.jiushujie.com/sell?tag=free&ajax=yw0&sort=created_at.desc',
+                  json_data: JSON.stringify(json_data)
+                }
+            }).then(function(response){
+                $scope.books = formatJiushujieData(response.data)
+                $scope.loaded = true;
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log(response);
+              });
+
+            function formatJiushujieData(data){
+
+                var books = [];
+                if(data.descriptions){
+                    for(var i=0;i<data.descriptions.length;i++){
+                        var address = data.addresss[i].value;
+                        var indexStart = address.indexOf("</span>")+7;
+                        var address = address.substring(indexStart);
+                        var userImg = data.userImgs[i].value;
+                        var indexStart = userImg.indexOf("user/")+5;
+                        var indexEnd = userImg.lastIndexOf("/");
+                        var date = userImg.substring(indexStart,indexEnd);
+                        var book = {
+                            description:data.descriptions[i].value,
+                            username:data.usernames[i].value,
+                            address:strip(address),
+                            search:{
+                                image:data.imgs[i],
+                                alt:"http://www.jiushujie.com"+data.searchAlts[i]
+                            },
+                            sex:data.userSexs[i].value,
+                            userImg:userImg,
+                            time:-new Date(date).getTime()
+                        }
+                        books.push(book);
+                    }
+                }
+
+                function strip(html)
+                {
+                   var tmp = document.createElement("DIV");
+                   tmp.innerHTML = html.replace(/<(?:.|\n)*?>/gm, '');
+                   return tmp.textContent || tmp.innerText || "";
+                }
+
+
+                return books;
+            }
+        }
+
+        $scope.$watch('filter.jiushujie', function(newValue, oldValue) {
+           if(newValue===undefined){
+               return;
+           }
+           if(!$scope.loaded){
+//                $scope.filter.jiushujie = oldValue;
+               return;
+           }
+           if(newValue){
+               loadJiushujie();
+           }else{
+               loadFirebase();
+           }
+        });
+        $scope.parseSearch = function(search) {
+            if(typeof search === 'object'){
+                return search;
+            }
+            return JSON.parse(search||null);
+        };
+        $scope.sortUrl = function(url) {
+            var indexStart = url.indexOf("//")+2;
+            var indexEnd = indexOfCount(url,"/",3);
+            
+            var host = url.substring(indexStart,indexEnd);
+            var hostArr = host.split(".");
+            return hostArr[hostArr.length-2];
+
+        };
+        function  indexOfCount(string,searchValue,count,index){
+            if(count<=0){
+                return index;
+            }
+            
+            return string.indexOf(searchValue,indexOfCount(string,searchValue,count-1,index)+1);
+        }
         $scope.slice= function(string){
-            string.slice(0, 4);
+            return string.slice(0, 4);
         }
         $scope.mail=function(book,userFrom,userTo){
             try{
@@ -56,17 +163,36 @@ angular
                     userTo.status = userFrom.status=="fa-map-marker"?"fa-truck":"fa-hourglass-start";
                     userTo.name = userTo.username;
                 }
-                rootRef.child('books2/'+book.$id+"/users/").push(userTo).then(function(snapshot) {
-                  var text1 = (userFrom.status=="fa-map-marker"?"可取书":"不可取")+","+userFrom.address+","+userFrom.tel+","+userFrom.name;
-                  var text2 = "."+userTo.address+","+userTo.tel+","+userTo.name;
 
-                  var text = book.description.slice(0, 4)+"..."+text1+text2;
-                  smsEail(text);
-                  userTo = null;
-                });
+                if(book.$id){
+                    rootRef.child('books2/'+book.$id+"/users/").push(userTo).then(function(snapshot) {
+                      smsEail()
+                    });
+                }else{
+                    delete book["$$hashKey"];
+                    book.users = {};
+                    book.users[userTo.time]=userTo;
+                    rootRef.child('books2/').push(book).then(function(snapshot){
+                        book.$id=snapshot.key();
+                        smsEail();
+                    });
+                }
+                
                 
             }catch(e){
 
+            }
+
+            function smsEail(){
+                var text1 = userFrom.address+","+userFrom.tel+","+userFrom.name;
+                var text2 = "."+userTo.address+","+userTo.tel+","+userTo.name;
+                if(userFrom.status=="fa-map-marker"){
+                 var text = book.description.slice(0, 4)+text1+text2;
+                }else{
+                  var text = book.description.slice(0, 4)+",不可取";
+                }
+                sms(text);
+                userTo = null;
             }
         }
         $scope.isMe = function(user){
@@ -88,7 +214,7 @@ angular
             }
             return true;
         }
-        function smsEail(text,success){
+        function sms(text,success){
             var url = '//charon-node.herokuapp.com/cross?api=https://rest.nexmo.com/sms/json&type=unicode&api_key=0a717254&api_secret=04338afd0b978495&to=8613006248103&from=NEXMO&text='+text
             $http({
                   method: 'GET',
@@ -101,8 +227,14 @@ angular
         }
 
         $scope.userSaveWords=function(words,bookId,userId){
-            rootRef.child('books2/'+bookId+"/users/"+userId+"/words").set(words).then(function(snapshot) {
+            rootRef.child('books2/'+bookId+"/users/"+userId+"/words").set(words||"").then(function(snapshot) {
               
             });
         }
     });
+app.filter('sortAddress', function(){
+    var filter = function(input){
+        return input.split(/区|县/)[0];
+    };
+    return filter;
+  });

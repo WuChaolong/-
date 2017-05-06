@@ -89,7 +89,6 @@ a[href] .book.translate-x:before{
     font-weight: bold;
     margin-bottom: 1em;
     margin-top: 1em;
-    
     background-image: url(../download/logo.png);
     background-size: 23em;
     background-repeat: no-repeat;
@@ -97,6 +96,7 @@ a[href] .book.translate-x:before{
     /* font-size: .8em; */
     background-position-x: -9.5em;
     background-position-y: -5.5em;
+    text-indent: .5em;
 }
 .new-book:after{
   content:"NEW";
