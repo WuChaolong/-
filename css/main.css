@@ -148,12 +148,13 @@ html{
 .give:before{
     background-position-x: -1.3em;
     background-position-y: -.6em;
+    transform: rotateY(180deg);
 }
 
 .get:before{
-  transform: rotateX(180deg);
   background-position-x: -1.3em;
-  background-position-y: -.2em;
+  background-position-y: -.4em;
+  transform: rotateX(180deg);
 }
 .init-hide{
     display:none;
