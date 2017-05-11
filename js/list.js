@@ -21,14 +21,33 @@ var app = angular
         var baseURI = 'https://book-2724e.firebaseio.com/sante/';
         var rootRef = new Firebase(baseURI);
         var me = $scope.me = JSON.parse(localStorage.getItem("me"));
-        loadFirebase();
+        $scope.$watch('filter.where', function(newValue, oldValue) {
+           if(newValue===undefined){
+               return;
+           }
+//            if(!$scope.loaded){
+// //                $scope.filter.jiushujie = oldValue;
+//                return;
+//            }
+           if(newValue=="jiushujie"){
+               loadJiushujie();
+           }else{
+               loadFirebase();
+           }
+        });
+        $scope.filter={};
+        $scope.filter.where = "sante";
+//         loadFirebase();
         function loadFirebase(){
+
+            $scope.loaded = false;
             $scope.books= $firebaseArray(rootRef.child('books2/').orderByChild("time").limitToLast(20));
             $scope.books.$loaded(
               function(x) {
                 $scope.loaded = true;
               }, function(error) {
                 console.error("Error:", error);
+                $scope.loaded = true;
               });
         }
         
@@ -65,6 +84,8 @@ var app = angular
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
                 console.log(response);
+                $scope.loaded = true;
+
               });
 
             function formatJiushujieData(data){
@@ -107,20 +128,7 @@ var app = angular
             }
         }
 
-        $scope.$watch('filter.jiushujie', function(newValue, oldValue) {
-           if(newValue===undefined){
-               return;
-           }
-           if(!$scope.loaded){
-//                $scope.filter.jiushujie = oldValue;
-               return;
-           }
-           if(newValue){
-               loadJiushujie();
-           }else{
-               loadFirebase();
-           }
-        });
+        
         $scope.parseSearch = function(search) {
             if(typeof search === 'object'){
                 return search;

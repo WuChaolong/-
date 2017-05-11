@@ -45,13 +45,13 @@ a[href] .book.translate-x:before{
     transform: translate(0,0); 
   }
   25%   {
-    transform: translate(0,5.3em);
+    transform: translate(0,5.2em);
   }
   50%   {
-    transform: translate(5em,5.3em);
+    transform: translate(3.2em,5.2em);
   }
   100% {
-    transform: translate(5em,5.3em);
+    transform: translate(3.2em,5.2em);
   }
 }
 @keyframes translate-x {
@@ -62,10 +62,10 @@ a[href] .book.translate-x:before{
     transform: translate(0em,-5.3em); 
   }
   50%  { 
-    transform: translate(-5em,-5.3em);
+    transform: translate(-3.2em,-5.3em);
   }
   100%  {
-    transform: translate(-5em,-5.3em); 
+    transform: translate(-3.2em,-5.3em); 
   }
 }
 
@@ -103,7 +103,7 @@ a[href] .book.translate-x:before{
   position: absolute;
   /* top: .7em; */
   /* left: 0; */
-  right: .5em;
+  right: .8em;
   bottom: 1em;
   line-height: 1em;
   /* z-index: -1; */
@@ -128,9 +128,4 @@ dl.main >dd.jiyu{
 
 [href="add.html"]:before{
   transform: rotateY(180deg);
-}
-
-.we .give:before{
-  transform: rotateX(180deg);
-  background-position-y: -.2em;
 }

@@ -63,7 +63,7 @@ fieldset {
 
 button {
     font-size: 1.2em;
-    padding: .2em 1em;
+    /* padding: .2em 1em; */
     min-width: 6em;
 }
 button .fa{

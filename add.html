@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>捐书</title>
+        <title>给予</title>
         <link rel="icon" href="download/logo.png">
         <meta id="meta" name="viewport" content="width=device-width, initial-scale=1"/>
         
@@ -11,13 +11,13 @@
     </head>
     <body>
         <form id="addForm" method="post"  enctype='application/json' action="https://book-2724e.firebaseio.com/sante/books2.json">
-            <h1><em class="you">我</em>来<em  class="give">捐</em>本<em  class="book">书</em></h1>
+<!--             <h1><em  class="give">给予</em></h1> -->
 
             
             <section>
                 <fieldset>
-                    <legend>描述 Details<strong><i id="forBookList" class="fa fa-spinner init-hide" aria-hidden="true">douban</i><abbr title="required">*</abbr></strong></legend>
-                    <textarea required rows="6" inputmode="katakana" name="description" placeholder="书的名字，×××"></textarea>
+                    <legend><em  class="book"></em>描述 Details<strong><i id="forBookList" class="fa fa-spinner init-hide" aria-hidden="true">douban</i><abbr title="required">*</abbr></strong></legend>
+                    <textarea id="description" required rows="6" inputmode="katakana" name="description" placeholder="书的名字，×××"></textarea>
 
                 </fieldset>
                 <fieldset id="bookList"></fieldset>
@@ -25,7 +25,7 @@
 
             <section>
                 <fieldset>
-                    <legend>书现在哪？How someone get</legend>
+                    <legend><em class="you"></em>书在哪？How someone get</legend>
                     <p><label for="address">模糊的地址<strong><i id="forGeo" class="fa fa-spinner  init-hide" aria-hidden="true"></i><abbr title="required">*</abbr></strong></label><input id="address" placeholder="想要时快递员会来找" list="addressList" required minlength="4"  inputmode='katakana' autocomplete="street-address"  mozactionhint="next" name="address"/>
                         <datalist id="addressList"></datalist>
 <!--                     <p><label for="allowMeet"><input id="allowMeet" name="allowMeet" type="checkbox" value="true"/>附近的人想要，约吗？</label> -->
@@ -34,7 +34,7 @@
                 </fieldset>
             </section>
             <section class="submit">
-                <p><button type="submit">捐赠<i class="fa fa-spinner fa-spin" aria-hidden="true"></i></button></p>
+                <p><button type="submit"><em  class="give">给予</em><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></button></p>
             </section>
             <input type="hidden" name="geo"/>
         </form>

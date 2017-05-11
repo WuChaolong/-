@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html id="ng-app" ng-app="app"> <!-- id="ng-app" IE<8 -->
     <head>
-        <title>三牛寺的书</title>
+        <title>得到</title>
         <link rel="icon" href="download/logo.png">
         <meta id="meta" name="viewport" content="width=device-width, initial-scale=1"/>
         
@@ -10,9 +10,11 @@
         
     </head>
     <body ng-controller="AppController" >
-        <h1 class="book">三牛寺的书</h1>
+<!--         <h1><em class="get"></em></h1> -->
 
-        <p class="filter"><label for="jiushujie"><input ng-disabled="!loaded" ng-model="filter.jiushujie" id="jiushujie" name="jiushujie" type="checkbox"/><span>旧书街的</span></label>
+        <p class="filter">
+            <label for="sante"><input disabled="disabled" ng-disabled="!loaded" ng-model="filter.where" id="sante" name="where" type="radio" value="sante"/><span>三牛寺的</span></label>
+            <label for="jiushujie"><input disabled="disabled" ng-disabled="!loaded" ng-model="filter.where" id="jiushujie" name="where" type="radio" value="jiushujie"/><span>旧书街的</span></label>
 
         <p ng-hide="loaded">
 <!--             善良的ll，很庆幸你坐旁边，更庆幸你还捐了书，一直没来快递，不是简爱不好，而是没几个人知道。 -->

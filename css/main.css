@@ -125,8 +125,8 @@ html{
         overflow-x: hidden;
         height: 100%;
 }
-.you,.book,.give{position:relative;}
-.you:before,.book:before,.give:before{
+.you,.book,.give,.get{position:relative;}
+.you:before,.book:before,.give:before,.get:before{
     content:" ";
     background-image: url(../download/logo.png);
     background-size: 2em;
@@ -148,6 +148,12 @@ html{
 .give:before{
     background-position-x: -1.3em;
     background-position-y: -.6em;
+}
+
+.get:before{
+  transform: rotateX(180deg);
+  background-position-x: -1.3em;
+  background-position-y: -.2em;
 }
 .init-hide{
     display:none;
