@@ -143,7 +143,7 @@ html{
 }
 .book:before{
     background-position-x: -.7em;
-    background-position-y: .2em;
+    background-position-y: .1em;
 }
 .give:before{
     background-position-x: -1.3em;
