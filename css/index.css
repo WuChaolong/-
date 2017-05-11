@@ -7,6 +7,7 @@ h1>span{
     display: block;
     margin-bottom: .5em;
     position: relative;
+    text-align: center;
 }
 .we{
   /* white-space: nowrap; */
@@ -14,8 +15,8 @@ h1>span{
 .important{
   font-size: 2em;
   font-weight: bold;
-  margin-top: .5em;
-  margin-bottom: .5em;
+  margin: .5em 0;
+  text-align: center;
 }
 .logo{
     max-width: 5em;
@@ -33,7 +34,7 @@ a[href] .book.translate-x:before{
   animation-duration: 5s;
   animation-name: translate-x;
   animation-iteration-count: infinite;
-  /*   animation-direction: alternate; */
+  animation-direction: alternate;
   animation-timing-function: linear;
   /* margin-left: -.6em; */
 }
@@ -42,9 +43,9 @@ a[href] .book.translate-x:before{
   animation-duration: 5s;
   animation-name: translate-y;
   animation-iteration-count: infinite;
-  /*   animation-direction: alternate; */
+    animation-direction: alternate;
   animation-timing-function: linear;
-  margin-left: -.6em;
+  margin-left: -1.2em;
 }
 
 
@@ -53,13 +54,16 @@ a[href] .book.translate-x:before{
     transform: translate(0,0); 
   }
   25%   {
-    transform: translate(0,2.6em);
+    transform: translate(0,0);
   }
   50%   {
-    transform: translate(3.1em,2.6em);
+    transform: translate(0,2.6em);
+  }
+  70%   {
+    transform: translate(1.9em,2.6em);
   }
   100% {
-    transform: translate(3.1em,2.6em);
+    transform: translate(1.9em,2.6em);
   }
 }
 @keyframes translate-x {
@@ -67,13 +71,16 @@ a[href] .book.translate-x:before{
     transform: translate(0,0); 
   }
   25%  {
-    transform: translate(0em,-2.6em); 
+    transform: translate(0,0); 
   }
   50%  { 
-    transform: translate(-3.1em,-2.6em);
+    transform: translate(0,-2.6em); 
+  }
+  70%  { 
+    transform: translate(-1.9em,-2.6em);
   }
   100%  {
-    transform: translate(-3.1em,-2.6em); 
+    transform: translate(-1.9em,-2.6em); 
   }
 }
 
