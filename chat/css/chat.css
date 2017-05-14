@@ -27,15 +27,18 @@ h3 {
 p {
  font-size: 16px;
  word-break: break-word;
+ display: inline-block;
+ width: 100%;
 }
 
 input,textarea{
   font-size: 24px;
 }
 
-input[type=text] {
+input[type=text],textarea{
   color: #424547;
-  border: 1px solid #c2c2c2;
+  border: 0;
+  border-bottom: 1px solid #c2c2c2;
   background-color: white;
 }
 
@@ -46,7 +49,7 @@ em {
   float: right;
 }
 em:before {
-    content: "——";
+    content: "—";
 }
 
 /* Chat */
@@ -64,8 +67,14 @@ em:before {
 
 #nameInput {
   width: 26%;
+  /* margin-top: -1.5em; */
+  text-align:right;
+  line-height:1.5em;
 }
 
 #messageInput {
-  width: 68%;
+  width: 100%;
+}
+#form{
+  text-align:right;
 }

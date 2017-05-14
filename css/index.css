@@ -86,7 +86,7 @@ a[href] .book.translate-x:before{
 
 .name{/* float: right; */}
 .name:before{
-    content:"——";
+    content: "—";
 }
 .new-book{
     display: inline-block;
