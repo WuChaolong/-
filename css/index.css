@@ -100,7 +100,6 @@ a[href] .book.translate-x:before{
     animation-timing-function: linear;
     text-align: center;
     line-height: 7em;
-    /* font-size: 1.8em; */
     font-weight: bold;
     margin-bottom: 1em;
     margin-top: 1em;
@@ -108,16 +107,13 @@ a[href] .book.translate-x:before{
     background-size: 23em;
     background-repeat: no-repeat;
     vertical-align: middle;
-    /* font-size: .8em; */
     background-position-x: -9.5em;
     background-position-y: -5.5em;
     text-indent: .5em;
 }
 .new-book:after{
-  content:"NEW";
+  content: "NEW";
   position: absolute;
-  /* top: .7em; */
-  /* left: 0; */
   right: .8em;
   bottom: 1em;
   line-height: 1em;
@@ -126,6 +122,8 @@ a[href] .book.translate-x:before{
   font-weight: normal;
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
+  /* background: antiquewhite; */
+  text-indent: initial;
 }
 .new-book:hover{
   transform: rotateY(180deg);
@@ -143,4 +141,8 @@ dl.main >dd.jiyu{
 
 [href="add.html"]:before{
   transform: rotateY(180deg);
+}
+.we-book{
+  text-align:center;
+  margin-left:0;
 }
