@@ -79,3 +79,8 @@ em:before {
 #form{
   text-align:right;
 }
+.more{
+  text-align:right;
+  display: none;
+}
+.more a:after{content: "...";}
