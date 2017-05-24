@@ -2,12 +2,18 @@
 function loaded(){
     var formElement = document.querySelector("form");
     formElement.address.onfocus=function(e){
-        if(this.value){
-            return;
+        if(!this.value){
+          geoFindMe(this,formElement.geo);
         }
-        geoFindMe(this,formElement.geo);
+    }
+    formElement.description.onkeypress=function(e){
+      
+        if(e.which == 13) {
+          formElement.address.focus();
+        }
     }
     formElement.description.oninput=function(e){
+
 //         var regexp = /\s*,|;|\.|，|；|。\s*/;
         
         var regexp = /\s|,|;|\.|，|；|。/;
@@ -43,7 +49,10 @@ function loaded(){
               window.goBack();
             }
         };
-
+        request.onerror = function(e){
+          submitButton.disabled="";
+        }
+        
         var me = JSON.stringify({
             "address":book.address,
             "username":book.username,
@@ -84,10 +93,10 @@ function showBookList(textarea){
               for(var i=0;i<books.length;i++){
                 var book = books[i];
                 var value = JSON.stringify(book);
-                var checked = i===0?"":"";
-                html= html+ '<input type="radio" id="coding'+i
-                      +'" name="search" value=\''+value+'\''+checked+'><label for="coding'+i
-                      +'"><img src="'+book.image
+                var checked = i===0?"checked":"";
+                html= html+ '<label for="coding'+i
+                      +'"><input type="radio" id="coding'+i
+                      +'" name="search" value=\''+value+'\''+checked+'><img src="'+book.image
                       +'"/><a href="'+book.alt+'" target="_blank"><span class="fa fa-link">'+book.title
                       +'</span></a></label>';
               }
@@ -119,9 +128,25 @@ function geoFindMe(input,geoHidden) {
   function success(position) {
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
+//     alert(JSON.stringify(position.coords)+!latitude||!longitude);
     console.log('<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>');
+    
+    if(!latitude||!longitude||latitude=="5e-324"||longitude=="5e-324"){
+      error();
+      return;
+    }
     geoHidden.value = latitude+","+longitude;
     addressByItude(latitude,longitude);
+    searchAddressByItude(latitude,longitude);
+    mapByItude(latitude,longitude);
+  }
+
+  function mapByItude(latitude,longitude){
+      var staticmapUrl = "maps.googleapis.com/maps/api/staticmap?language=zh-CN&center="
+          +latitude+","+longitude+"&zoom=14&size=800x800&key=AIzaSyCwEybOPnluZ2OST9DM2u6TQLSJSA1l6lI";
+      staticmapUrl = "//images.weserv.nl/?url="+escape(staticmapUrl);
+      document.getElementById("mapImg").src = staticmapUrl;
+      document.getElementById("map").style.display = "block";
 
   }
 
@@ -133,7 +158,7 @@ function geoFindMe(input,geoHidden) {
     var uri = "//charon-node.herokuapp.com/cross?api=https://maps.googleapis.com/maps/api/geocode/json?language=zh-CN&latlng="
         +latitude+","+longitude+"&key=AIzaSyAU-cH7LlZPJKoL1m8lUXH3EsVZjnqZRq0";
     get(uri,function(data){
-        console.log(data);
+//         console.log(data);
         try{
             var addresss = JSON.parse(data);
             var address = addressByResult(addresss.results[0]);
@@ -147,9 +172,45 @@ function geoFindMe(input,geoHidden) {
 
            document.getElementById("forGeo").classList.remove("ng-scope");
     });
+
+  }
+  function searchAddressByItude(latitude,longitude){
+    var uri  = "//charon-node.herokuapp.com/cross?api=https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=zh-CN&location="
+        +latitude+","+longitude+"&radius=500&key=AIzaSyAU-cH7LlZPJKoL1m8lUXH3EsVZjnqZRq0";
+
+    get(uri,function(data){
+//         console.log(data);
+        try{
+            var addresss = JSON.parse(data);
+            var address0 = addressBySearchResult(addresss.results[0]);
+//             if(address0){
+//                 input.value = address0;
+//             }
+            
+            var addressListD = document.getElementById("addressList");
+            var innerHTML = "";
+            console.log(addresss.results.length);
+//             addresss.results = JSON.parse(addresss.result);
+            for(var i = 0; i<addresss.results.length;i++){
+                var address = addresss.results[i];
+                var value = address.vicinity+"("+address.name+")";
+                innerHTML+='<option value="'+value+'">';
+            }
+            addressListD.innerHTML = innerHTML+addressListD.innerHTML;
+        }catch(e){
+
+        }
+
+    });
+
   }
 }
 
+function addressBySearchResult(result){
+    var address = ""; 
+    address = result.vicinity+result.name
+    return address;
+}
 function addressByResult(result){
     var address = ""; 
     var components = result.address_components;

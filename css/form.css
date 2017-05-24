@@ -28,11 +28,7 @@ label span {
 }
 
 input, textarea {
-    font: 1.2em sans-serif;
-    line-height: 1.5em;
     width: 100%;
-    box-sizing: border-box;
-    border: 1px solid #999;
 }
 
 input[type=checkbox], input[type=radio] {
@@ -43,10 +39,6 @@ input[name=pucture]{
       position: absolute;
 }
 
-input:focus, textarea:focus {
-    border-color: #000;
-}
-
 textarea {
     vertical-align: top;
     height: 5em;
@@ -54,11 +46,10 @@ textarea {
 }
 
 fieldset {
-    /* width: 250px; */
-    /*           box-sizing: border-box; */
-    /*           margin-left: 136px; */
-    border: 1px solid #999;
+    border-width: 1px;
     display: inherit;
+    position: relative;
+    overflow: hidden;
 }
 
 button {
@@ -104,19 +95,22 @@ label em {
 #bookList label{
   display: inline-block;
   text-align: center;
-  margin-right: .5em;
+  margin-right: .8em;
   max-width: 6em;
   /* word-break: break-word; */
-  overflow: hidden;
+  /* overflow: hidden; */
   white-space: normal;
   vertical-align: top;
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2); */
+  /*   line-height: 0; */
 }
 
-#bookList input:checked + label{box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.2);/* box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2); */}
+#bookList input:checked + img{box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.4);/* box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2); *//* box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2); */}
 #bookList img{
   display: block;
   width: 100%;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.2); */
 }
 #bookList span{
   display: block;
@@ -133,6 +127,10 @@ label em {
 }
 #bookList input{
   vertical-align: super;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 #bookList a{
   vertical-align: super;

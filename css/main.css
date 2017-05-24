@@ -169,3 +169,63 @@ html{
         margin:auto;
   }
 }
+summary{
+  
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+}
+details[open] summary{
+  box-shadow: initial;
+}
+#map{
+  display: none;
+  /* height: 20em; */
+  /* position: relative; */
+  /* overflow: hidden; */
+  /* text-align: center; */
+  /* line-height: 20em; */
+  /* opacity: .2; */
+}
+#map img{
+  position: absolute;
+  max-width: 800px;
+  width: 800px;
+  top: -100%;
+  bottom: -100%;
+  left: -100%;
+  right: -100%;
+  margin: auto;
+  z-index: -1;
+  opacity: .3;
+}
+.address-p{
+  /* position:relative; */
+  /* overflow: scroll; */
+}
+#map .mark{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: -1;
+      width: 2em;
+      height: 2em;
+      text-align: center;
+      line-height: 2em;
+      font-size: 1.5em;
+      /* display: inline-block; */
+      opacity: .3;
+}
+
+input, textarea {
+    font: 1.2em sans-serif;
+    line-height: 1.5em;
+    box-sizing: border-box;
+    border-width: 0;
+    border-bottom-width: 1px;
+}
+
+input:focus, textarea:focus {
+    border-color: #000;
+}

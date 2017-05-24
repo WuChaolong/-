@@ -12,7 +12,7 @@ $(function() {
   });
 
   // Add a callback that is triggered for each chat message.
-  messagesRef.limitToLast(10).on("child_added", function (snapshot) {
+  messagesRef.on("child_added", function (snapshot) {
     var message = snapshot.val();
     $("<p/>").text(message.text).append($("<em/>")
       .text(message.name)).appendTo($("#messagesDiv"));

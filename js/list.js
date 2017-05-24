@@ -21,6 +21,10 @@ var app = angular
         var baseURI = 'https://book-2724e.firebaseio.com/sante/';
         var rootRef = new Firebase(baseURI);
         var me = $scope.me = JSON.parse(localStorage.getItem("me"));
+
+        
+        $scope.filter= JSON.parse(localStorage.getItem("filter"))||{search:me.username};
+        $scope.filter.where = "sante";
         $scope.$watch('filter.where', function(newValue, oldValue) {
            if(newValue===undefined){
                return;
@@ -31,12 +35,25 @@ var app = angular
 //            }
            if(newValue=="jiushujie"){
                loadJiushujie();
+           }else if(newValue=="search"){
+               loadFirebaseSearch()
            }else{
                loadFirebase();
            }
         });
-        $scope.filter={};
-        $scope.filter.where = "sante";
+
+        function loadFirebaseSearch(){
+            var search = $scope.filter.search;
+            $scope.loaded = false;
+            $scope.books= $firebaseArray(rootRef.child('books2/').orderByChild("username").startAt(search).endAt(search));
+            $scope.books.$loaded(
+              function(x) {
+                $scope.loaded = true;
+              }, function(error) {
+                console.error("Error:", error);
+                $scope.loaded = true;
+              });
+        }
 //         loadFirebase();
         function loadFirebase(){
 
@@ -51,7 +68,7 @@ var app = angular
               });
         }
         
-
+    
         function loadJiushujie(){
             $scope.loaded = false;
             $scope.books= []
@@ -166,6 +183,10 @@ var app = angular
                     };
                 }
                 if(!userTo){
+                    if(!me){
+                        window.goBack();
+                        return;
+                    }
                     var userTo = me;
                     userTo.time = 0-new Date().getTime();
                     userTo.status = userFrom.status=="fa-map-marker"?"fa-truck":"fa-hourglass-start";
@@ -219,6 +240,7 @@ var app = angular
                 };
                 return angular.equals(user1,user2);
             }catch(e){
+                return false;
             }
             return true;
         }
@@ -246,3 +268,42 @@ app.filter('sortAddress', function(){
     };
     return filter;
   });
+
+function goBack(e){
+    var defaultLocation = "index.html";
+    var oldHash = window.location.hash;
+
+    history.back(); // Try to go back
+
+    var newHash = window.location.hash;
+
+    /* If the previous page hasn't been loaded in a given time (in this case
+    * 1000ms) the user is redirected to the default location given above.
+    * This enables you to redirect the user to another page.
+    *
+    * However, you should check whether there was a referrer to the current
+    * site. This is a good indicator for a previous entry in the history
+    * session.
+    *
+    * Also you should check whether the old location differs only in the hash,
+    * e.g. /index.html#top --> /index.html# shouldn't redirect to the default
+    * location.
+    */
+
+    if(
+        newHash === oldHash &&
+        (typeof(document.referrer) !== "string" || document.referrer  === "")
+    ){
+        window.setTimeout(function(){
+            // redirect to default location
+            window.location.href = defaultLocation;
+        },1000); // set timeout in ms
+    }
+    if(e){
+        if(e.preventDefault)
+            e.preventDefault();
+        if(e.preventPropagation)
+            e.preventPropagation();
+    }
+    return false; // stop event propagation and browser default event
+}

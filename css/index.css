@@ -30,7 +30,7 @@ h1>span{
 a.link-chat{
     font-size:2em;
 }
-a[href] .book.translate-x:before{
+.book.translate-x:before{
   animation-duration: 5s;
   animation-name: translate-x;
   animation-iteration-count: infinite;
@@ -43,9 +43,10 @@ a[href] .book.translate-x:before{
   animation-duration: 5s;
   animation-name: translate-y;
   animation-iteration-count: infinite;
-    animation-direction: alternate;
+  animation-direction: alternate;
   animation-timing-function: linear;
-  margin-left: -1.2em;
+  /* margin-left: -1.2em; */
+  /* text-indent: -1.2em; */
 }
 
 
@@ -53,34 +54,28 @@ a[href] .book.translate-x:before{
   0% {
     transform: translate(0,0); 
   }
-  25%   {
-    transform: translate(0,0);
+  40%  {
+    transform: translate(0,0); 
   }
-  50%   {
-    transform: translate(0,2.6em);
-  }
-  70%   {
-    transform: translate(1.9em,2.6em);
+  60%  {
+    transform: translate(0,2.6em); 
   }
   100% {
-    transform: translate(1.9em,2.6em);
+    transform: translate(0,2.6em);
   }
 }
 @keyframes translate-x {
   0% {
     transform: translate(0,0); 
   }
-  25%  {
+  40%  {
     transform: translate(0,0); 
   }
-  50%  { 
+  60%  {
     transform: translate(0,-2.6em); 
   }
-  70%  { 
-    transform: translate(-1.9em,-2.6em);
-  }
   100%  {
-    transform: translate(-1.9em,-2.6em); 
+    transform: translate(0,-2.6em); 
   }
 }
 
@@ -95,7 +90,7 @@ a[href] .book.translate-x:before{
     height: 7em;
     white-space: nowrap;
     position: relative;
-    /* transform: rotateY(180deg); */
+    transform: scale3d(0.2,0.2,0.2);
     transition: transform 1s;
     animation-timing-function: linear;
     text-align: center;

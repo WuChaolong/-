@@ -12,12 +12,12 @@ if(me){
 }else{
     var loginTemplate = document.getElementById("loginTemplate").innerHTML;
     document.body.innerHTML = loginTemplate;
-    
     onOpen(document.querySelector('#login'),function(){
         if(document.querySelector('#login').hasAttribute("open")){
             document.querySelector('#tel').focus();
         }
     });
+//     document.querySelector('#login').open = true;
 }
 
 function login(form){
@@ -110,18 +110,23 @@ function goBack(e){
 
     
 function onOpen(element,fn){
-    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+    try{
 
-    var observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        if (mutation.attributeName == "open") {
-          fn();
-          console.log("attributes changed")
-        }
-      });
-    });
+        var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
 
-    observer.observe(element, {
-      attributes: true //configure it to listen to attribute changes
-    });
+        var observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.attributeName == "open") {
+              fn();
+              console.log("attributes changed")
+            }
+          });
+        });
+
+        observer.observe(element, {
+          attributes: true //configure it to listen to attribute changes
+        });
+    }catch(e){
+        
+    }
 }

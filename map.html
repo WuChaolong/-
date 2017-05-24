@@ -1,0 +1,37 @@
+<!-- <img src="https://maps.googleapis.com/maps/api/staticmap?center=28.252168,117.033001&zoom=14&size=300x200&key=AIzaSyCwEybOPnluZ2OST9DM2u6TQLSJSA1l6lI">
+<img src="//images.weserv.nl/?url=maps.googleapis.com/maps/api/staticmap%3Fcenter%3D28.252168%2C117.033001%26zoom%3D14%26size%3D300x200%26key%3DAIzaSyCwEybOPnluZ2OST9DM2u6TQLSJSA1l6lI">
+
+<img src="https://d1r1anxoiubeog.cloudfront.net/https://maps.googleapis.com/maps/api/staticmap%3Fcenter%3D28.252168%2C117.033001%26zoom%3D14%26size%3D300x200%26key%3DAIzaSyCwEybOPnluZ2OST9DM2u6TQLSJSA1l6lI">
+ -->
+<!-- <a href="http://freegeoip.net/json/">freegeoip</a>
+<a href="http://gd.geobytes.com/GetCityDetails">geobytes</a>
+<a href="http://www.geoplugin.net/json.gp">geoplugin</a> -->
+
+<!-- Learn about this code on MDN: https://developer.mozilla.org/zh-CN/docs/Web/Events/drag -->
+        <meta id="meta" name="viewport" content="width=device-width, initial-scale=1"/>
+
+<div class="dropzone">
+    <div id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)">
+        This div is draggable
+    </div>
+</div>
+<div class="dropzone"></div>
+<div class="dropzone"></div>
+<div class="dropzone"></div>
+<style>
+  #draggable {
+    width: 200px;
+    height: 20px;
+    text-align: center;
+    background: white;
+  }
+
+  .dropzone {
+    width: 200px;
+    height: 20px;
+    background: blueviolet;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+</style>
+<script src="js/drag.js"></script>

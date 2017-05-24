@@ -37,9 +37,9 @@ input,textarea{
 
 input[type=text],textarea{
   color: #424547;
-  border: 0;
-  border-bottom: 1px solid #c2c2c2;
-  background-color: white;
+  /* border: 0; */
+  /* border-bottom: 1px solid #c2c2c2; */
+  /*   background-color: white; */
   padding: 0 .5em;
   box-sizing: border-box;
   line-height: 1.5em;

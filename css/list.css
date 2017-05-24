@@ -21,6 +21,12 @@ summary::-webkit-details-marker{
 summary::-moz-list-bullet{
   display: none;
 }
+summary{
+  box-shadow: initial;
+}
+.show-get summary{
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+}
 .show-get summary::-webkit-details-marker{
   display: initial;
 }
@@ -136,10 +142,10 @@ summary .give{
 }
 .other-user:nth-child(odd) .give{
    right: -1.5em;
+   transform: rotateY(180deg);
 }
 .other-user:nth-child(even) .give{
    left: -.5em;
-   transform: rotateY(180deg);
    top: -.9em;
 }
 
@@ -166,7 +172,7 @@ address .fa:before{
     font-size: .8em;
 }
 .fa-spinner{
-  font-size: 2em;
+  /* font-size: 2em; */
 }
 
 textarea{
@@ -186,6 +192,14 @@ textarea{
 .filter{
   text-align:right;
 }
+.filter input{
+}
 .filter input[disabled]+span{
   color:#999;
+}
+#search+input{
+  width: 4em;
+  border: 0;
+  /* border-bottom: 1px solid; */
+  vertical-align: middle;
 }
