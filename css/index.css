@@ -15,7 +15,7 @@ h1>span{
 .important{
   font-size: 2em;
   font-weight: bold;
-  margin: .5em 0;
+  /* margin: .5em 0; */
   text-align: center;
 }
 .logo{
@@ -24,7 +24,7 @@ h1>span{
 .er{
     max-width:10em;
 }
-#chatFrist{/* line-height: 2em; */}
+#chatFrist{min-height: 4em;}
 #chatFristText{
 }
 a.link-chat{
@@ -38,7 +38,6 @@ a.link-chat{
   animation-timing-function: linear;
   /* margin-left: -.6em; */
 }
-
 .book.translate-y:before{
   animation-duration: 5s;
   animation-name: translate-y;
@@ -50,6 +49,9 @@ a.link-chat{
 }
 
 
+.book{
+  font-size:1.2em;
+}
 @keyframes translate-y {
   0% {
     transform: translate(0,0); 
@@ -58,10 +60,10 @@ a.link-chat{
     transform: translate(0,0); 
   }
   60%  {
-    transform: translate(0,2.6em); 
+    transform: translate(0,2.2em); 
   }
   100% {
-    transform: translate(0,2.6em);
+    transform: translate(0,2.2em);
   }
 }
 @keyframes translate-x {
@@ -72,10 +74,10 @@ a.link-chat{
     transform: translate(0,0); 
   }
   60%  {
-    transform: translate(0,-2.6em); 
+    transform: translate(0,-2.2em); 
   }
   100%  {
-    transform: translate(0,-2.6em); 
+    transform: translate(0,-2.2em); 
   }
 }
 
@@ -129,6 +131,7 @@ a.link-chat{
 dl.main >dd {
     /* display: inline-block; */
     vertical-align: middle;
+    /* min-height: 2em; */
 }
 dl.main >dd.jiyu{
     display: block;
@@ -139,5 +142,5 @@ dl.main >dd.jiyu{
 }
 .we-book{
   text-align:center;
-  margin-left:0;
+  /* margin-left:0; */
 }

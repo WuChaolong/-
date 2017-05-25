@@ -203,3 +203,7 @@ textarea{
   /* border-bottom: 1px solid; */
   vertical-align: middle;
 }
+small{opacity: .5;}
+.shear{
+  display: inline;
+}

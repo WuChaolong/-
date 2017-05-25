@@ -264,10 +264,67 @@ var app = angular
     });
 app.filter('sortAddress', function(){
     var filter = function(input){
+//         return input;
         return input.split(/区|县/)[0];
     };
     return filter;
   });
+app.filter('smallAddress', function(){
+    var filter = function(input){
+        var reverse = function(s){
+            return s.split("").reverse().join("");
+        }
+        var match = reverse(input).match(/市|区/);
+        if(match){
+            var index = input.length-1-match.index;
+            return input.slice(0,index+1);
+        }
+        return input;
+    };
+    return filter;
+  });
+app.filter('bigAddress', function(){
+    var filter = function(input){
+        var reverse = function(s){
+            return s.split("").reverse().join("");
+        }
+        var match = reverse(input).match(/市|区/);
+        if(match){
+            var index = input.length-1-match.index;
+            return input.slice(index+1);
+        }
+        return input;
+    };
+    return filter;
+});
+app.directive( "shear", function() {
+    return function (scope, element, attr) {
+        var book = scope.book;
+        var options= {
+            disabled: ['wechat','diandian'],
+            url:"https://wuchaolong.github.io/sante/",
+            title: book.description,
+            description:"至善良的你：‘给’过书后进入‘得’可找到我的书",
+            image:"https://wuchaolong.github.io/sante/download/logo.png"
+        };
+        if(book.search){
+            options.description=book.search.summary;
+            options.image=book.search.image;
+        }
+        socialShare(element,options);
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
 
 function goBack(e){
     var defaultLocation = "index.html";

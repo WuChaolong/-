@@ -36,23 +36,24 @@
             <dd class="person">
 <!--                     {{!book.users}}|{{!isMe(book)}} -->
                     
-                    <details ng-class="{'show-get': !book.users&&!isMe(book)}" ng-open="$index==0&&!book.users&&!isMe(book)">
+                    <details ng-class="{'show-get': !book.users}" ng-open="!book.users&&(isMe(book)||$index==1)">
                             <summary>
                                 <span class="name">{{book.username}}<i class="fa fa-user-circle" aria-hidden="true"></i></span>
-                                <address class="address">{{book.address|sortAddress}}<i class="fa fa-map-marker" aria-hidden="true"></i></address>
+                                <address class="address">{{book.address|smallAddress}}<i class="fa fa-map-marker" aria-hidden="true"></i></address>
                                 <span class="time"><i class="date">{{-book.time|date:'MM-dd'}}</i></span>
                             </summary>
-                            <div class="get" ng-if="!book.users&&!isMe(book)">
+                            <div class="get" ng-if="!book.users">
 <!--                                 ？<a ng-href="sms://{{book.tel}}?body=我喜欢你三牛寺的“{{book.description.slice(0, 4)}}...”"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
                                 或  -->
-                                <button ng-click="mail(book)">想要？</button>
+                                <button ng-if="!isMe(book)" ng-click="mail(book)">想要？</button>
+                                <div class="shear" ng-if="isMe(book)"> 给朋友<span shear></span></div>
                             </div>
                     </details>
                     <details ng-repeat="(key, user) in book.users" class="other-user" ng-class="{'show-get': $last||isMe(user)||user.words}" ng-open="isMe(user)">
                             <summary>
 <!--                                 {{book.currentUser==key}}|{{!isMe(user)}} -->
                                 <span class="name"><i class="give"></i>{{user.name}}<i class="fa fa-user-circle" aria-hidden="true"></i></span>
-                                <address class="address">{{user.address|sortAddress}}<i class="fa " ng-class="user.status?user.status:'fa-map-marker'" aria-hidden="true"></i></address>
+                                <address class="address">{{user.address|smallAddress}}<i class="fa " ng-class="user.status?user.status:'fa-map-marker'" aria-hidden="true"></i></address>
                                 <span class="time">
                                     <i class="date">{{-user.time|date:'MM-dd'}}</i>
                                 </span>
@@ -76,7 +77,11 @@
         <script src="download/angularfire.min.js"></script>
         <script src="js/list.js"></script>
 <!--         <script src="js/sms-link.min.js"></script> -->
-        
+        <!-- share.css -->
+        <link rel="stylesheet" href="social-share.js/dist/css/share.min.css">
+
+        <!-- share.js -->
+        <script src="social-share.js/src/js/social-share.js"></script>
     </body>
 
 </html>

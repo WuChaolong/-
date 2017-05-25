@@ -1,6 +1,6 @@
 <html  manifest="../demo.appcache">
   <head>
-    <title>聊天室-三牛寺</title>
+    <title>群-三牛寺</title>
     <meta id="meta" name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" href="../download/logo.png">
     <!-- Firebase -->
@@ -11,14 +11,14 @@
   </head>
 
   <body>
-    <h1><i class="fa fa-commenting-o"></i>聊天室</h1>
+    <h1><i class="fa fa-commenting-o"></i></h1>
 
     <div id="messagesDiv"><p class="more"><a href="https://book-2724e.firebaseio.com/sante/chat.json?orderBy=%22$key%22&limitToLast=100" target="_blank">More</a></p></div>
 <form id="form">
 <!--     <textarea id="messageInput"  required inputmode="katakana"  placeholder="Message..." ></textarea> -->
 
     <input required inputmode="katakana" type="text" id="messageInput" placeholder="Message..." />
-    <input required inputmode="katakana" type="text" id="nameInput" placeholder="Name" />
+    <input inputmode="katakana" type="hidden" id="nameInput" placeholder="Name" />
     <input type="submit" style="display:none;"/>
 </form>
 
