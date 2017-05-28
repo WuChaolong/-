@@ -1,5 +1,6 @@
 CACHE MANIFEST
 # v1.22
+index.html
 download/angular.min.js
 download/firebase.min.js
 download/angularfire.min.js
@@ -10,6 +11,7 @@ download/jquery.min.js
 download/mustache.min.js
 download/iframeResizer/iframeResizer.min.js
 download/iframeResizer/iframeResizer.contentWindow.min.js
+
 
 NETWORK:
 <!-- * -->
