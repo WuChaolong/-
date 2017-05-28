@@ -78,3 +78,6 @@ search
 
 How sameone get?
 其他方式 安全模式
+
+library|book_store|cafe|bus_station|school|bank|lodging|store
+lodging|bank|school|bus_station|cafe|book_store|library

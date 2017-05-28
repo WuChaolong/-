@@ -21,10 +21,10 @@ summary::-webkit-details-marker{
 summary::-moz-list-bullet{
   display: none;
 }
-summary{
+details{
   box-shadow: initial;
 }
-.show-get summary{
+details.show-get{
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
 }
 .show-get summary::-webkit-details-marker{

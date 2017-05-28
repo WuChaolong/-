@@ -22,9 +22,9 @@ section {
 }
 
 label span {
-    display: inline-block;
-    width: 120px;
-    text-align: right;
+    /* display: inline-block; */
+    /* width: 120px; */
+    /* text-align: right; */
 }
 
 input, textarea {
@@ -112,7 +112,7 @@ label em {
   box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
   /* box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.2); */
 }
-#bookList span{
+#bookList span.fa-link{
   display: block;
   white-space: nowrap;
   max-width: 100%;
@@ -135,4 +135,13 @@ label em {
 #bookList a{
   vertical-align: super;
   text-decoration: none;
+}
+#allowP{
+  /* display:none; */
+}
+.hidden-checkbox,.hidden-checkbox+label{
+  display:none;
+}
+.hidden-checkbox:checked,.hidden-checkbox:checked+label{
+  display:initial;
 }

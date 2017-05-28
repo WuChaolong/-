@@ -4,7 +4,13 @@ function loaded(){
     formElement.address.onfocus=function(e){
         if(!this.value){
           geoFindMe(this,formElement.geo);
+//           document.getElementById("allowReceipt").checked = true;
+
         }
+    }
+    formElement.address.onchange = function(e){
+//         formElement.allow;
+//         document.getElementById("allowmail").checked = true;
     }
     formElement.description.onkeypress=function(e){
       
@@ -46,7 +52,12 @@ function loaded(){
         request.onload = function(e) {
             if (this.status == 200) {
               console.log(this.response);
-              window.goBack();
+              if(window.parent.showBookmark){
+                window.parent.showBookmark("#get");
+                location.reload();
+              }else{
+                window.goBack();
+              }
             }
         };
         request.onerror = function(e){
@@ -84,19 +95,19 @@ function showBookList(textarea){
     var q = getQ(textarea.value);
     var uri = "//charon-node.herokuapp.com/cross?api=https://api.douban.com/v2/book/search?q="+q;
     get(uri,function(data){
-        console.log(data);
+//         console.log(data);
         try{
             var books= JSON.parse(data).books;
             if(books){
               var bookList = document.getElementById("bookList");
-              var html = '<legend>是这书吗？<i class="fa fa-search">douban</i></legend><div>';
+              var html = '<legend>是这书吗？<i class="fa fa-search">douban</i><span id="bookListGoodFa"></span></legend><div>';
               for(var i=0;i<books.length;i++){
                 var book = books[i];
                 var value = JSON.stringify(book);
                 var checked = i===0?"checked":"";
                 html= html+ '<label for="coding'+i
                       +'"><input type="radio" id="coding'+i
-                      +'" name="search" value=\''+value+'\''+checked+'><img src="'+book.image
+                      +'" name="search" value=\''+escape(value)+'\''+checked+' onchange="good(\'bookListGoodFa\',\'show\')"><img src="'+book.image
                       +'"/><a href="'+book.alt+'" target="_blank"><span class="fa fa-link">'+book.title
                       +'</span></a></label>';
               }
@@ -143,7 +154,7 @@ function geoFindMe(input,geoHidden) {
 
   function mapByItude(latitude,longitude){
       var staticmapUrl = "maps.googleapis.com/maps/api/staticmap?language=zh-CN&center="
-          +latitude+","+longitude+"&zoom=14&size=800x800&key=AIzaSyCwEybOPnluZ2OST9DM2u6TQLSJSA1l6lI";
+          +latitude+","+longitude+"&zoom=15&size=800x800&key=AIzaSyCwEybOPnluZ2OST9DM2u6TQLSJSA1l6lI";
       staticmapUrl = "//images.weserv.nl/?url="+escape(staticmapUrl);
       document.getElementById("mapImg").src = staticmapUrl;
       document.getElementById("map").style.display = "block";
@@ -162,10 +173,11 @@ function geoFindMe(input,geoHidden) {
         try{
             var addresss = JSON.parse(data);
             var address = addressByResult(addresss.results[0]);
-            if(address){
-                input.value = address;
+            if(address&&!input.value){
+                document.getElementById("addressFormatted").innerHTML = address;
+                document.getElementById("allowmail").checked = true;
             }
-
+          
         }catch(e){
 
         }
@@ -175,7 +187,7 @@ function geoFindMe(input,geoHidden) {
 
   }
   function searchAddressByItude(latitude,longitude){
-    var uri  = "//charon-node.herokuapp.com/cross?api=https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=zh-CN&location="
+    var uri  = "//charon-node.herokuapp.com/cross?api=https://maps.googleapis.com/maps/api/place/nearbysearch/json?types=lodging|bank|school|bus_station|cafe|book_store|library&language=zh-CN&location="
         +latitude+","+longitude+"&radius=500&key=AIzaSyAU-cH7LlZPJKoL1m8lUXH3EsVZjnqZRq0";
 
     get(uri,function(data){
@@ -189,12 +201,13 @@ function geoFindMe(input,geoHidden) {
             
             var addressListD = document.getElementById("addressList");
             var innerHTML = "";
-            console.log(addresss.results.length);
+            console.log(addresss.results[0]);
+            input.value = addresss.results[0].name;;
 //             addresss.results = JSON.parse(addresss.result);
             for(var i = 0; i<addresss.results.length;i++){
                 var address = addresss.results[i];
-                var value = address.vicinity+"("+address.name+")";
-                innerHTML+='<option value="'+value+'">';
+                var value = address.vicinity+address.name;
+                innerHTML+='<option value="'+address.name+'">';
             }
             addressListD.innerHTML = innerHTML+addressListD.innerHTML;
         }catch(e){
@@ -309,4 +322,21 @@ function goBack(e){
             e.preventPropagation();
     }
     return false; // stop event propagation and browser default event
+}
+
+function good(elem,action){
+  elem = typeof elem === 'string' ? document.getElementById(elem) : elem;
+  if(action=="show"){
+    elem.innerHTML="<i class='good'>♥</i>";
+  }else{
+    elem.innerHTML="";
+  }
+
+}
+function inIframe () {
+    try {
+        return window.self !== window.top;
+    } catch (e) {
+        return true;
+    }
 }

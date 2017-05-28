@@ -25,31 +25,51 @@
             <section>
                 <fieldset>
                     <legend><em class="you"></em>书在哪？How someone get</legend>
-                    <p class="address-p"><label for="address">地址<strong><i id="forGeo" class="fa fa-spinner  init-hide" aria-hidden="true"></i><abbr title="required">*</abbr></strong></label>
+                    <p class="address-p">
+                        <label for="address">地址<strong><i id="forGeo" class="fa fa-spinner  init-hide" aria-hidden="true"></i><abbr title="required">*</abbr></strong><span id="addressFormatted"></span></label>
+                        <input class="hidden-checkbox" id="allowmail" name="allow" type="checkbox" value="mail" onchange="this.checked?good('addressGoodFa','show'):good('addressGoodFa','hide')"/><label for="allowmail">给快递员<span id="addressGoodFa"><i class='good'>♥</i></span></label>
                         <input id="address"  required minlength="3"  inputmode='katakana' autocomplete="city street-address"  mozactionhint="next" name="address" list="addressList" />
                         <datalist id="addressList">
-                              <option value="鹰潭市">
+<!--                               <option value="鹰潭市"> -->
                         </datalist>
                         <span id="map">
                             <img id="mapImg" alt="maps.google"/>
-
                             <e class="mark"  draggable="true" ondragstart=""><i class="fa fa-map-marker" aria-hidden="true"></i></e>
                         </span>
-<!--                     <p><label for="allowMeet"><input id="allowMeet" name="allowMeet" type="checkbox" value="true"/>附近的人想要，约吗？</label> -->
+<!--                     <p><input class="hidden-checkbox" id="allowReceipt" name="allow" type="checkbox" value="receipt"/><label for="allowReceipt">也是收货地址</label> -->
+
+<!--                     <p id="allowP"> -->
+<!--                         <label for="allownear"><input id="allownear" name="allow" type="checkbox" value="near" checked/>给身边人</label> -->
                     <p><label for="username">你的名字<strong><abbr title="required">*</abbr></strong></label><input id="username" required maxlength="11" inputmode='katakana' autocomplete="name" mozactionhint="next" name="username"/>
                     <p><label for="tel">手机号<strong><abbr title="required">*</abbr></strong></label><input id="tel" required maxlength="11" minlength="11" autocomplete="tel" mozactionhint="send" type="number" type="tel" name="tel"/>
                 </fieldset>
             </section>
             <section class="submit">
-                <p><button type="submit"><em  class="give">给予</em><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></button></p>
+                <p><button type="submit"><em class="give">给予</em><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></button></p>
             </section>
             <input type="hidden" name="geo"/>
+            <input type="hidden" name="vicinity"/>
         </form>
 
 <!--         <script src="download/formic.js"></script> -->
         <script src="js/add.js"></script>
         <script>loaded();</script>
+                <script type="text/javascript" src="download/iframeResizer/iframeResizer.contentWindow.min.js" defer></script>
+
 <!--         <script src="https://jsconsole.com/js/remote.js?book"></script> -->
-      
+<!-- <script id="bookListTemplate" type="x-tmpl-mustache">
+    <legend>是这书吗？<i class="fa fa-search">douban</i></legend>
+    <div>
+    {{#books}}
+        <label for="coding{{@index}}">
+            <input type="radio" id="coding@index" name="search" value="{{this}}">
+            <img src="{{image}}">
+            <a href="{{alt}}" target="_blank"><span class="fa fa-link">{{title}}</span></a>
+        </label>
+    {{/books}}
+    </div>
+</script>
+
+<script src="download/mustache.min.js"></script> -->
     </body>
 </html>

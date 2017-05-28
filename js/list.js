@@ -20,7 +20,7 @@ var app = angular
 
         var baseURI = 'https://book-2724e.firebaseio.com/sante/';
         var rootRef = new Firebase(baseURI);
-        var me = $scope.me = JSON.parse(localStorage.getItem("me"));
+        var me = $scope.me = JSON.parse(localStorage.getItem("me"))||{};
 
         
         $scope.filter= JSON.parse(localStorage.getItem("filter"))||{search:me.username};
@@ -150,7 +150,7 @@ var app = angular
             if(typeof search === 'object'){
                 return search;
             }
-            return JSON.parse(search||null);
+            return JSON.parse(unescape(search)||null);
         };
         $scope.sortUrl = function(url) {
             var indexStart = url.indexOf("//")+2;
@@ -183,9 +183,15 @@ var app = angular
                     };
                 }
                 if(!userTo){
-                    if(!me){
-                        window.goBack();
-                        return;
+                    
+                    if(!JSON.parse(localStorage.getItem("me"))||{}){
+                        alert("失败，不知道你是谁");
+                        if(inIframe()){
+                            window.parent.location="me.html";
+                        }else{
+                            location = "index.html";
+                        }
+                      return;
                     }
                     var userTo = me;
                     userTo.time = 0-new Date().getTime();
@@ -302,7 +308,7 @@ app.directive( "shear", function() {
         var book = scope.book;
         var options= {
             disabled: ['wechat','diandian'],
-            url:"https://wuchaolong.github.io/sante/",
+            url:"https://wuchaolong.github.io/sante/#get",
             title: book.description,
             description:"至善良的你：‘给’过书后进入‘得’可找到我的书",
             image:"https://wuchaolong.github.io/sante/download/logo.png"
@@ -363,4 +369,11 @@ function goBack(e){
             e.preventPropagation();
     }
     return false; // stop event propagation and browser default event
+}
+function inIframe () {
+    try {
+        return window.self !== window.top;
+    } catch (e) {
+        return true;
+    }
 }

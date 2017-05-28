@@ -50,7 +50,8 @@ function login(form){
             "allowMeet":book.allowMeet
         });
         localStorage.setItem("me", me);
-        location = "list.html";
+//         location = "list.html";
+                window.goBack();
     },error)
     return false;
 }

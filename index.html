@@ -6,25 +6,39 @@
     <title>三牛寺</title>
     <link rel="icon" href="download/logo.png">
     <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/index.css" />
-
+    <link rel="stylesheet" href="css/index2.css" />
 </head>
+
 <body>
 
-    <dl class="main">
-        <dt>至爱书的<em class="you">你</em></dt>
-        <dd id="chatFrist">    
-        <dd class="important give-dd">
-             <a href="add.html#description">给</a><em  class="book translate-y"></em>
-        <dd class="we important">
-             <a id="linkToList" href="me.html">得</a><em  class="book translate-x"></em>
-        
-        <dd class="we-book"><span id="newBook" class="new-book"></span></dd>    
-    </dl>
+    <p id="chatFrist">
+    <details id="give">
+            <summary><h2>给</h2></summary>
+            <iframe id="giveIframe" src="add.html" scrolling="no" ></iframe>
+    </details>
+    <details id="get">
+            <summary><h2>得</h2></summary>
+            <iframe id="getIframe" src="list.html" scrolling="no" ></iframe>
+    </details>
 
-    <script src="js/index.js"></script>
-    <script>loadMe();</script>
-    <script src="https://book-2724e.firebaseio.com/sante/books2.json?orderBy=%22$key%22&limitToLast=1&callback=gotBookData"></script>
+<!-- 
+<script>
+  function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+    obj.onreadystatechange = function() {
+        if (obj.readyState == 'complete') {
+            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+
+        }
+    }
+  }
+</script> -->
+    <script src="download/iframeResizer/iframeResizer.min.js"></script>
+    <script>iFrameResize({}, 'iframe')</script>
+
+    <script src="js/index2.js"></script>
+    <script>load();</script>
+<!--     <script>loadMe();</script> -->
     <script src="https://book-2724e.firebaseio.com/sante/chat.json?orderBy=%22$key%22&limitToLast=1&callback=gotChatData"></script>
 </body>
 

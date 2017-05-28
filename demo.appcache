@@ -8,6 +8,8 @@ download/logo.png
 download/fontawesome-webfont.woff
 download/jquery.min.js
 download/mustache.min.js
+download/iframeResizer/iframeResizer.min.js
+download/iframeResizer/iframeResizer.contentWindow.min.js
 
 NETWORK:
 *
