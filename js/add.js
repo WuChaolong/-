@@ -52,8 +52,9 @@ function loaded(){
         request.onload = function(e) {
             if (this.status == 200) {
               console.log(this.response);
-              if(window.parent.showBookmark){
-                window.parent.showBookmark("#get");
+              if(window.parent.load){
+                
+                window.parent.load();
                 location.reload();
               }else{
                 window.goBack();

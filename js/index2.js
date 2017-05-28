@@ -20,33 +20,53 @@ function getO(data){
 
 function load(){
     
-    if ("onhashchange" in window) {
-        console.log("该浏览器支持hashchange事件!");
-    }
-
-    function locationHashChanged() {
-         showBookmark(location.hash);
-    }
 
     window.onhashchange = locationHashChanged;
+    
+    var get = document.querySelector('#get');
+    var give = document.querySelector('#give');
+    onOpen(get,function(){
+        if(get.hasAttribute("open")){
+            give.open=false;
+        }
+    });
+    onOpen(give,function(){
+        if(give.hasAttribute("open")){
+            get.open=false;
+        }
+    });
+    
+    var me = JSON.parse(localStorage.getItem("me"));
+    if(me){
+       loadMe(me);
+    }
     if(location.hash){
         locationHashChanged();
     }else{
-        var me = JSON.parse(localStorage.getItem("me"));
         if(me){
             openDetails("#get");
         }else{
             openDetails("#give");
         }
     }
-
+    
+    function locationHashChanged() {
+         showBookmark(location.hash);
+    }
+}
+function loadMe(me){
+    if(me){
+        var youDocs = document.getElementsByClassName("you");
+        for(var i =0;i<youDocs.length;i++){
+            var youDoc = youDocs[i];
+            youDoc.innerText = me.username;
+            if(youDoc.href){
+                youDoc.removeAttribute("href");
+            }
+        }
+    }  
 }
 function openDetails(id,idClose){
-    if(id=="#give"){
-        var idClose = "#get";
-    }else if(id=="#get"){
-        var idClose = "#give";
-    }
     if(id){
         var id = document.querySelector(id);
         id.open = true;
@@ -71,43 +91,24 @@ function showBookmark (sBookmark, bUseHash) {
     openDetails(sBookmark);
   }
 }
+function onOpen(element,fn){
+    try{
 
-// var showBookmark = (function () {
-//   var  _useHash, _scrollX, _scrollY, _nodeX, _nodeY, _itFrame, _scrollId = -1, _bookMark,
-//        /*
-//        * nDuration: the duration in milliseconds of each frame
-//        * nFrames: number of frames for each scroll
-//        */
-//        nDuration = 200, nFrames = 10;
+        var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
 
-//   function _next () {
-//     if (_itFrame > nFrames) { clearInterval(_scrollId); _scrollId = -1; return; }
-//     _isBot = true;
-//     document.documentElement.scrollTop = Math.round(_scrollY + (_nodeY - _scrollY) * _itFrame / nFrames);
-//     document.documentElement.scrollLeft = Math.round(_scrollX + (_nodeX - _scrollX) * _itFrame / nFrames);
-//     if (_useHash && _itFrame === nFrames) { location.hash = _bookMark; }
-//     _itFrame++;
-//   }
+        var observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.attributeName == "open") {
+              fn();
+              console.log("attributes changed")
+            }
+          });
+        });
 
-//   function _chkOwner () {
-//     if (_isBot) { _isBot = false; return; }
-//     if (_scrollId > -1) { clearInterval(_scrollId); _scrollId = -1; }
-//   }
-
-//   if (window.addEventListener) { window.addEventListener("scroll", _chkOwner, false); }
-//   else if (window.attachEvent) { window.attachEvent("onscroll", _chkOwner); }
-
-//   return function (sBookmark, bUseHash) {
-//     _scrollY = document.documentElement.scrollTop;
-//     _scrollX = document.documentElement.scrollLeft;
-//     _bookMark = sBookmark;
-//     _useHash = arguments.length === 1 || bUseHash;
-//     for (
-//       var nLeft = 0, nTop = 0, oNode = document.querySelector(sBookmark);
-//       oNode;
-//       nLeft += oNode.offsetLeft, nTop += oNode.offsetTop, oNode = oNode.offsetParent
-//     );
-//     _nodeX = nLeft, _nodeY = nTop, _itFrame = 1;
-//     if (_scrollId === -1) { _scrollId = setInterval(_next, Math.round(nDuration / nFrames)); }
-//   };
-// })();
+        observer.observe(element, {
+          attributes: true //configure it to listen to attribute changes
+        });
+    }catch(e){
+        
+    }
+}

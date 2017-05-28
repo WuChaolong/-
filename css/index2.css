@@ -9,7 +9,7 @@ summary+iframe{
     /* position: absolute; */
     /* top: 0; */
 }
-#chatFrist{min-height: 2em;}
+#chatFrist{min-height: 4em;}
 .name:before {
     content: "—";
 }
