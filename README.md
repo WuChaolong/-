@@ -81,3 +81,5 @@ How sameone get?
 
 library|book_store|cafe|bus_station|school|bank|lodging|store
 lodging|bank|school|bus_station|cafe|book_store|library
+
+书-妓女-约篮球

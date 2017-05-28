@@ -49,7 +49,7 @@
                                 <div class="shear" ng-if="isMe(book)"> 给朋友<span shear></span></div>
                             </div>
                     </details>
-                    <details ng-repeat="(key, user) in book.users" class="other-user" ng-class="{'show-get': $last||isMe(user)||user.words}" ng-open="isMe(user)">
+                    <details ng-repeat="(key, user) in book.users" class="other-user" ng-class="{'show-get': $last||isMe(user)||user.words}" ng-open="isMe(user)||user.words">
                             <summary>
 <!--                                 {{book.currentUser==key}}|{{!isMe(user)}} -->
                                 <span class="name"><i class="give"></i>{{user.name}}<i class="fa fa-user-circle" aria-hidden="true"></i></span>
