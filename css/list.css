@@ -25,7 +25,7 @@ details{
   box-shadow: initial;
 }
 details.show-get{
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
 }
 .show-get summary::-webkit-details-marker{
   display: initial;
