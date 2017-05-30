@@ -38,32 +38,45 @@ function loaded(){
         var submitButton = formElement.querySelector("button[type=submit]");
         submitButton.disabled="disabled";
         e.preventDefault();
-
-        var request = new XMLHttpRequest();
-        request.open(formElement.method, formElement.action);
+        
         var book = formToObject(formElement);
         book["time"]=0-new Date().getTime();
-        try{
-            request.send(JSON.stringify(book));
-        }catch(e){
-            submitButton.disabled="";
-        }
 
-        request.onload = function(e) {
-            if (this.status == 200) {
-              console.log(this.response);
-              if(window.parent.load){
-                
-                window.parent.load();
-                location.reload();
+        var uri = formElement.action,
+            fn = function(){
+              if(localStorage.getItem("reserveBookId")){
+                  me["time"]=0-new Date().getTime();
+                  var data = me,
+                      uri = "https://book-2724e.firebaseio.com/sante/books2/"+localStorage.getItem("reserveBookId")+"/users.json",
+                      fn2 = function(){
+                          localStorage.removeItem("reserveBookId");
+                          fn();
+                      },
+                      error = error,
+                      method = "POST";
+
+                  ajax(uri,fn2,error,method,data);  
               }else{
-                window.goBack();
+                  if(window.parent.load){
+
+                    window.parent.load();
+                    location.reload();
+                  }else{
+                    window.goBack();
+                  }
               }
-            }
-        };
-        request.onerror = function(e){
-          submitButton.disabled="";
-        }
+              
+              
+            },
+            error = function(){
+              submitButton.disabled="";
+            },
+            method = formElement.method,
+            data = JSON.stringify(book);
+
+        ajax(uri,fn,error,method,data);
+        
+
         
         var me = JSON.stringify({
             "address":book.address,
@@ -95,7 +108,7 @@ function showBookList(textarea){
     document.getElementById("forBookList").classList.add("ng-scope");
     var q = getQ(textarea.value);
     var uri = "//charon-node.herokuapp.com/cross?api=https://api.douban.com/v2/book/search?q="+q;
-    get(uri,function(data){
+    ajax(uri,function(data){
 //         console.log(data);
         try{
             var books= JSON.parse(data).books;
@@ -169,7 +182,7 @@ function geoFindMe(input,geoHidden) {
   function addressByItude(latitude,longitude){
     var uri = "//charon-node.herokuapp.com/cross?api=https://maps.googleapis.com/maps/api/geocode/json?language=zh-CN&latlng="
         +latitude+","+longitude+"&key=AIzaSyAU-cH7LlZPJKoL1m8lUXH3EsVZjnqZRq0";
-    get(uri,function(data){
+    ajax(uri,function(data){
 //         console.log(data);
         try{
             var addresss = JSON.parse(data);
@@ -191,7 +204,7 @@ function geoFindMe(input,geoHidden) {
     var uri  = "//charon-node.herokuapp.com/cross?api=https://maps.googleapis.com/maps/api/place/nearbysearch/json?types=lodging|bank|school|bus_station|cafe|book_store|library&language=zh-CN&location="
         +latitude+","+longitude+"&radius=500&key=AIzaSyAU-cH7LlZPJKoL1m8lUXH3EsVZjnqZRq0";
 
-    get(uri,function(data){
+    ajax(uri,function(data){
 //         console.log(data);
         try{
             var addresss = JSON.parse(data);
@@ -244,18 +257,21 @@ function addressByResult(result){
     }
     return address;
 }
-function get(uri,fn){
+
+function ajax(uri,fn,error,method,data){
     var request = new XMLHttpRequest();
-    request.open("GET", uri);
+    request.open(method||"GET", uri);
     try{
-      request.send();
+      request.send(data||null);
     }catch(e){
+        error();
     }
     request.onload = function(e) {
         if (this.status == 200) {
-          fn(this.response);
+          fn(this.response,error);
         }
     };
+    request.onerror = error;
 }
 
 

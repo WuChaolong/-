@@ -25,3 +25,21 @@ summary h1,summary h2{
 }
 body{text-align: center;}
 summary{text-align:left;}
+.new-book{/* transform: scale3d(0.5,0.5,0.5); */font-size: .5em;}
+.new-book:hover{
+  transform: rotateY(180deg);
+}
+.new-book:after {
+    content: "想要";
+    position: absolute;
+    right: .6em;
+    bottom: .8em;
+    line-height: 1em;
+    /* z-index: -1; */
+    font-size: .5em;
+    font-weight: normal;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    /* background: antiquewhite; */
+    text-indent: initial;
+}

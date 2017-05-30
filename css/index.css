@@ -108,6 +108,13 @@ a.link-chat{
     background-position-y: -5.5em;
     text-indent: .5em;
 }
+
+.new-book:hover{
+  transform: rotateY(180deg);
+}
+#newBook{
+  display:none;
+}
 .new-book:after{
   content: "NEW";
   position: absolute;
@@ -121,12 +128,6 @@ a.link-chat{
   transform: rotate(-45deg);
   /* background: antiquewhite; */
   text-indent: initial;
-}
-.new-book:hover{
-  transform: rotateY(180deg);
-}
-#newBook{
-  display:none;
 }
 dl.main >dd {
     /* display: inline-block; */

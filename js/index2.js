@@ -43,11 +43,12 @@ function load(){
     if(location.hash){
         locationHashChanged();
     }else{
-        if(me){
+//         if(me){
+//             openDetails("#get");
+//         }else{
+//             openDetails("#give");
+//         }
             openDetails("#get");
-        }else{
-            openDetails("#give");
-        }
     }
     
     function locationHashChanged() {

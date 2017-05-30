@@ -1,33 +1,49 @@
-var me = JSON.parse(localStorage.getItem("me"));
-if(me){
-    var meTemplate = document.getElementById("meTemplate").innerHTML;
-    Mustache.parse(meTemplate);   // optional, speeds up future uses
-    if(me.time){
-        var date = new Date(-me.time);
-        me.date = date.getMonth() + '.' + date.getDate();
-    }
-    document.body.innerHTML = Mustache.render(meTemplate, me);
-    var detailsLogin = document.querySelector('#login');
-    
-}else{
-    var loginTemplate = document.getElementById("loginTemplate").innerHTML;
-    document.body.innerHTML = loginTemplate;
-    onOpen(document.querySelector('#login'),function(){
-        if(document.querySelector('#login').hasAttribute("open")){
-            document.querySelector('#tel').focus();
+function load(){
+    var me = JSON.parse(localStorage.getItem("me"));
+    if(me){
+        var meTemplate = document.getElementById("meTemplate").innerHTML;
+        Mustache.parse(meTemplate);   // optional, speeds up future uses
+        if(me.time){
+            var date = new Date(-me.time);
+            me.date = date.getMonth() + '.' + date.getDate();
         }
-    });
-//     document.querySelector('#login').open = true;
+        document.body.innerHTML = Mustache.render(meTemplate, me);
+        var detailsLogin = document.querySelector('#login');
+
+    }else{
+        var loginTemplate = document.getElementById("loginTemplate").innerHTML;
+        Mustache.parse(loginTemplate);
+        var setting = {
+            reserveBookId:localStorage.getItem("reserveBookId"),
+            jsonp:function(){
+                var my_awesome_script = document.createElement('script');
+
+                my_awesome_script.setAttribute('src','https://book-2724e.firebaseio.com/sante/books2/'+setting.reserveBookId+'.json?callback=gotBookData');
+
+                document.head.appendChild(my_awesome_script);
+            }
+        };
+        document.body.innerHTML = Mustache.render(loginTemplate,setting);
+        onOpen(document.querySelector('#login'),function(){
+            if(document.querySelector('#login').hasAttribute("open")){
+                document.querySelector('#tel').focus();
+            }
+        });
+    //     document.querySelector('#login').open = true;
+    }
 }
+
+
 
 function login(form){
     var submitButton = form.querySelector("button[type=submit]");
         submitButton.disabled="disabled";
     var uri = form.action+"%22"+form.tel.value+"%22";
-    var error = function(){
+    function error(){
         submitButton.disabled="";
+        form.tel.focus();
     };
-    get(uri,function(data){
+    ajax(uri,function(data,error){
         var book = null;
         try{
 
@@ -40,6 +56,7 @@ function login(form){
         }
         if(book==null){
             error();
+            return;
         }
         var me = JSON.stringify({
             "address":book.address,
@@ -51,21 +68,36 @@ function login(form){
         });
         localStorage.setItem("me", me);
 //         location = "list.html";
-                window.goBack();
+
+        if(form.reserveBookId&&form.reserveBookId.value){
+            me["time"]=0-new Date().getTime();
+            var data = me,
+                uri = "https://book-2724e.firebaseio.com/sante/books2/"+form.reserveBookId.value+"/users.json",
+                fn = function(){
+                    localStorage.removeItem("reserveBookId");
+                    window.goBack();
+                },
+                error = error,
+                method = "POST";
+
+            ajax(uri,fn,error,method,data);  
+        }else{
+            window.goBack();
+        }
     },error)
     return false;
 }
-function get(uri,fn,error){
+function ajax(uri,fn,error,method,data){
     var request = new XMLHttpRequest();
-    request.open("GET", uri);
+    request.open(method||"GET", uri);
     try{
-      request.send();
+      request.send(data||null);
     }catch(e){
         error();
     }
     request.onload = function(e) {
         if (this.status == 200) {
-          fn(this.response);
+          fn(this.response,error);
         }
     };
     request.onerror = error;
@@ -130,4 +162,25 @@ function onOpen(element,fn){
     }catch(e){
         
     }
+}
+function gotBookData(data){
+    var book = data;
+    if(book==null){
+        return;
+    }
+
+    var newBookD  = document.getElementById("newBook");
+    newBookD.style.display="inline-block";
+    newBookD.innerHTML = book.description.slice(0,3);
+    newBookD.title = book.description;
+}
+function getO(data){
+    var o = null;
+    for(var key in data){
+        o = data[key];
+    }
+    return o;
+}
+
+function reserveBook(){
 }

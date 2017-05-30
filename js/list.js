@@ -185,13 +185,13 @@ var app = angular
                 if(!userTo){
                     
                     if(!JSON.parse(localStorage.getItem("me"))||{}){
-                        alert("失败，不知道你是谁");
+                        setBookReserve(book);
                         if(inIframe()){
                             window.parent.location="me.html";
                         }else{
-                            location = "index.html";
+                            location = "me.html";
                         }
-                      return;
+                        return;
                     }
                     var userTo = me;
                     userTo.time = 0-new Date().getTime();
@@ -215,7 +215,18 @@ var app = angular
                 
                 
             }catch(e){
+                
+            }
 
+            function setBookReserve(book){
+                if(book.$id){
+                    localStorage.setItem("reserveBookId", book.$id);
+                }else{
+                    rootRef.child('books2/').push(book).then(function(snapshot){
+                        book.$id=snapshot.key();
+                        setBookReserve(book);
+                    });
+                }
             }
 
             function smsEail(){
