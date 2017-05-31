@@ -321,7 +321,7 @@ app.directive( "shear", function() {
             disabled: ['wechat','diandian'],
             url:"https://wuchaolong.github.io/sante/#get",
             title: book.description,
-            description:"至善良的你：‘给’过书后进入‘得’可找到我的书",
+            description:"要的话给你呀",
             image:"https://wuchaolong.github.io/sante/download/logo.png"
         };
         if(book.search){

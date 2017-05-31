@@ -24,7 +24,32 @@ summary+iframe{
   /* text-indent: -1.2em; */
   
   }
-
+@-webkit-keyframes hinge {
+	0% { 
+	   transform: rotate(0); 
+	   transform-origin: top right; 
+	   animation-timing-function: ease-in-out; 
+	}
+	60%, 80% { 
+	   transform: rotate(-60deg); 
+	   transform-origin: top right; 
+	   animation-timing-function: ease-in-out; 
+	}
+	70% { 
+	   transform: rotate(-40deg); 
+	   transform-origin: top right; 
+	   animation-timing-function: ease-in-out;
+	}
+	90% { 
+	   transform: rotate(-40deg) translateY(0); 
+	   opacity: 1; 
+	   transform-origin: top right; 
+	   animation-timing-function: ease-in-out; 
+	}
+	100% { 
+	   transform: translate(.4em,3.1em); 
+	}
+ }
 
  @keyframes hinge {
 	0% { 
@@ -71,5 +96,6 @@ summary+iframe{
 	/* animation: initial; */
 }
 #give[open] .hinge:before{
+	    -webkit-animation: initial;
 	    animation: initial;
 }

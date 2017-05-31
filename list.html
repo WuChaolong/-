@@ -46,7 +46,9 @@
 <!--                                 ？<a ng-href="sms://{{book.tel}}?body=我喜欢你三牛寺的“{{book.description.slice(0, 4)}}...”"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
                                 或  -->
                                 <button ng-if="!isMe(book)" ng-click="mail(book)">想要？</button>
-                                <div class="shear" ng-if="isMe(book)"> 给朋友<span shear></span></div>
+                                <div class="shear" ng-if="isMe(book)"> 
+                                    给朋友<span shear><a target="_blank" ng-href="sms:?&body={{book.description+' 要的话给你了'+'https://wuchaolong.github.io/sante/#get'}}" class="social-share-icon icon-sms" title="短信">短信</a></span>
+                                </div>
                             </div>
                     </details>
                     <details ng-repeat="(key, user) in book.users" class="other-user" ng-class="{'show-get': $last||isMe(user)||user.words}" ng-open="isMe(user)||user.words">

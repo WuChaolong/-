@@ -1,22 +1,4 @@
-function gotChatData(data) {
-    var o = getO(data);
-    if(o==null){
-        return;
-    }
-    document.getElementById("chatFrist").innerHTML=
-        '<a href="chat/" class="link-chat fa fa-commenting-o"></a>'
-            +'<span id="chatFristText"></span>'
-            +'<span class="name" id="chatFristName"></span>';
-    document.getElementById("chatFristText").innerText=o.text;
-    document.getElementById("chatFristName").innerText=o.name;
-}
-function getO(data){
-    var o = null;
-    for(var key in data){
-        o = data[key];
-    }
-    return o;
-}
+
 
 function load(){
     
@@ -112,4 +94,28 @@ function onOpen(element,fn){
     }catch(e){
         
     }
+}
+function gotChatData(data) {
+  try{
+    
+    var o = getO(data);
+    if(o==null){
+        return;
+    }
+    document.getElementById("chatFrist").innerHTML=
+        '<a href="chat/" class="link-chat fa fa-commenting-o"></a>'
+            +'<span id="chatFristText"></span>'
+            +'<span class="name" id="chatFristName"></span>';
+    document.getElementById("chatFristText").innerText=o.text;
+    document.getElementById("chatFristName").innerText=o.name;
+  }catch(e){
+    
+  }
+}
+function getO(data){
+    var o = null;
+    for(var key in data){
+        o = data[key];
+    }
+    return o;
 }

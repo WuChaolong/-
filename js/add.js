@@ -8,9 +8,8 @@ function loaded(){
 
         }
     }
-    formElement.address.onchange = function(e){
-//         formElement.allow;
-//         document.getElementById("allowmail").checked = true;
+    formElement.address.oninput = function(e){
+        autocomplete(this);
     }
     formElement.description.onkeypress=function(e){
       
@@ -209,21 +208,24 @@ function geoFindMe(input,geoHidden) {
         try{
             var addresss = JSON.parse(data);
             var address0 = addressBySearchResult(addresss.results[0]);
-//             if(address0){
-//                 input.value = address0;
-//             }
-            
+            if(address0){
+                input.value = address0;
+            }
+            input.oninput = function(){};
             var addressListD = document.getElementById("addressList");
             var innerHTML = "";
             console.log(addresss.results[0]);
-            input.value = addresss.results[0].name;;
+//             input.value = addresss.results[0].name;;
 //             addresss.results = JSON.parse(addresss.result);
             for(var i = 0; i<addresss.results.length;i++){
                 var address = addresss.results[i];
                 var value = address.vicinity+address.name;
-                innerHTML+='<option value="'+address.name+'">';
+                var selected = i === 0?"selected":"";
+                innerHTML+='<option value="'+address.name+'" '+selected+'/>';
             }
-            addressListD.innerHTML = innerHTML+addressListD.innerHTML;
+            if(addressListD.innerHTML != innerHTML){
+              addressListD.innerHTML = innerHTML;
+            }
         }catch(e){
 
         }
@@ -236,7 +238,7 @@ function geoFindMe(input,geoHidden) {
 function addressBySearchResult(result){
     var address = ""; 
     address = result.vicinity+result.name
-    return address;
+    return result.name;
 }
 function addressByResult(result){
     var address = ""; 
@@ -356,4 +358,43 @@ function inIframe () {
     } catch (e) {
         return true;
     }
+}
+function autocomplete(input){
+    var uri = "//charon-node.herokuapp.com/cross?api=https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyCwEybOPnluZ2OST9DM2u6TQLSJSA1l6lI&location=28.251017,117.034697&radius=20000000&input="+input.value;
+    ajax(uri,function(data){
+//         console.log(data);
+        try{
+            var addresss = JSON.parse(data);
+//             var address0 = addressBySearchResult(addresss.results[0]);
+//             if(address0){
+//                 input.value = address0;
+//             }
+            
+            var addressListD = document.getElementById("addressList");
+            var innerHTML = "";
+            console.log(addresss.predictions[0]);
+//             addresss.results = JSON.parse(addresss.result);
+            for(var i = 0; i<addresss.predictions.length;i++){
+                var address = addresss.predictions[i];
+                var value = textByAutocompleteAddress(address);
+                innerHTML+='<option value="'+value+'">';
+            }
+            addressListD.innerHTML = innerHTML;
+            addresss = null;
+        }catch(e){
+
+        }
+
+    });
+}
+
+function textByAutocompleteAddress(address){
+  var text = "";
+  for(var i = 0;i<address.terms.length;i++){
+    var term = address.terms[i];
+    if(term.offset>2){
+       text = term.value+text;
+    }
+  }
+  return text;
 }
