@@ -143,5 +143,5 @@ label em {
   display:none;
 }
 .hidden-checkbox:checked,.hidden-checkbox:checked+label{
-  display:initial;
+/*   display:initial; */
 }

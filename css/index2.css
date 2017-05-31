@@ -13,3 +13,63 @@ summary+iframe{
 .name:before {
     content: "—";
 }
+
+.book.translate-y:before{
+  /*   animation-duration: 5s;
+  animation-name: translate-y;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear; */
+  /* margin-left: -1.2em; */
+  /* text-indent: -1.2em; */
+  
+  }
+
+
+ @keyframes hinge {
+	0% { 
+	   transform: rotate(0); 
+	   transform-origin: top right; 
+	   animation-timing-function: ease-in-out; 
+	}
+	60%, 80% { 
+	   transform: rotate(-60deg); 
+	   transform-origin: top right; 
+	   animation-timing-function: ease-in-out; 
+	}
+	70% { 
+	   transform: rotate(-40deg); 
+	   transform-origin: top right; 
+	   animation-timing-function: ease-in-out;
+	}
+	90% { 
+	   transform: rotate(-40deg) translateY(0); 
+	   opacity: 1; 
+	   transform-origin: top right; 
+	   animation-timing-function: ease-in-out; 
+	}
+	100% { 
+	   transform: translate(.4em,3.1em); 
+	}
+ }
+.book:before{
+	font-size: 1em;
+	height: .8em;
+	background-position-y: -.4em;
+	background-position-x: -.7em;
+	margin-left: .2em;
+}
+ .hinge:before {
+	-webkit-animation-name: hinge;
+	animation-name: hinge;
+	-webkit-animation-duration: 2s;
+	animation-duration: 2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	/* font-size: 1.2em; */
+	/* line-height: 1em; */
+	/* animation: initial; */
+}
+#give[open] .hinge:before{
+	    animation: initial;
+}
