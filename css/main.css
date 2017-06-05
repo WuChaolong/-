@@ -194,10 +194,10 @@ details[open] summary{
   position: absolute;
   max-width: 800px;
   width: 800px;
-  top: -100%;
-  bottom: -100%;
-  left: -100%;
-  right: -100%;
+  top: -800px;
+  bottom: -800px;
+  left: -800px;
+  right: -800px;
   margin: auto;
   z-index: -1;
   opacity: .3;

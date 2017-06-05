@@ -103,9 +103,9 @@ function gotChatData(data) {
         return;
     }
     document.getElementById("chatFrist").innerHTML=
-        '<a href="chat/" class="link-chat fa fa-commenting-o"></a>'
+        ''
             +'<span id="chatFristText"></span>'
-            +'<span class="name" id="chatFristName"></span>';
+            +'<span class="name" id="chatFristName"></span><a href="chat/" class="link-chat fa fa-commenting-o">群</a>';
     document.getElementById("chatFristText").innerText=o.text;
     document.getElementById("chatFristName").innerText=o.name;
   }catch(e){

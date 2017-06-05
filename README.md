@@ -83,3 +83,7 @@ library|book_store|cafe|bus_station|school|bank|lodging|store
 lodging|bank|school|bus_station|cafe|book_store|library
 
 书-妓女-约篮球
+
+微信收货地址共享
+书籍订购（1月3本）
+分享

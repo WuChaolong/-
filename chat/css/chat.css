@@ -71,13 +71,14 @@ em:before {
 #nameInput {
   width: 26%;
   text-align:right;
+  /* margin-top: -1.5em; */
 }
 
 #messageInput {
   width: 100%;
 }
 #form{
-  text-align:right;
+  text-align: right;
 }
 .more{
   text-align:right;
