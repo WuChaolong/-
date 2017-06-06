@@ -317,6 +317,7 @@ app.filter('bigAddress', function(){
 app.directive( "shear", function() {
     return function (scope, element, attr) {
         var book = scope.book;
+        var user = scope.user;
         var options= {
             disabled: ['wechat','diandian'],
             url:"https://wuchaolong.github.io/sante/#get",
@@ -327,6 +328,13 @@ app.directive( "shear", function() {
         if(book.search){
             options.description=book.search.summary;
             options.image=book.search.image;
+        }
+        try{
+            if(user.words){
+                options.description=user.words;
+            }
+        }catch(e){
+            
         }
         socialShare(element,options);
     }

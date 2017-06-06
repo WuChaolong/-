@@ -102,6 +102,7 @@ function loaded(){
         }
         setFormValue(formElement,formInitData)
     }
+    getAddressByIp(formElement.address);
 }
 function showBookList(textarea){
     document.getElementById("forBookList").classList.add("ng-scope");
@@ -186,8 +187,8 @@ function geoFindMe(input,geoHidden) {
         try{
             var addresss = JSON.parse(data);
             var address = addressByResult(addresss.results[0]);
-            if(address&&!input.value){
-                document.getElementById("addressFormatted").innerHTML = address;
+            if(address){
+                document.getElementById("addressFormatted").value = address;
                 document.getElementById("allowmail").checked = true;
             }
           
@@ -397,4 +398,31 @@ function textByAutocompleteAddress(address){
     }
   }
   return text;
+}
+
+function getAddressByIp(input){
+    var uri = "http://ip-api.com/json";
+    ajax(uri,function(data){
+//         console.log(data);
+        try{
+          var ip = JSON.parse(data).query;
+          var uri = "//charon-node.herokuapp.com/cross?api=http://ip.taobao.com/service/getIpInfo.php?ip="+ip;
+          ajax(uri,function(data){
+              console.log(data);
+              try{
+                var info = JSON.parse(unescape(data));
+//                 info.data.city+info.data.county;
+                if(!input.value){
+                    document.getElementById("addressFormatted").value = info.data.city+info.data.county;
+                }
+              }catch(e){
+
+              }
+
+          });
+        }catch(e){
+
+        }
+      
+    });
 }

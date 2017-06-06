@@ -145,3 +145,10 @@ label em {
 .hidden-checkbox:checked,.hidden-checkbox:checked+label{
 /*   display:initial; */
 }
+#addressFormatted{
+    width: auto;
+    border: 0;
+    background: inherit;
+    font-size: inherit;
+    color: inherit;
+}

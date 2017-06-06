@@ -35,7 +35,7 @@ img{max-width:100%;}
     color:green;
 }
 .fa-link:before {
-    content: "\f0c1";
+    /* content: "\f0c1"; */
 }
 .fa-search:before {
     content: "\f002";
