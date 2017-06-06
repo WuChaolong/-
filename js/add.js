@@ -401,6 +401,10 @@ function textByAutocompleteAddress(address){
 }
 
 function getAddressByIp(input){
+
+    if(input.value){
+        return;
+    }
     var uri = "http://ip-api.com/json";
     ajax(uri,function(data){
 //         console.log(data);
