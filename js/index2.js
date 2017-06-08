@@ -30,7 +30,7 @@ function load(){
 //         }else{
 //             openDetails("#give");
 //         }
-            openDetails("#get");
+//             openDetails("#get");
     }
     
     function locationHashChanged() {

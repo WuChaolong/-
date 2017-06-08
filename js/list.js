@@ -153,6 +153,9 @@ var app = angular
             return JSON.parse(unescape(search)||null);
         };
         $scope.sortUrl = function(url) {
+            if(!url){
+                return url;
+            }
             var indexStart = url.indexOf("//")+2;
             var indexEnd = indexOfCount(url,"/",3);
             
@@ -275,7 +278,7 @@ var app = angular
 
         $scope.userSaveWords=function(words,bookId,userId){
             rootRef.child('books2/'+bookId+"/users/"+userId+"/words").set(words||"").then(function(snapshot) {
-              
+                
             });
         }
     });

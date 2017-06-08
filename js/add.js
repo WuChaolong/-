@@ -11,6 +11,9 @@ function loaded(){
     formElement.address.oninput = function(e){
         autocomplete(this);
     }
+    formElement.addressFormatted.onfocus=function(e){
+        formElement.address.focus();
+    }
     formElement.description.onkeypress=function(e){
       
         if(e.which == 13) {

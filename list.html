@@ -30,7 +30,7 @@
                         <span title="{{book.search.summary}}">{{book.search.summary.slice(0,40)+"..."}}</span>
                         
                         <a target="_blank" class="search-alt" ng-href="{{book.search.alt}}" title="来源">
-                            <i class="fa fa-link" ng-bind="sortUrl(book.search.alt)"></i></a>
+                            <i class="fa fa-link" >{{sortUrl(book.search.alt)}}</i></a>
                 </div>
             </dd>
             <dd class="person">

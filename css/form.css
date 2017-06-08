@@ -43,6 +43,7 @@ textarea {
     vertical-align: top;
     height: 5em;
     resize: vertical;
+    /* border-bottom-width: 0; */
 }
 
 fieldset {
@@ -151,4 +152,5 @@ label em {
     background: inherit;
     font-size: inherit;
     color: inherit;
+    display: inline;
 }

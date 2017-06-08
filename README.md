@@ -88,3 +88,4 @@ lodging|bank|school|bus_station|cafe|book_store|library
 书籍订购（1月3本）
 分享
 搜索 new book
+换书会

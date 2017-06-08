@@ -228,7 +228,9 @@ input, textarea {
     line-height: 1.5em;
     box-sizing: border-box;
     border-width: 0;
-    border-bottom-width: 1px;
+    border-bottom-width: 2px;
+    /* border-left-width: 2px; */
+    /* border-color: rgb(169, 169, 169); */
 }
 
 input:focus, textarea:focus {
