@@ -26,7 +26,11 @@
                 <fieldset>
                     <legend><em class="you"></em>书在哪？How get</legend>
                     <p class="address-p">
-                        <label for="address">地址<strong><i id="forGeo" class="fa fa-spinner  init-hide" aria-hidden="true"></i><abbr title="required">*</abbr></strong><input name="addressFormatted" id="addressFormatted"/></label>
+                        <label for="address">地址<strong><i id="forGeo" class="fa fa-spinner  init-hide" aria-hidden="true"></i><abbr title="required">*</abbr></strong>
+                            <input name="addressFormatted" id="addressFormatted"/>
+                            <button name="addressFormattedClose" type="button" class="close-icon">X</button>
+
+                        </label>
                         <input class="hidden-checkbox" id="allowmail" name="allow" type="checkbox" value="mail" onchange="this.checked?good('addressGoodFa','show'):good('addressGoodFa','hide')"/><label for="allowmail">给快递员<span id="addressGoodFa"><i class='good'>♥</i></span></label>
                         <input id="address"  required minlength="3"  inputmode='katakana' autocomplete="city street-address"  mozactionhint="next" name="address" list="addressList" onmouseover="focus();"/>
                         <datalist id="addressList">

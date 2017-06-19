@@ -187,7 +187,7 @@ var app = angular
                 }
                 if(!userTo){
                     
-                    if(!JSON.parse(localStorage.getItem("me"))||{}){
+                    if(!JSON.parse(localStorage.getItem("me")||{})){
                         setBookReserve(book);
                         if(inIframe()){
                             window.parent.location="me.html";

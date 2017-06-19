@@ -8,11 +8,18 @@ function loaded(){
 
         }
     }
-    formElement.address.oninput = function(e){
+    var addressOninput = function(e){
         autocomplete(this);
     }
+    formElement.address.oninput = addressOninput;
     formElement.addressFormatted.onfocus=function(e){
         formElement.address.focus();
+    }
+    formElement.addressFormattedClose.onclick=function(e){
+        formElement.addressFormatted.removeAttribute("value");
+        formElement.address.oninput = addressOninput;
+        formElement.address.onfocus = function(){};
+        formElement.addressFormatted.focus();
     }
     formElement.description.onkeypress=function(e){
       
@@ -47,7 +54,8 @@ function loaded(){
         var uri = formElement.action,
             fn = function(){
               if(localStorage.getItem("reserveBookId")){
-                  me["time"]=0-new Date().getTime();
+                  me["time"] = 0-new Date().getTime();
+                  me.status = "fa-hourglass-start";
                   var data = me,
                       uri = "https://book-2724e.firebaseio.com/sante/books2/"+localStorage.getItem("reserveBookId")+"/users.json",
                       fn2 = function(){
@@ -191,7 +199,7 @@ function geoFindMe(input,geoHidden) {
             var addresss = JSON.parse(data);
             var address = addressByResult(addresss.results[0]);
             if(address){
-                document.getElementById("addressFormatted").value = address;
+                document.getElementById("addressFormatted").setAttribute("value",address);
                 document.getElementById("allowmail").checked = true;
             }
           
@@ -408,11 +416,12 @@ function getAddressByIp(input){
     if(input.value){
         return;
     }
-    var uri = "http://ip-api.com/json";
+//     https://stackoverflow.com/questions/391979/how-to-get-clients-ip-address-using-javascript-only
+    var uri = "//api.ipify.org/?format=json";
     ajax(uri,function(data){
 //         console.log(data);
         try{
-          var ip = JSON.parse(data).query;
+          var ip = JSON.parse(data).ip;
           var uri = "//charon-node.herokuapp.com/cross?api=http://ip.taobao.com/service/getIpInfo.php?ip="+ip;
           ajax(uri,function(data){
               console.log(data);
@@ -420,7 +429,7 @@ function getAddressByIp(input){
                 var info = JSON.parse(unescape(data));
 //                 info.data.city+info.data.county;
                 if(!input.value){
-                    document.getElementById("addressFormatted").value = info.data.city+info.data.county;
+                    document.getElementById("addressFormatted").setAttribute("value",info.data.city+info.data.county);
                 }
               }catch(e){
 

@@ -71,6 +71,8 @@ function login(form){
 
         if(form.reserveBookId&&form.reserveBookId.value){
             me["time"]=0-new Date().getTime();
+            me.status = "fa-hourglass-start";
+
             var data = me,
                 uri = "https://book-2724e.firebaseio.com/sante/books2/"+form.reserveBookId.value+"/users.json",
                 fn = function(){

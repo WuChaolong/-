@@ -1,9 +1,10 @@
 $(function() {
+  var $form=$("#form");
   // Get a reference to the root of the chat data.
-  var messagesRef = new Firebase("https://book-2724e.firebaseio.com/sante/chat");
-
+  var messagesRef = new Firebase($form[0].action);
+  
   // When the user presses enter on the message input, write the message to firebase.
-  $("#form").submit(function (e) {
+  $form.submit(function (e) {
     e.preventDefault();
     var name = $("#nameInput").val();
     var text = $("#messageInput").val();

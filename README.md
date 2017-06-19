@@ -89,3 +89,6 @@ lodging|bank|school|bus_station|cafe|book_store|library
 分享
 搜索 new book
 换书会
+
+有钱的捐钱
+成功提示
