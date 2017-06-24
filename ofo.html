@@ -1,0 +1,77 @@
+<script type="test" id="ofoScript">
+
+<div id="ofoDiv">
+    <base
+    <meta id="meta" name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="css/ofo.css" />
+    <form onsubmit="try{add(this)}catch(e){};return false;" id="addForm" method="post"  enctype='application/json' action="https://book-2724e.firebaseio.com/sante/books2.json">
+    <input placeholder="先进入书的详情页面" readonly autocomplete = "on" id="url" required type="url" name="url"/>
+    <label for="url"></label>
+
+    <button name="submitButton" type="submit" disabled>想要</button>
+    </form>
+    <p id="loading" style="font-size:2em;display:none;">Loading..</p>
+<div>
+<style>
+form{
+    /* text-align: center; */
+    position: relative;
+}
+input{
+    width: 100%;
+    font: 1.2em sans-serif;
+    line-height: 1.5em;
+    box-sizing: border-box;
+    border-width: 0;
+    border-bottom-width: 2px;
+    /* border-left-width: 2px; */
+    /* border-color: rgb(169, 169, 169); */
+}
+button{
+    /* width: 100%; */
+    font-size: 1.2em;
+    line-height: 1.5em;
+    /* margin-top: -1.8em; */
+    /* float: right; */
+    /* z-index: 1; */
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+#ofoDiv{
+    position: fixed;
+    /* z-index: 1; */
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255,255,255,1);
+    font-size: 1.2em;
+    padding: .5em;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    box-sizing:border-box;
+}
+
+#ofoDiv p,#ofoDiv label,#ofoDiv input{
+    display:none; 
+}
+#ofoDiv:hover p,#ofoDiv:hover label,#ofoDiv:hover input{
+    display:initial;
+}
+
+html,body{
+    height:100%;
+    position:relative;
+}
+.loading{
+    
+}
+</style>
+</script>
+
+<!-- <iframe id="douban" src="https://book.douban.com" style="overflow-x:hidden;overflow-y:hidden; min-height:1640px; width:100%;"  frameborder="0" scrolling="no"></iframe> -->
+<script src="js/douban.js"></script>
+<html id="html">
+    <p>学习<a href="https://www.ofo.so/" target="_blank">ofo</a>自己提供些书籍。你想要什么，三牛寺帮你买</p>
+
+    <p class="loading" style="font-size:2em;">Loading..</p>
+</html>

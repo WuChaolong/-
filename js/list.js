@@ -92,7 +92,7 @@ var app = angular
                 },
                 data: {
                   url: 'http://www.jiushujie.com/sell?tag=free&ajax=yw0&sort=created_at.desc',
-                  json_data: JSON.stringify(json_data)
+                  json_data: ""
                 }
             }).then(function(response){
                 $scope.books = formatJiushujieData(response.data)
