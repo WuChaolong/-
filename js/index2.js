@@ -25,11 +25,11 @@ function load(){
     if(location.hash){
         locationHashChanged();
     }else{
-//         if(me){
-//             openDetails("#get");
-//         }else{
-//             openDetails("#give");
-//         }
+        if(me){
+            openDetails("#get");
+        }else{
+            openDetails("#give");
+        }
 //             openDetails("#get");
     }
     

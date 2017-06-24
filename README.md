@@ -92,3 +92,5 @@ lodging|bank|school|bus_station|cafe|book_store|library
 
 有钱的捐钱
 成功提示
+
+叮叮ko，卖老婆
