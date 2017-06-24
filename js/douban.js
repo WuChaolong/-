@@ -7,7 +7,7 @@ function locationHashChanged(){
     var subjectIndex = urlApi.indexOf("/subject/");
     showLoading();
 
-    ajax("http://charon-node.herokuapp.com/api?api="+urlApi,function(string){
+    ajax("//charon-node.herokuapp.com/api?api="+urlApi,function(string){
         if(string.length<1000){
             return;
         }
