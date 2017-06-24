@@ -61,7 +61,7 @@ function locationHashChanged(){
     },function(){
 //         setTimeout(1000,locationHashChanged());
     });
-    urlApi = subjectIndex = null;
+//     urlApi = subjectIndex = null;
     
 };
 
