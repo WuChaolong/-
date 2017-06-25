@@ -77,7 +77,7 @@ function add(formElement,e){
         "search":JSON.stringify(data),
         "description":data.title,
         "address":data.publisher,
-        "username":"douban",
+        "username":data.author[0],
         "time":0-new Date().getTime(),
         "users":{}
     }
