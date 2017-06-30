@@ -7,6 +7,7 @@ function load(){
     
     var get = document.querySelector('#get');
     var give = document.querySelector('#give');
+    var money = document.querySelector('#money');
     var drawer = document.querySelector('#drawer');
     if(onOpen(get,function(){
         if(get.hasAttribute("open")){
@@ -16,11 +17,24 @@ function load(){
     onOpen(give,function(){
         if(give.hasAttribute("open")){
             get.open=false;
+            var iframe = give.querySelector('iframe');
+            if(!iframe.src){
+              iframe.src = iframe.dataset["src"];
+              iFrameResize({}, iframe);
+            }
         }
     }) ){
       drawer.classList.add("drawer");
     }
-    
+    onOpen(money,function(){
+        if(money.hasAttribute("open")){
+            var iframe = money.querySelector('iframe');
+            if(!iframe.src){
+              iframe.src = iframe.dataset["src"];
+              iFrameResize({}, iframe);
+            }
+        }
+    })
     var me = JSON.parse(localStorage.getItem("me"));
     if(me){
        loadMe(me);

@@ -395,7 +395,7 @@ function autocomplete(input){
                 innerHTML+='<option value="'+value+'">';
             }
             addressListD.innerHTML = innerHTML;
-            addresss = null;
+            address = addresss = null;
         }catch(e){
 
         }

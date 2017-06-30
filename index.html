@@ -17,7 +17,7 @@
     <div id="drawer">
     <details id="give">
             <summary><h2>给<em  class="book "></em></h2></summary>
-            <iframe id="giveIframe" src="add.html" scrolling="no" ></iframe>
+            <iframe id="giveIframe" data-src="add.html" scrolling="no" ></iframe>
     </details>
     <details id="get" >
             <summary><h2>得<em  class="book"></em></h2></summary>
@@ -32,10 +32,10 @@
     </details> -->
     <details id="money" >
             <summary><h2>捐钱</h2></summary>
-            <iframe id="moneyIframe" src="money.html" scrolling="no" ></iframe>
+            <iframe id="moneyIframe" data-src="money.html" scrolling="no" ></iframe>
     </details>
     <script src="download/iframeResizer/iframeResizer.min.js"></script>
-    <script>iFrameResize({}, 'iframe')</script>
+    <script>iFrameResize({}, 'iframe[src]')</script>
     <script src="https://wuchaolong.github.io/localStorage/src/localStorage.js?swfURL=https://wuchaolong.github.io/localStorage/src/localStorage.swf"></script>
 
     <script src="js/index2.js"></script>
