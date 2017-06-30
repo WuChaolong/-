@@ -57,9 +57,15 @@ function locationHashChanged(){
             location.hash = "#"+this.action+"?"+objectToSerialize(formToObject(this));
             return false;
         }
-        string = bodySting = c = div  = imgHTML = imgHTML = name = addForm = as = searchForm = null;
+        var goSearch = document.querySelector(".goSearch");
+        goSearch.onclick = function(){
+            
+            document.querySelector("#db-nav-book form").search_text.focus();
+        }
+        goSearch = string = bodySting = c = div  = imgHTML = imgHTML = name = addForm = as = searchForm = null;
     },function(){
 //         setTimeout(1000,locationHashChanged());
+        document.querySelector(".loading").innerHTML="失败，刷新看看";
     });
 //     urlApi = subjectIndex = null;
     
@@ -221,7 +227,11 @@ function ajax(url,success,error,method,data,sync) {
         }
 
     };
-    http_request.open(method||'GET', url, sync);
-    http_request.send(data||null);
+    try {
+        http_request.open(method||'GET', url, sync);
+        http_request.send(data||null);
+    }catch(e){
+        error();
+    }
 
 }

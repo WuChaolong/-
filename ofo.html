@@ -8,6 +8,7 @@
     <form onsubmit="try{add(this)}catch(e){};return false;" id="addForm" method="post"  enctype='application/json' action="https://book-2724e.firebaseio.com/sante/books2.json">
     <input placeholder="先进入书的详情页面" readonly autocomplete = "on" id="url" required type="url" name="url"/>
     <label for="url"></label>
+    <button type="button" name="goSearch" class="goSearch">搜索</button>
 
     <button name="submitButton" type="submit" disabled>想要</button>
     </form>
@@ -66,16 +67,26 @@ html,body{
 .loading{
     
 }
+.goSearch{
+    right: auto;
+    left: 0;
+    bottom:auto;
+    top: -3em;
+    border-width: 1px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
 </style>
 </script>
 
 <!-- <iframe id="douban" src="https://book.douban.com" style="overflow-x:hidden;overflow-y:hidden; min-height:1640px; width:100%;"  frameborder="0" scrolling="no"></iframe> -->
 <script src="js/douban.js"></script>
 <html id="html">
+        <link rel="stylesheet" href="css/main.css" />
+
     <dl>
         <dt>至善良的你</dt>
         <dd>想要什么？三牛寺买给你，因为学习<a href="https://www.ofo.so/" target="_blank">ofo</a>自己提供些书籍。
-        <dd class="loading" style="font-size:2em;">长时间的Loading..
+        <dd class="loading fa fa-spinner" style="font-size:1em;">下面需要长时间的Loading..
 
     </dl>
 </html>
