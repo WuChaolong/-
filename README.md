@@ -80,7 +80,7 @@ How sameone get?
 其他方式 安全模式
 
 library|book_store|cafe|bus_station|school|bank|lodging|store
-lodging|bank|school|bus_station|cafe|book_store|library
+loading|bank|school|bus_station|cafe|book_store|library
 
 书-妓女-约篮球
 
@@ -94,3 +94,7 @@ lodging|bank|school|bus_station|cafe|book_store|library
 成功提示
 
 叮叮ko，卖老婆
+
+书籍流通服务https://wuchaolong.github.io/paaper/?key=booksseveces
+
+简书悬赏

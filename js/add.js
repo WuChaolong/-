@@ -50,6 +50,17 @@ function loaded(){
         
         var book = formToObject(formElement);
         book["time"]=0-new Date().getTime();
+        
+        var me = JSON.stringify({
+            "address":book.address,
+            "username":book.username,
+            "tel":book.tel,
+            "geo":book.geo,
+            "time":book.time,
+            "allowMeet":book.allowMeet
+        });
+        
+        localStorage.setItem("me", me);
 
         var uri = formElement.action,
             fn = function(){
@@ -70,6 +81,7 @@ function loaded(){
                   if(window.parent.load){
 
                     window.parent.load();
+                    submitButton.innerHTML = "已成功";
                     location.reload();
                   }else{
                     window.goBack();
@@ -84,19 +96,10 @@ function loaded(){
             method = formElement.method,
             data = JSON.stringify(book);
 
+
         ajax(uri,fn,error,method,data);
         
 
-        
-        var me = JSON.stringify({
-            "address":book.address,
-            "username":book.username,
-            "tel":book.tel,
-            "geo":book.geo,
-            "time":book.time,
-            "allowMeet":book.allowMeet
-        });
-        localStorage.setItem("me", me);
     }
     try{
       var me = JSON.parse(localStorage.getItem("me"));

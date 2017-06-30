@@ -7,16 +7,19 @@ function load(){
     
     var get = document.querySelector('#get');
     var give = document.querySelector('#give');
-    onOpen(get,function(){
+    var drawer = document.querySelector('#drawer');
+    if(onOpen(get,function(){
         if(get.hasAttribute("open")){
             give.open=false;
         }
-    });
+    }) &&
     onOpen(give,function(){
         if(give.hasAttribute("open")){
             get.open=false;
         }
-    });
+    }) ){
+      drawer.classList.add("drawer");
+    }
     
     var me = JSON.parse(localStorage.getItem("me"));
     if(me){
@@ -78,7 +81,9 @@ function onOpen(element,fn){
     try{
 
         var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
-
+        if(!MutationObserver){
+          return false;
+        }
         var observer = new MutationObserver(function(mutations) {
           mutations.forEach(function(mutation) {
             if (mutation.attributeName == "open") {
@@ -91,8 +96,9 @@ function onOpen(element,fn){
         observer.observe(element, {
           attributes: true //configure it to listen to attribute changes
         });
+        return true;
     }catch(e){
-        
+        return false;
     }
 }
 function gotChatData(data) {
