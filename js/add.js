@@ -78,11 +78,13 @@ function loaded(){
 
                   ajax(uri,fn2,error,method,data);  
               }else{
+                
+                  submitButton.innerHTML = "已成功";
                   if(window.parent.load){
 
                     window.parent.load();
-                    submitButton.innerHTML = "已成功";
                     location.reload();
+                    window.parent.location.hash = "#get";
                   }else{
                     window.goBack();
                   }
@@ -104,7 +106,7 @@ function loaded(){
     try{
       var me = JSON.parse(localStorage.getItem("me"));
     }catch(e){
-
+      
     }
     if(me){
         var formInitData = {
