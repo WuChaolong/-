@@ -38,11 +38,18 @@ function loaded(){
         }
     }
     formElement.description.onchange=function(e){
-        var bookList = document.getElementById("bookList");
-        if(this.value&&!bookList.innerHTML&&!document.getElementById("forBookList").classList.contains("ng-scope")){
+        if(this.value&&!document.getElementById("forBookList").classList.contains("ng-scope")){
+            
             showBookList(this);
         }
     }
+    window.addEventListener("touchstart", function(e){
+      if(formElement.description = formElement.description.ownerDocument.activeElement){
+        if(formElement.description.value&&!document.getElementById("forBookList").classList.contains("ng-scope")){
+          showBookList(formElement.description);
+        }
+      }
+    }, false);
     formElement.onsubmit=function(e){
         var submitButton = formElement.querySelector("button[type=submit]");
         submitButton.disabled="disabled";
@@ -51,23 +58,23 @@ function loaded(){
         var book = formToObject(formElement);
         book["time"]=0-new Date().getTime();
         
-        var me = JSON.stringify({
+        var me = {
             "address":book.address,
             "username":book.username,
             "tel":book.tel,
             "geo":book.geo,
             "time":book.time,
             "allowMeet":book.allowMeet
-        });
+        };
         
-        localStorage.setItem("me", me);
+        localStorage.setItem("me",JSON.stringify(me));
 
         var uri = formElement.action,
             fn = function(){
               if(localStorage.getItem("reserveBookId")){
                   me["time"] = 0-new Date().getTime();
                   me.status = "fa-hourglass-start";
-                  var data = me,
+                  var data = JSON.stringify(me),
                       uri = "https://book-2724e.firebaseio.com/sante/books2/"+localStorage.getItem("reserveBookId")+"/users.json",
                       fn2 = function(){
                           localStorage.removeItem("reserveBookId");
@@ -76,15 +83,18 @@ function loaded(){
                       error = error,
                       method = "POST";
 
-                  ajax(uri,fn2,error,method,data);  
+                  ajax(uri,fn2,error,method,data); 
+                  me = data = null; 
               }else{
                 
                   submitButton.innerHTML = "已成功";
                   if(window.parent.load){
-
-                    window.parent.load();
-                    location.reload();
-                    window.parent.location.hash = "#get";
+                    setTimeout(goGet,1000);
+                    function goGet(){
+                      window.parent.location.hash = "#get";
+                      window.parent.load();
+                      location.reload();
+                    }
                   }else{
                     window.goBack();
                   }
@@ -100,7 +110,7 @@ function loaded(){
 
 
         ajax(uri,fn,error,method,data);
-        
+        book = null;
 
     }
     try{
@@ -119,17 +129,24 @@ function loaded(){
         setFormValue(formElement,formInitData)
     }
     getAddressByIp(formElement.address);
+    me = formInitData = null;
 }
-function showBookList(textarea){
+function showBookList(description){
+    var q = getQ(description.value);
+    if(window.q == q || q == ""){
+      return;
+    }
+    window.q = q;
     document.getElementById("forBookList").classList.add("ng-scope");
-    var q = getQ(textarea.value);
+
     var uri = "//charon-node.herokuapp.com/cross?api=https://api.douban.com/v2/book/search?q="+q;
     ajax(uri,function(data){
 //         console.log(data);
-        try{
+        try{            
+            var bookList = document.getElementById("bookList");
             var books= JSON.parse(data).books;
-            if(books){
-              var bookList = document.getElementById("bookList");
+
+            if(books&&books.length){
               var html = '<legend>是这书吗？<i class="fa fa-search">douban</i><span id="bookListGoodFa"></span></legend><div>';
               for(var i=0;i<books.length;i++){
                 var book = books[i];
@@ -144,10 +161,13 @@ function showBookList(textarea){
               html = html +'</div>';
               bookList.innerHTML=html;
               bookList.style.display="block";
-
+              
+            }else{
+              bookList.innerHTML="";
+              bookList.style.display="none";
             }
+            bookList = books = null;
         }catch(e){
-
         }
         document.getElementById("forBookList").classList.remove("ng-scope");
     });
@@ -184,7 +204,7 @@ function geoFindMe(input,geoHidden) {
 
   function mapByItude(latitude,longitude){
       var staticmapUrl = "maps.googleapis.com/maps/api/staticmap?language=zh-CN&center="
-          +latitude+","+longitude+"&zoom=15&size=800x800&key=AIzaSyCwEybOPnluZ2OST9DM2u6TQLSJSA1l6lI";
+          +latitude+","+longitude+"&zoom=14&size=800x800&key=AIzaSyCwEybOPnluZ2OST9DM2u6TQLSJSA1l6lI";
       staticmapUrl = "//images.weserv.nl/?url="+escape(staticmapUrl);
       document.getElementById("mapImg").src = staticmapUrl;
       document.getElementById("map").style.display = "block";
@@ -243,6 +263,7 @@ function geoFindMe(input,geoHidden) {
             if(addressListD.innerHTML != innerHTML){
               addressListD.innerHTML = innerHTML;
             }
+            addressListD = addresss = data = null;
         }catch(e){
 
         }
@@ -397,7 +418,7 @@ function autocomplete(input){
                 innerHTML+='<option value="'+value+'">';
             }
             addressListD.innerHTML = innerHTML;
-            address = addresss = null;
+            data = address = addresss = null;
         }catch(e){
 
         }

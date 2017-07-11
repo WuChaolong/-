@@ -58,22 +58,22 @@ function login(form){
             error();
             return;
         }
-        var me = JSON.stringify({
+        var me = {
             "address":book.address,
             "username":book.username,
             "tel":book.tel,
             "geo":book.geo,
             "time":book.time,
             "allowMeet":book.allowMeet
-        });
-        localStorage.setItem("me", me);
+        };
+        localStorage.setItem("me", JSON.stringify(me));
 //         location = "list.html";
 
         if(form.reserveBookId&&form.reserveBookId.value){
             me["time"]=0-new Date().getTime();
             me.status = "fa-hourglass-start";
 
-            var data = me,
+            var data = JSON.stringify(me),
                 uri = "https://book-2724e.firebaseio.com/sante/books2/"+form.reserveBookId.value+"/users.json",
                 fn = function(){
                     localStorage.removeItem("reserveBookId");

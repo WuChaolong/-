@@ -11,8 +11,6 @@
     </head>
     <body>
         <form id="addForm" method="post"  enctype='application/json' action="https://book-2724e.firebaseio.com/sante/books2.json">
-<!--             <h1><em  class="give">给予</em></h1> -->
-
             
             <section>
                 <fieldset>
@@ -23,8 +21,8 @@
             </section>
 
             <section>
-                <fieldset>
-                    <legend><em class="you"></em>书在哪？How get</legend>
+                <fieldset id="userInfo">
+                    <legend><em class="you"></em><em>书在哪？</em>How get</legend>
                     <p class="address-p">
                         <label for="address">地址<strong><i id="forGeo" class="fa fa-spinner  init-hide" aria-hidden="true"></i><abbr title="required">*</abbr></strong>
                             <input name="addressFormatted" id="addressFormatted"/>
@@ -38,7 +36,7 @@
                         </datalist>
                         <span id="map">
                             <img id="mapImg" alt="maps.google"/>
-                            <e class="mark"  draggable="true" ondragstart=""><i class="fa fa-map-marker" aria-hidden="true"></i></e>
+                            <e class="mark"  draggable="true" ondragstart=""></e>
                         </span>
 <!--                     <p><input class="hidden-checkbox" id="allowReceipt" name="allow" type="checkbox" value="receipt"/><label for="allowReceipt">也是收货地址</label> -->
 
@@ -59,10 +57,24 @@
         <script src="js/add.js"></script>
         <script>
             loaded();
+            
+            if(getURLParameter("type")=="want"){
+                var s = document.createElement("script");
+                s.type = "text/javascript";
+                s.src = "js/ifWant.js";
+                document.querySelector("body").appendChild(s);
+                s.onload = function(){
+                    init();
+                }
+            }
 
+            function getURLParameter(name) {
+              return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+            }
         </script>
-                <script type="text/javascript" src="download/iframeResizer/iframeResizer.contentWindow.min.js" defer></script>
-
+        <script type="text/javascript" src="download/iframeResizer/iframeResizer.contentWindow.min.js" defer></script>
+        
+<!--         <script src="js/ifWant.js"></script> -->
 <!--         <script src="https://jsconsole.com/js/remote.js?book"></script> -->
 <!-- <script id="bookListTemplate" type="x-tmpl-mustache">
     <legend>是这书吗？<i class="fa fa-search">douban</i></legend>

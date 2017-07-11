@@ -58,7 +58,7 @@ var app = angular
         function loadFirebase(){
 
             $scope.loaded = false;
-            $scope.books= $firebaseArray(rootRef.child('books2/').orderByChild("time").limitToLast(20));
+            $scope.books= $firebaseArray(rootRef.child('books2/').orderByChild("time").limitToFirst(20));
             $scope.books.$loaded(
               function(x) {
                 $scope.loaded = true;
@@ -258,7 +258,9 @@ var app = angular
                     "username":user.username,
                     "tel":user.tel
                 };
-                return angular.equals(user1,user2);
+                var result = angular.equals(user1,user2);
+                user1 = user2 = null;
+                return result;
             }catch(e){
                 return false;
             }
@@ -291,6 +293,9 @@ app.filter('sortAddress', function(){
   });
 app.filter('smallAddress', function(){
     var filter = function(input){
+        if(!input){
+            return input;
+        }
         var reverse = function(s){
             return s.split("").reverse().join("");
         }
@@ -340,6 +345,7 @@ app.directive( "shear", function() {
             
         }
         socialShare(element,options);
+        element = options = null;
     }
 })
 

@@ -5,8 +5,8 @@ button[disabled] .fa{
   display:initial;
 }
 input,button{
-    font: 1.5em sans-serif;
-    line-height: 1.5em;
+    font: 1.2em sans-serif;
+    line-height: 1.2em;
     box-sizing: border-box;
 }
 #login section{

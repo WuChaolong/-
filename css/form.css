@@ -51,6 +51,7 @@ fieldset {
     display: inherit;
     position: relative;
     overflow: hidden;
+    /* width: initial; */
 }
 
 button[type=submit] {
@@ -110,6 +111,7 @@ label em {
 #bookList img{
   display: block;
   width: 100%;
+  min-height: 1.2em;
   box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
   /* box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.2); */
 }
@@ -132,6 +134,7 @@ label em {
   left: 0;
   right: 0;
   margin: auto;
+  z-index: 1;
 }
 #bookList a{
   vertical-align: super;

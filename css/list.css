@@ -166,7 +166,11 @@ address .fa:before{
     /* letter-spacing: 0; */
     /* font-size: .5em; */
     position: absolute;
-    right: -3em;
+    left: 100%;
+    word-break: normal;
+    width: 3em;
+    text-align: left;
+    padding-left: .5em;
 }
 .date{
     font-size: .8em;

@@ -11,9 +11,9 @@
     </head>
     <body ng-controller="AppController" >
 <!--         <h1><em class="get"></em></h1> -->
-        <p class="filter">
+<!--         <p class="filter">
             <label for="sante"><input disabled="disabled" ng-disabled="!loaded" ng-model="filter.where" id="sante" name="where" type="radio" value="sante"/><span>三牛寺的</span></label>
-            <label for="jiushujie"><input disabled="disabled" ng-disabled="!loaded" ng-model="filter.where" id="jiushujie" name="where" type="radio" value="jiushujie"/><span>旧书街的</span></label>
+            <label for="jiushujie"><input disabled="disabled" ng-disabled="!loaded" ng-model="filter.where" id="jiushujie" name="where" type="radio" value="jiushujie"/><span>旧书街的</span></label> -->
 <!--             <label for="search">
                 <input disabled="disabled" ng-disabled="!loaded" ng-model="filter.where" id="search" name="where" type="radio" value="search" />
                 <input type="search" disabled="disabled" ng-disabled="!loaded" ng-model="filter.search" style="{{filter.search.length>4?'width:'+filter.search.length+'em':''}}" placeholder="search"/></label>
@@ -38,9 +38,9 @@
                     
                     <details ng-class="{'show-get': !book.users}" ng-open="!book.users&&(isMe(book)||$index==1)">
                             <summary>
-                                <span class="name">{{book.username}}<i class="fa fa-user-circle" aria-hidden="true"></i></span>
-                                <address class="address">{{book.address|smallAddress}}<i class="fa fa-map-marker" aria-hidden="true"></i></address>
-                                <span class="time"><i class="date">{{-book.time|date:'MM-dd'}}</i></span>
+                                <span class="name">{{book.username||book.search.author.toString()}}<i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                                <address class="address">{{(book.address|smallAddress)||book.search.publisher }}<i class="fa fa-map-marker" aria-hidden="true"></i></address>
+                                <span class="time"><i class="date">{{(book.type=='douban'&&book.search.pubdate)?book.search.pubdate:(-book.time|date:'MM-dd')}}</i></span>
                             </summary>
                             <div class="get" ng-if="!book.users">
 <!--                                 ？<a ng-href="sms://{{book.tel}}?body=我喜欢你三牛寺的“{{book.description.slice(0, 4)}}...”"  onclick="new SMSLink.link().replaceAll();">约Ta</a>

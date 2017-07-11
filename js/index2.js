@@ -8,33 +8,15 @@ function load(){
     var get = document.querySelector('#get');
     var give = document.querySelector('#give');
     var money = document.querySelector('#money');
+    var ofo = document.querySelector('#ofo');
     var drawer = document.querySelector('#drawer');
-    if(onOpen(get,function(){
-        if(get.hasAttribute("open")){
-            give.open=false;
-        }
-    }) &&
-    onOpen(give,function(){
-        if(give.hasAttribute("open")){
-            get.open=false;
-            var iframe = give.querySelector('iframe');
-            if(!iframe.src){
-              iframe.src = iframe.dataset["src"];
-              iFrameResize({}, iframe);
-            }
-        }
-    }) ){
+    var drawer2 = document.querySelector('#drawer2');
+    if(dataSrc(give) && dataSrc(get)
+        &&dataSrc(ofo) && dataSrc(money)
+    ){
       drawer.classList.add("drawer");
     }
-    onOpen(money,function(){
-        if(money.hasAttribute("open")){
-            var iframe = money.querySelector('iframe');
-            if(!iframe.src){
-              iframe.src = iframe.dataset["src"];
-              iFrameResize({}, iframe);
-            }
-        }
-    })
+    
     var me = JSON.parse(localStorage.getItem("me"));
     if(me){
        loadMe(me);
@@ -53,6 +35,25 @@ function load(){
     function locationHashChanged() {
          showBookmark(location.hash);
     }
+    var get =  give = money = ofo = drawer = drawer2 = null;
+}
+function dataSrc(details,detailsNeedClose){
+  return onOpen(details,function(){
+      if(details.hasAttribute("open")){
+          location.hash = details.id;
+          var detailss = document.querySelectorAll("details");
+          for(var i = 0;i<detailss.length;i++){
+            if(detailss[i]!=details){
+              detailss[i].open=false;
+            }
+          }
+          var iframe = details.querySelector('iframe');
+          if(!iframe.src){
+            iframe.src = iframe.dataset["src"];
+            iFrameResize({}, iframe);
+          }
+      }
+  })
 }
 function loadMe(me){
     if(me){
@@ -64,16 +65,15 @@ function loadMe(me){
                 youDoc.removeAttribute("href");
             }
         }
+        youDocs = null;
     }  
 }
 function openDetails(id,idClose){
     if(id){
-        var id = document.querySelector(id);
-        id.open = true;
+        document.querySelector(id).open = true;
     }
     if(idClose){
-        var idClose = document.querySelector(idClose);
-        idClose.open = false;
+        document.querySelector(idClose).open = false;
     }
 }
 function showNode (oNode) {
@@ -90,6 +90,7 @@ function showBookmark (sBookmark, bUseHash) {
     showNode(oBookmark);
     openDetails(sBookmark);
   }
+  oBookmark = null;
 }
 function onOpen(element,fn){
     try{
@@ -110,6 +111,7 @@ function onOpen(element,fn){
         observer.observe(element, {
           attributes: true //configure it to listen to attribute changes
         });
+        observer = MutationObserver = null;
         return true;
     }catch(e){
         return false;
@@ -128,6 +130,7 @@ function gotChatData(data) {
             +'<span class="name" id="chatFristName"></span><a href="chat/" class="link-chat fa fa-commenting-o">群</a>';
     document.getElementById("chatFristText").innerText=o.text;
     document.getElementById("chatFristName").innerText=o.name;
+    o = null;
   }catch(e){
     
   }
