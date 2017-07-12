@@ -347,7 +347,7 @@ app.directive( "shear", function() {
         socialShare(element,options);
         element = options = null;
     }
-})
+});
 
 
 

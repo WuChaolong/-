@@ -5,6 +5,7 @@ details {
   /* position: relative; */
   border-right: 2px dotted;
   margin-right: 3.5em;
+  /* padding-left: .2em; */ */
 }
 summary{
   padding: .5em 0 .5em 0;
@@ -26,6 +27,9 @@ details{
 }
 details.show-get{
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+  /* padding: 0 .2em; */ */
+  padding-left: .2em;
+  /* padding-left: .2em; */
 }
 .show-get summary::-webkit-details-marker{
   display: initial;
@@ -185,7 +189,8 @@ textarea{
     width: 100%;
     box-sizing: border-box;
     border: 0;
-    border-bottom: 2px dotted;
+    border-bottom: 1px dotted;
+    border-bottom-style: outset;
 }
 .words{
   text-align: left;
@@ -209,5 +214,20 @@ textarea{
 }
 small{opacity: .5;}
 .shear{
-  display: inline;
+  /* display: inline; */
+  text-align: left;
+}
+.shear > div{
+      padding: .5em;
+}
+.shear > div > span{
+      min-width: 6em;
+      text-align:right;
+      display: inline-block;
+      padding-right: .5em;
+}
+.shear iframe{
+    width: 100%;
+    border: 0;
+    min-height:500px;
 }

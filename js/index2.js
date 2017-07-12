@@ -37,11 +37,11 @@ function load(){
     }
     var get =  give = money = ofo = drawer = drawer2 = null;
 }
-function dataSrc(details,detailsNeedClose){
+function dataSrc(details){
   return onOpen(details,function(){
       if(details.hasAttribute("open")){
           location.hash = details.id;
-          var detailss = document.querySelectorAll("details");
+          var detailss = details.parentElement.querySelectorAll("details");
           for(var i = 0;i<detailss.length;i++){
             if(detailss[i]!=details){
               detailss[i].open=false;
@@ -50,7 +50,9 @@ function dataSrc(details,detailsNeedClose){
           var iframe = details.querySelector('iframe');
           if(!iframe.src){
             iframe.src = iframe.dataset["src"];
-            iFrameResize({}, iframe);
+            if(iFrameResize){
+              iFrameResize({}, iframe);
+            }
           }
       }
   })

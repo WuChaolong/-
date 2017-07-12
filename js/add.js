@@ -17,6 +17,7 @@ function loaded(){
     }
     formElement.addressFormattedClose.onclick=function(e){
         formElement.addressFormatted.removeAttribute("value");
+        formElement.address.value = "";
         formElement.address.oninput = addressOninput;
         formElement.address.onfocus = function(){};
         formElement.addressFormatted.focus();

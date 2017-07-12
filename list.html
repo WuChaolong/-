@@ -23,6 +23,7 @@
             <i class="fa fa-spinner" aria-hidden="true"></i>Loading..
         </p>
         <dl ng-repeat="(key, book) in books" class="init-hide" >
+
             <dt>{{book.description}}</dt>
             <dd  class="turn-boook" ng-if="book.search" ng-init="book.search=parseSearch(book.search)">
                 <div class="description"><img ng-src="{{book.search.image}}"/></div>            
@@ -35,7 +36,6 @@
             </dd>
             <dd class="person">
 <!--                     {{!book.users}}|{{!isMe(book)}} -->
-                    
                     <details ng-class="{'show-get': !book.users}" ng-open="!book.users&&(isMe(book)||$index==1)">
                             <summary>
                                 <span class="name">{{book.username||book.search.author.toString()}}<i class="fa fa-user-circle" aria-hidden="true"></i></span>
@@ -47,7 +47,10 @@
                                 或  -->
                                 <button ng-if="!isMe(book)" ng-click="mail(book)">想要？</button>
                                 <div class="shear" ng-if="isMe(book)"> 
-                                    给朋友<span shear><a target="_blank" ng-href="sms:?&body={{book.description+' 要的话给你了'+'https://wuchaolong.github.io/sante/#get'}}" class="social-share-icon icon-sms" title="短信">短信</a></span>
+                                    <div shear><span>分享给Ta</span><a target="_blank" ng-href="sms:?&body={{book.description+' 要的话给你了'+'https://wuchaolong.github.io/sante/#get'}}" class="social-share-icon icon-sms" title="短信">短信</a></div>
+                                    <div class=" share-component social-share"><span>或直接寄给Ta</span><label class="social-share-icon icon-send" ><input type="checkbox" ng-model="book.sendTo"/></label>
+                                        <iframe  ng-if="book.sendTo"  ng-src="{{'add.html?importJs=js/sendTo.js&id='+book.$id}}" scrolling="no"></iframe>
+                                    </div>
                                 </div>
                             </div>
                     </details>
@@ -68,8 +71,12 @@
                                 <button ng-click="mail(book,user)">想要？</button>
                             </div>
                             <div class="shear" ng-if="isMe(user)"> 
-                                    给朋友<span shear><a target="_blank" ng-href="sms:?&body={{book.description+' 要的话给你了'+'https://wuchaolong.github.io/sante/#get'}}" class="social-share-icon icon-sms" title="短信">短信</a></span>
-                                </div>
+                                    <div shear><span>分享给Ta</span><a target="_blank" ng-href="sms:?&body={{book.description+' 要的话给你了'+'https://wuchaolong.github.io/sante/#get'}}" class="social-share-icon icon-sms" title="短信">短信</a></div>
+                                    <div class=" share-component social-share"><span>或直接寄给Ta</span><label class="social-share-icon icon-send" ><input type="checkbox" ng-model="user.sendTo"/></label>
+                                        <iframe  ng-if="user.sendTo"  ng-src="{{'add.html?importJs=js/sendTo.js&id='+book.$id}}" scrolling="no"></iframe>
+                                    </div>
+                                    
+                            </div>
                     </details>
                      
             
