@@ -279,9 +279,3 @@ summary{
   padding-left: .5em;
   box-sizing: border-box;
 }
-summary:hover span{
-  font-size: 1.6em;
-}
-details[open] summary span{
-  font-size: 1.6em;
-}
