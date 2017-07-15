@@ -274,14 +274,13 @@ summary h2{
    line-height:60px;
 }
 summary{
-  font-size: .7em;
   transition: font-size .2s,width .2s;
   padding-left: .5em;
   box-sizing: border-box;
 }
 summary:hover{
-  font-size:1em;
+  font-size: 1.5em;
 }
 details[open] summary{
-  font-size:1em;
+  font-size: 1.5em;
 }

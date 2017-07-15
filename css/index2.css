@@ -1,8 +1,6 @@
-summary h2{
-   display: inline-block;
-   /* width: 100%; */
-   margin: 0;
+summary{
    line-height: 2.5em;
+   font-weight: bold;
 }
 details iframe{
     width: 100%;
@@ -152,5 +150,5 @@ details iframe{
   text-align: center;
 }
 .drawer details[open] {
-    padding-top: 60px;
+    padding-top: 3.8em;
 }
