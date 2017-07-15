@@ -14,7 +14,9 @@ function load(){
     if(dataSrc(give) && dataSrc(get)
         &&dataSrc(ofo) && dataSrc(money)
     ){
-      drawer.classList.add("drawer");
+    }else{
+      
+      drawer.classList.remove("drawer");
     }
     
     var me = JSON.parse(localStorage.getItem("me"));

@@ -21,7 +21,7 @@
     {{/reserveBookId}}
     <h1 class="you">你是谁？</h1>
     <details id="login">
-            <summary><h2>给过书</h2></summary>
+            <summary><h2>捐过书</h2></summary>
             <form enctype='application/json'  action="https://book-2724e.firebaseio.com/sante/books2.json?orderBy=%22tel%22&limitToLast=1&equalTo=" method="get" onsubmit="return login(this)">
                 <section>
                         {{#reserveBookId}}<input type="hidden" name="reserveBookId" value="{{reserveBookId}}"/>{{/reserveBookId}}
@@ -36,7 +36,7 @@
             <i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i>
             罗汉阵
             <i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i><i class="you" aria-hidden="true"></i>
-            <p><button onclick="window.goBack();">快逃</button> 或 <a href="index.html#give">给</a></p>
+            <p><button onclick="window.goBack();">快逃</button> 或 <a href="index.html#give">捐</a></p>
 
             
     </details>

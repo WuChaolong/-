@@ -182,6 +182,7 @@ details{
 summary{
   position: relative;
 }
+
 details[open] summary{
 }
 
@@ -278,9 +279,9 @@ summary{
   padding-left: .5em;
   box-sizing: border-box;
 }
-summary:hover{
-  font-size: 1.5em;
+summary:hover span{
+  font-size: 1.6em;
 }
-details[open] summary{
-  font-size: 1.5em;
+details[open] summary span{
+  font-size: 1.6em;
 }
