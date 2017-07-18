@@ -89,15 +89,16 @@ function loaded(){
               }else{
                 
                   submitButton.innerHTML = "已成功";
-                  if(window.parent.load){
-                    setTimeout(goGet,1000);
-                    function goGet(){
-                      window.parent.location.hash = "#get";
-                      window.parent.load();
-                      location.reload();
+                  setTimeout(goGet,1000);
+                  function goGet(){
+                    if(window.parent.load){
+                        window.parent.location.hash = "#get";
+                        window.parent.load();
+                        location.reload();
+                    }else{
+                      window.goBack();
                     }
-                  }else{
-                    window.goBack();
+
                   }
               }
               
@@ -133,48 +134,96 @@ function loaded(){
     me = formInitData = null;
 }
 function showBookList(description){
-    var q = getQ(description.value);
-    if(window.q == q || q == ""){
-      return;
-    }
-    window.q = q;
-    document.getElementById("forBookList").classList.add("ng-scope");
+//     var q = getQ(description.value);
+//     if(window.q == q || q == ""){
+//       return;
+//     }
+//     window.q = q;
 
-    var uri = "//charon-node.herokuapp.com/cross?api=https://api.douban.com/v2/book/search?q="+q;
-    ajax(uri,function(data){
-//         console.log(data);
-        try{            
-            var bookList = document.getElementById("bookList");
-            var books= JSON.parse(data).books;
+     var bookList = document.getElementById("bookList");
+     var bookListContent = document.getElementById("bookListContent");
 
-            if(books&&books.length){
-              var html = '<legend>是这书吗？<i class="fa fa-search">douban</i><span id="bookListGoodFa"></span></legend><div>';
-              for(var i=0;i<books.length;i++){
-                var book = books[i];
-                var value = JSON.stringify(book);
-                var checked = i===0?"checked":"";
-                html= html+ '<label for="coding'+i
-                      +'"><input type="radio" id="coding'+i
-                      +'" name="search" value=\''+escape(value)+'\''+checked+' onchange="good(\'bookListGoodFa\',\'show\')"><img src="'+book.image
-                      +'"/><a href="'+book.alt+'" target="_blank"><span class="fa fa-link">'+book.title
-                      +'</span></a></label>';
-              }
-              html = html +'</div>';
-              bookList.innerHTML=html;
-              bookList.style.display="block";
-              
-            }else{
-              bookList.innerHTML="";
-              bookList.style.display="none";
+     document.getElementById("forBookList").classList.add("ng-scope");
+     bookListContent.innerHTML="";
+
+
+     var qs = getQs(description.value);
+     if(!qs){
+       error();
+     }
+     for(var key in qs){
+       var q = qs[key];
+       if(q == ""){
+//           error();
+       }else if(window.qs && q in window.qs){
+         success(window.qs[q]);
+       }else{
+         addBookList(q,success,error);
+       }
+     }
+
+
+     function success(html,q){
+          if(q){
+            if(window.qs===undefined){
+              window.qs = [];
             }
-            bookList = books = null;
-        }catch(e){
-        }
-        document.getElementById("forBookList").classList.remove("ng-scope");
-    });
+            window.qs[q] = html;
+          }
+          bookListContent.insertAdjacentHTML('beforeend', html);
+          bookList.style.display="block";
+          document.getElementById("forBookList").classList.remove("ng-scope");
+     }
+     function error(){
+
+          
+          bookList.style.display="none";
+          document.getElementById("forBookList").classList.remove("ng-scope");
+     }         
+     function addBookList(q,success,error){
+
+      var uri = "//charon-node.herokuapp.com/cross?api=https://api.douban.com/v2/book/search?q="+q;
+      ajax(uri,function(data){
+  //         console.log(data);
+          try{
+
+              var books= JSON.parse(data).books;
+
+              if(books&&books.length){
+                var html = '<div>';
+                for(var i=0;i<books.length;i++){
+                  var book = books[i];
+                  var value = JSON.stringify(book);
+                  var checked = i===0?"checked":"";
+                  html= html+ '<label for="coding'+q+i
+                        +'"><input type="radio" id="coding'+q+i
+                        +'" name="search['+q+']" value=\''+escape(value)+'\''+checked+'><img src="'+book.image
+                        +'"/><a href="'+book.alt+'" target="_blank"><span class="fa fa-link">'+book.title
+                        +'</span></a></label>';
+                }
+                html = html +'</div>';
+//                 var bookListTemplate = document.getElementById("bookListTemplate");
+//                 var html = template("bookListTemplate"
+//                   ,{"books":books}
+//                 );
+                success(html,q);
+              }else{
+                error();
+              }
+              books = null;
+          }catch(e){
+            error();
+          }
+      },error);
+    }
+
+    
 }
 function getQ(string){
     return string.split(/\s|,|;|\.|，|；|。/)[0];
+}
+function getQs(string){
+    return string.split(/\s| |,|;|\.|，|；|。/);
 }
 function geoFindMe(input,geoHidden) {
 
@@ -310,6 +359,8 @@ function ajax(uri,fn,error,method,data){
     request.onload = function(e) {
         if (this.status == 200) {
           fn(this.response,error);
+        }else{
+          error();
         }
     };
     request.onerror = error;
@@ -331,16 +382,16 @@ function setFormValue(form,object){
     }
 }
 
-function formToObject(form) {
-    var formData = new FormData(form),
-        result = {};
+// function formToObject(form) {
+//     var formData = new FormData(form),
+//         result = {};
 
-    for (var entry of formData.entries())
-    {
-        result[entry[0]] = entry[1];
-    }
-    return result;
-}
+//     for (var entry of formData.entries())
+//     {
+//         result[entry[0]] = entry[1];
+//     }
+//     return result;
+// }
 
 
 function goBack(e){

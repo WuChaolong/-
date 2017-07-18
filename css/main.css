@@ -279,3 +279,9 @@ summary{
   padding-left: .5em;
   box-sizing: border-box;
 }
+
+details iframe {
+    width: 100%;
+    border: 0;
+    min-height: 550px;
+}

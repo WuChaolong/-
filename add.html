@@ -14,15 +14,18 @@
             
             <section id="descriptionSection">
                 <fieldset>
-                    <legend><em  class="book"></em>什么书？Why want<strong><i id="forBookList" class="fa fa-spinner init-hide" aria-hidden="true">douban</i><abbr title="required">*</abbr></strong></legend>
-                    <textarea id="description" required rows="6" inputmode="katakana" name="description" placeholder="名字，×××"></textarea>
+                    <legend><em  class="book"></em><span id="whatBook">什么书？</span><strong><i id="forBookList" class="fa fa-spinner init-hide" aria-hidden="true">douban</i><abbr title="required">*</abbr></strong></legend>
+                    <textarea id="description" required rows="6" inputmode="katakana" name="description" placeholder="名字,名字..."></textarea>
                 </fieldset>
-                <fieldset id="bookList"></fieldset>
+                <fieldset id="bookList">
+                    <legend>是这书吗？<i class="fa fa-search">douban</i></legend>
+                    <div id="bookListContent"></div>
+                </fieldset>
             </section>
 
             <section>
                 <fieldset id="userInfo">
-                    <legend><em class="you"></em><em>书在哪？</em>How get</legend>
+                    <legend><em class="you"></em><em>书在哪？</em></legend>
                     <p class="address-p">
                         <label for="address">地址<strong><i id="forGeo" class="fa fa-spinner  init-hide" aria-hidden="true"></i><abbr title="required">*</abbr></strong>
                             <input name="addressFormatted" id="addressFormatted"/>
@@ -54,6 +57,7 @@
         </form>
 
         <script src="https://wuchaolong.github.io/localStorage/src/localStorage.js?swfURL=https://wuchaolong.github.io/localStorage/src/localStorage.swf"></script>
+        <script src="download/formToObject.js"></script>
         <script src="js/add.js"></script>
         <script>
             loaded();
@@ -78,15 +82,31 @@
     <div>
     {{#books}}
         <label for="coding{{@index}}">
-            <input type="radio" id="coding@index" name="search" value="{{this}}">
+            <input type="radio" id="coding@index" name="search" value="{{getJson(@index)}}">
             <img src="{{image}}">
             <a href="{{alt}}" target="_blank"><span class="fa fa-link">{{title}}</span></a>
         </label>
     {{/books}}
     </div>
+</script> -->
+
+<!-- <script src="download/mustache.min.js"></script> -->
+<!-- <script src="download/template-web.js"></script>
+<script id="bookListTitle" type="text/html">
 </script>
-
-<script src="download/mustache.min.js"></script> -->
-
+<script id="bookListTemplate" type="text/html">
+    <div>
+    <%
+        for(var i = 0;i<books.length;i++){
+            var isChecked = i===0?"checked":"";
+    %>
+        <label for="coding<%= i %>">
+            <input type="radio" id="coding<%= i %>" <%= isChecked %> name="search" value="<%= books[i]%>">
+            <img src="<%= books[i].image %>">
+            <a href="<%= books[i].alt%>" target="_blank"><span class="fa fa-link"><%= books[i].title%></span></a>
+        </label>
+    <% } %>
+    </div>
+</script> -->
     </body>
 </html>

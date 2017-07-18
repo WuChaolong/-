@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html id="ng-app" ng-app="app"  manifest="demo.appcache"> <!-- id="ng-app" IE<8 -->
     <head>
-        <title>得到</title>
+        <title>换</title>
         <link rel="icon" href="download/logo.png">
         <meta id="meta" name="viewport" content="width=device-width, initial-scale=1"/>
         
@@ -25,7 +25,17 @@
         <dl ng-repeat="(key, book) in books" class="init-hide" >
 
             <dt>{{book.description}}</dt>
-            <dd  class="turn-boook" ng-if="book.search" ng-init="book.search=parseSearch(book.search)">
+
+            <dd  class="turn-boook"  ng-repeat='(key, search) in compatibleSearch(book.search)' ng-init="search=parseSearch(search)">
+                <div class="description"><img ng-src="{{search.image}}"/></div>            
+                <div class="turn-over">
+                        <span title="{{search.summary}}">{{search.summary.slice(0,40)+"..."}}</span>
+                        
+                        <a target="_blank" class="search-alt" ng-href="{{search.alt}}" title="来源">
+                            <i class="fa fa-link" >{{sortUrl(search.alt)}}</i></a>
+                </div>
+            </dd>
+<!--             <dd  class="turn-boook" ng-if="book.search" ng-init="book.search=parseSearch(book.search)">
                 <div class="description"><img ng-src="{{book.search.image}}"/></div>            
                 <div class="turn-over">
                         <span title="{{book.search.summary}}">{{book.search.summary.slice(0,40)+"..."}}</span>
@@ -33,7 +43,7 @@
                         <a target="_blank" class="search-alt" ng-href="{{book.search.alt}}" title="来源">
                             <i class="fa fa-link" >{{sortUrl(book.search.alt)}}</i></a>
                 </div>
-            </dd>
+            </dd> -->
             <dd class="person">
 <!--                     {{!book.users}}|{{!isMe(book)}} -->
                     <details ng-class="{'show-get': !book.users}" ng-open="!book.users&&(isMe(book)||$index==1)">
@@ -42,15 +52,16 @@
                                 <address class="address">{{(book.address|smallAddress)||book.search.publisher }}<i class="fa fa-map-marker" aria-hidden="true"></i></address>
                                 <span class="time"><i class="date">{{(book.type=='douban'&&book.search.pubdate)?book.search.pubdate:(-book.time|date:'MM-dd')}}</i></span>
                             </summary>
-                            <div class="get" ng-if="!book.users">
+                            <div class="get" ng-if="!isMe(book)" >
 <!--                                 ？<a ng-href="sms://{{book.tel}}?body=我喜欢你三牛寺的“{{book.description.slice(0, 4)}}...”"  onclick="new SMSLink.link().replaceAll();">约Ta</a>
                                 或  -->
-                                <button ng-if="!isMe(book)" ng-click="mail(book)">想要？</button>
-                                <div class="shear" ng-if="isMe(book)"> 
-                                    <div shear><span>分享给Ta</span><a target="_blank" ng-href="sms:?&body={{book.description+' 要的话给你了'+'https://wuchaolong.github.io/sante/#get'}}" class="social-share-icon icon-sms" title="短信">短信</a></div>
-                                    <div class=" share-component social-share"><span>或直接寄给Ta</span><label class="social-share-icon icon-send" ><input type="checkbox" ng-model="book.sendTo"/></label>
-                                        <iframe  ng-if="book.sendTo"  ng-src="{{'add.html?importJs=js/sendTo.js&id='+book.$id}}" scrolling="no"></iframe>
-                                    </div>
+                                <button ng-click="mail(book)">想要？</button>
+                                
+                            </div>
+                            <div class="shear" ng-if="isMe(book)"> 
+                                <div shear><span>叫Ta也来换</span><a target="_blank" ng-href="sms:?&body={{book.description+' 要的话给你了'+'https://wuchaolong.github.io/sante/#get'}}" class="social-share-icon icon-sms" title="短信">短信</a></div>
+                                <div class=" share-component social-share"><label>或直接寄给Ta <span class="social-share-icon icon-send" ><input type="checkbox" ng-model="book.sendTo"/></span></label>
+                                    <iframe  ng-if="book.sendTo"  ng-src="{{'add.html?importJs=js/sendTo.js&id='+book.$id}}" scrolling="no"></iframe>
                                 </div>
                             </div>
                     </details>
@@ -71,8 +82,8 @@
                                 <button ng-click="mail(book,user)">想要？</button>
                             </div>
                             <div class="shear" ng-if="isMe(user)"> 
-                                    <div shear><span>分享给Ta</span><a target="_blank" ng-href="sms:?&body={{book.description+' 要的话给你了'+'https://wuchaolong.github.io/sante/#get'}}" class="social-share-icon icon-sms" title="短信">短信</a></div>
-                                    <div class=" share-component social-share"><span>或直接寄给Ta</span><label class="social-share-icon icon-send" ><input type="checkbox" ng-model="user.sendTo"/></label>
+                                    <div shear><span>叫Ta也来换</span><a target="_blank" ng-href="sms:?&body={{book.description+' 要的话给你了'+'https://wuchaolong.github.io/sante/#get'}}" class="social-share-icon icon-sms" title="短信">短信</a></div>
+                                    <div class=" share-component social-share"><label>或直接寄给Ta <span class="social-share-icon icon-send" ><input type="checkbox" ng-model="user.sendTo"/></span></label>
                                         <iframe  ng-if="user.sendTo"  ng-src="{{'add.html?importJs=js/sendTo.js&id='+book.$id}}" scrolling="no"></iframe>
                                     </div>
                                     

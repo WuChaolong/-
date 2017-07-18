@@ -23,24 +23,25 @@ var app = angular
         var me = $scope.me = JSON.parse(localStorage.getItem("me"))||{};
 
         
-        $scope.filter= JSON.parse(localStorage.getItem("filter"))||{search:me.username};
-        $scope.filter.where = "sante";
-        $scope.$watch('filter.where', function(newValue, oldValue) {
-           if(newValue===undefined){
-               return;
-           }
-//            if(!$scope.loaded){
-// //                $scope.filter.jiushujie = oldValue;
+//         $scope.filter= JSON.parse(localStorage.getItem("filter"))||{search:me.username};
+//         $scope.filter.where = "sante";
+//         $scope.$watch('filter.where', function(newValue, oldValue) {
+//            if(newValue===undefined){
 //                return;
 //            }
-           if(newValue=="jiushujie"){
-               loadJiushujie();
-           }else if(newValue=="search"){
-               loadFirebaseSearch()
-           }else{
+// //            if(!$scope.loaded){
+// // //                $scope.filter.jiushujie = oldValue;
+// //                return;
+// //            }
+//            if(newValue=="jiushujie"){
+//                loadJiushujie();
+//            }else if(newValue=="search"){
+//                loadFirebaseSearch()
+//            }else{
+//            }
+//         });
+        
                loadFirebase();
-           }
-        });
 
         function loadFirebaseSearch(){
             var search = $scope.filter.search;
@@ -150,7 +151,16 @@ var app = angular
             if(typeof search === 'object'){
                 return search;
             }
-            return JSON.parse(unescape(search)||null);
+            try{
+                var result = JSON.parse(unescape(search)||null)
+                search = null;
+            }catch(e){
+                return search;
+            }
+            return result;
+        };
+        $scope.compatibleSearch = function(search) {
+            return (typeof search === "string"? {"q":search}:search);
         };
         $scope.sortUrl = function(url) {
             if(!url){
@@ -327,7 +337,7 @@ app.directive( "shear", function() {
         var book = scope.book;
         var user = scope.user;
         var options= {
-            disabled: ['wechat','diandian'],
+            disabled: ['wechat','diandian','qzone','tencent','linkedin'],
             url:"https://wuchaolong.github.io/sante/#get",
             title: book.description,
             description:"要的话给你呀",

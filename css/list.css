@@ -219,11 +219,12 @@ small{opacity: .5;}
 }
 .shear > div{
       padding: .5em;
+      /* padding-right: 0; */
 }
 .shear > div > span{
       min-width: 6em;
-      text-align:right;
-      display: inline-block;
+      /* text-align:right; */
+      display: block;
       padding-right: .5em;
 }
 .shear iframe{

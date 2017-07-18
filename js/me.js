@@ -1,4 +1,4 @@
-function load(){
+function init(){
     var me = JSON.parse(localStorage.getItem("me"));
     if(me){
         var meTemplate = document.getElementById("meTemplate").innerHTML;
@@ -29,6 +29,7 @@ function load(){
                 document.querySelector('#tel').focus();
             }
         });
+        iFrameResize({}, 'iframe[src]');
     //     document.querySelector('#login').open = true;
     }
 }
