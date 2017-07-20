@@ -18,6 +18,7 @@ function loaded(){
     formElement.addressFormattedClose.onclick=function(e){
         formElement.addressFormatted.removeAttribute("value");
         formElement.address.value = "";
+        mapClose();
         formElement.address.oninput = addressOninput;
         formElement.address.onfocus = function(){};
         formElement.addressFormatted.focus();
@@ -195,8 +196,7 @@ function showBookList(description){
                   var book = books[i];
                   var value = JSON.stringify(book);
                   var checked = i===0?"checked":"";
-                  html= html+ '<label for="coding'+q+i
-                        +'"><input type="radio" id="coding'+q+i
+                  html= html+ '<label><input type="radio" id="coding'+q+i
                         +'" name="search['+q+']" value=\''+escape(value)+'\''+checked+'><img src="'+book.image
                         +'"/><a href="'+book.alt+'" target="_blank"><span class="fa fa-link">'+book.title
                         +'</span></a></label>';
@@ -258,6 +258,11 @@ function geoFindMe(input,geoHidden) {
       staticmapUrl = "//images.weserv.nl/?url="+escape(staticmapUrl);
       document.getElementById("mapImg").src = staticmapUrl;
       document.getElementById("map").style.display = "block";
+
+  }
+  function mapClose(){
+      document.getElementById("mapImg").removeAttribute("src");
+      document.getElementById("map").style.display = "none";
 
   }
 
