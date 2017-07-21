@@ -144,7 +144,6 @@ function showBookList(description){
      var bookList = document.getElementById("bookList");
      var bookListContent = document.getElementById("bookListContent");
 
-     document.getElementById("forBookList").classList.add("ng-scope");
      bookListContent.innerHTML="";
 
 
@@ -158,7 +157,9 @@ function showBookList(description){
 //           error();
        }else if(window.qs && q in window.qs){
          success(window.qs[q]);
-       }else{
+       }else{     
+         document.getElementById("forBookList").classList.add("ng-scope");
+
          addBookList(q,success,error);
        }
      }

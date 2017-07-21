@@ -1,0 +1,20 @@
+details{
+    display: inline-block;
+    width: 100%;
+}
+summary {
+    height: 2.5em;
+    font-weight: bold;
+}
+summary:hover span{
+  font-size: 1.5em;
+}
+details[open] summary span{
+  font-size: 1.5em;
+}
+summary span{
+	  transition: font-size .2s,width .2s;
+	  line-height: 1.5em;
+	  /* min-height: 1.5em; */
+}
+#addLong summary{text-align: right;padding-right: .5em;}

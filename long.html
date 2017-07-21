@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html manifest="demo.appcache">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>接龙</title>
+    <link rel="icon" href="download/logo.png">
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/long.css" />
+</head>
+
+<body>
+<p>此游戏需要用钱来玩，1月1次，1次3本书，3本书收15元（邮费+服务费，书由三牛寺提供），所以别忘了多捐点￥哦。
+</p>
+<img src="download/2017-07-21 15-01-23屏幕截图.png"/>
+<details id="addLong" open>
+        <summary><span>你也玩</span></summary>
+        <iframe id="giveIframe" src="add.html?importJs=js/addLong.js" scrolling="no" ></iframe>
+</details>
+<script src="download/iframeResizer/iframeResizer.min.js"></script>
+<script type="text/javascript" src="download/iframeResizer/iframeResizer.contentWindow.min.js" defer></script>
+
+<script src="js/long.js"></script>
+
+<script>
+        iFrameResize({}, 'iframe[src]');
+
+</script>
+</body>
+
+</html>
