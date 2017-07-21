@@ -8,11 +8,11 @@ function load(){
     var get = document.querySelector('#get');
     var give = document.querySelector('#give');
     var money = document.querySelector('#money');
-    var ofo = document.querySelector('#ofo');
+    var long = document.querySelector('#long');
     var drawer = document.querySelector('#drawer');
     var drawer2 = document.querySelector('#drawer2');
     if(dataSrc(give) && dataSrc(get)
-        &&dataSrc(ofo) && dataSrc(money)
+        &&dataSrc(long) && dataSrc(money)
     ){
     }else{
       
@@ -37,7 +37,7 @@ function load(){
     function locationHashChanged() {
          showBookmark(location.hash);
     }
-    var get =  give = money = ofo = drawer = drawer2 = null;
+    var get =  give = money = long = drawer = drawer2 = null;
 }
 function dataSrc(details){
   return onOpen(details,function(){
