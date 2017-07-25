@@ -4,8 +4,8 @@ function init(){
     var word = {
         "title":"加入游戏",
         ".submit .give":"加入游戏",
-        "#userInfo .you + em":"书寄到哪？",
-        "#whatBook":"建议加入什么书？"
+//         "#userInfo .you + em":"书寄到哪？",
+        "#whatBook":"你出哪些书？"
     }
     for(var key in word){
         innerText(key,word[key]);
@@ -30,9 +30,8 @@ function init(){
             "allowMeet":book.allowMeet
         };
         
-        localStorage.setItem("me", JSON.stringify(me));
+        localStorage.setItem("me",JSON.stringify(me));
         changeBook(book);
-
 
         var uri = formElement.action,
             fn = function(){
@@ -48,8 +47,8 @@ function init(){
                       error = error,
                       method = "POST";
 
-                  ajax(uri,fn2,error,method,data);  
-                  me = data = null;
+                  ajax(uri,fn2,error,method,data); 
+                  me = data = null; 
               }else{
                 
                   submitButton.innerHTML = "已算上你了,捐点钱吧";
@@ -79,26 +78,20 @@ function init(){
             data = JSON.stringify(book);
 
 
-        ajax(uri,function(data){
-            var data = JSON.parse(data);
-            me["reserveBookId"]=data.name;
-            localStorage.setItem("reserveBookId",data.name);
-            ajax("https://book-2724e.firebaseio.com/sante/long.json",fn,error,method,JSON.stringify(me));
-
-        },error,method,data);
-
-        data = book = null;
+        ajax(uri,fn,error,method,data);
+        book = null;
 
     }
+
 }
 
 function changeBook(book){
-    book.address = "",
-    book.username = "",
-    book.tel = "",
-    book.geo = "",
-    book.allowMeet = "";
-    book.addressFormatted = "";
+//     book.address = "",
+//     book.username = "",
+//     book.tel = "",
+//     book.geo = "",
+//     book.allowMeet = "";
+//     book.addressFormatted = "";
     book.type = "long";
 }
 
