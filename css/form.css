@@ -173,3 +173,15 @@ label em {
 #addressFormatted[value] + .close-icon {
 	display: inline;
 }
+
+.ed-input{
+	text-align:right;
+	margin-bottom: -1em;
+	display: none;
+}
+.ed-input.show{
+	display:block;
+}
+.ed-input a{
+	font-size:small;
+}

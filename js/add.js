@@ -116,23 +116,106 @@ function loaded(){
         book = null;
 
     }
-    try{
-      var me = JSON.parse(localStorage.getItem("me"));
-    }catch(e){
-      
-    }
-    if(me){
-        var formInitData = {
-            "address":me.address,
-            "username":me.username,
-            "tel":me.tel,
-            "geo":me.geo,
-            "allowMeet":me.allowMeet
-        }
-        setFormValue(formElement,formInitData)
-    }
+    setUserInfo(formElement);
     getAddressByIp(formElement.address);
     me = formInitData = null;
+
+
+    function setUserInfo(formElement,me){
+      try{
+        var me = me||JSON.parse(localStorage.getItem("me"));
+      }catch(e){
+
+      }
+      var edInput = formElement.querySelector('[class="ed-input"]');
+      var aEdInput = formElement.querySelector('[class="ed-input"] a');
+
+      if(me){
+          var formInitData = {
+              "address":me.address,
+              "username":me.username,
+              "tel":me.tel,
+              "geo":me.geo,
+              "allowMeet":me.allowMeet
+          }
+          setFormValue(formElement,formInitData);
+          edInput.classList.remove("show");
+      }else{
+         edInput.classList.add("show");
+         aEdInput.onclick = function(){
+           formElement.tel.placeholder = "当时留的手机号是什么？";
+           formElement.tel.oninput = telInput;
+           formElement.tel.focus();
+         }
+      }
+    }
+
+    function telInput(){
+      if(this.value.length == 11){
+
+          var forSearchUserInfo = document.getElementById("forSearchUserInfo");
+          forSearchUserInfo.classList.add("ng-scope");
+          var uri = "https://book-2724e.firebaseio.com/sante/books2.json?orderBy=%22tel%22&limitToLast=1&equalTo="+"%22"+this.value+"%22";
+          var error = function(){
+            forSearchUserInfo.classList.remove("ng-scope");
+          };
+          var reserveBookId = localStorage.getItem("reserveBookId");
+          var fn = function(data){
+            setUserInfo(formElement,data);
+            forSearchUserInfo.classList.remove("ng-scope");
+          }
+
+          searchUserInfo(uri,reserveBookId,error,fn);
+      }
+    }
+}
+
+function searchUserInfo(uri,reserveBookId,error,fn){
+    ajax(uri,function(data,error){
+        var book = null;
+        try{
+
+            var data = JSON.parse(data);
+            for(var key in data){
+                book = data[key];
+            }
+        }catch(e){
+            error();
+        }
+        if(book==null){
+            error();
+            return;
+        }
+        var me = {
+            "address":book.address,
+            "username":book.username,
+            "tel":book.tel,
+            "geo":book.geo,
+            "time":book.time,
+            "allowMeet":book.allowMeet
+        };
+        localStorage.setItem("me", JSON.stringify(me));
+//         location = "list.html";
+        fn2 = function(){
+          localStorage.removeItem("reserveBookId");
+          fn(me);
+        }
+        if(reserveBookId){
+            me["time"]=0-new Date().getTime();
+            me.status = "fa-hourglass-start";
+
+            var data = JSON.stringify(me),
+                uri = "https://book-2724e.firebaseio.com/sante/books2/"+reserveBookId+"/users.json",
+                
+                error = error,
+                method = "POST";
+
+            ajax(uri,fn2,error,method,data);  
+        }else{
+            fn(me);
+        }
+        data = book = null;
+    },error);
 }
 function showBookList(description){
 //     var q = getQ(description.value);

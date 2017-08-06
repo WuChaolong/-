@@ -23,7 +23,7 @@
                     <div id="bookListContent"></div>
                 </fieldset>
             </section>
-
+            <section class="ed-input"><a href="javascript:return void();">以前填过？</a></section>
             <section>
                 <fieldset id="userInfo">
                     <legend><em class="you"></em><em>书在哪？</em></legend>
@@ -34,7 +34,7 @@
 
                         </label>
                         <input class="hidden-checkbox" id="allowmail" name="allow" type="checkbox" value="mail" onchange="this.checked?good('addressGoodFa','show'):good('addressGoodFa','hide')"/><label for="allowmail">给快递员<span id="addressGoodFa"><i class='good'>♥</i></span></label>
-                        <input id="address"  required minlength="3"  inputmode='katakana' autocomplete="city street-address"  mozactionhint="next" name="address" list="addressList" onmouseover="focus();"/>
+                        <input id="address"  required minlength="3"  inputmode='katakana' autocomplete="city street-address"  mozactionhint="next" name="address" list="addressList"/>
                         <datalist id="addressList">
 <!--                               <option value="鹰潭市"> -->
                         </datalist>
@@ -47,7 +47,7 @@
 <!--                     <p id="allowP"> -->
 <!--                         <label for="allownear"><input id="allownear" name="allow" type="checkbox" value="near" checked/>给身边人</label> -->
                     <p><label for="username">你的名字<strong><abbr title="required">*</abbr></strong></label><input id="username" required maxlength="11" inputmode='katakana' autocomplete="name" mozactionhint="next" name="username"/>
-                    <p><label for="tel">手机号<strong><abbr title="required">*</abbr></strong></label><input id="tel" required maxlength="11" minlength="11" autocomplete="tel" mozactionhint="send" type="number" type="tel" name="tel"/>
+                    <p><label for="tel">手机号<strong><abbr title="required"><i id="forSearchUserInfo" class="fa fa-spinner init-hide" aria-hidden="true">回忆中</i>*</abbr></strong></label><input id="tel" required maxlength="11" minlength="11" autocomplete="tel" mozactionhint="send" type="number" type="tel" name="tel"/>
                 </fieldset>
             </section>
             <section class="submit">

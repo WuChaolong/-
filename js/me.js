@@ -40,10 +40,21 @@ function login(form){
     var submitButton = form.querySelector("button[type=submit]");
         submitButton.disabled="disabled";
     var uri = form.action+"%22"+form.tel.value+"%22";
-    function error(){
+    var error = function(){
         submitButton.disabled="";
         form.tel.focus();
     };
+    var reserveBookId = form.reserveBookId?form.reserveBookId.value:null;
+    var fn = function(){
+        window.goBack();
+    }
+   
+    
+
+    searchUserInfo(uri,reserveBookId,error,fn);
+    return false;
+}
+function searchUserInfo(uri,reserveBookId,error,fn){
     ajax(uri,function(data,error){
         var book = null;
         try{
@@ -70,25 +81,25 @@ function login(form){
         localStorage.setItem("me", JSON.stringify(me));
 //         location = "list.html";
 
-        if(form.reserveBookId&&form.reserveBookId.value){
+         var fn2 = function(){
+                localStorage.removeItem("reserveBookId");
+                fn();
+            }
+        if(reserveBookId){
             me["time"]=0-new Date().getTime();
             me.status = "fa-hourglass-start";
 
             var data = JSON.stringify(me),
-                uri = "https://book-2724e.firebaseio.com/sante/books2/"+form.reserveBookId.value+"/users.json",
-                fn = function(){
-                    localStorage.removeItem("reserveBookId");
-                    window.goBack();
-                },
+                uri = "https://book-2724e.firebaseio.com/sante/books2/"+reserveBookId+"/users.json",
+                
                 error = error,
                 method = "POST";
 
-            ajax(uri,fn,error,method,data);  
+            ajax(uri,fn2,error,method,data);  
         }else{
-            window.goBack();
+            fn();
         }
-    },error)
-    return false;
+    },error);
 }
 function ajax(uri,fn,error,method,data){
     var request = new XMLHttpRequest();

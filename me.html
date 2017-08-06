@@ -20,7 +20,7 @@
         {{jsonp}}
     {{/reserveBookId}}
     <h1 class="you">你是谁？</h1>
-    <details id="login">
+    <details id="login" open>
             <summary><h2>出过书</h2></summary>
             <form enctype='application/json'  action="https://book-2724e.firebaseio.com/sante/books2.json?orderBy=%22tel%22&limitToLast=1&equalTo=" method="get" onsubmit="return login(this)">
                 <section>
