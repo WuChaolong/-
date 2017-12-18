@@ -98,3 +98,5 @@ loading|bank|school|bus_station|cafe|book_store|library
 书籍流通服务https://wuchaolong.github.io/paaper/?key=booksseveces
 
 简书悬赏
+
+善者优先，运气

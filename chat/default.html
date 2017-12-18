@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title></title>
+    <meta id="meta" name="viewport" content="width=device-width, initial-scale=1"/>
+    
+    <link rel="stylesheet" href="css/default.css">
+  </head>
+
+  <body>
+
+<dl id="messagesDiv">
+    <dt><span id="num">0</span>条评论</dt>
+    <dd>
+          
+        <form id="form" action="https://book-2724e.firebaseio.com/sante/chat/default">
+        <!--     <textarea id="messageInput"  required inputmode="katakana"  placeholder="Message..." ></textarea> -->
+
+            <textarea required inputmode="katakana" name="messageInput" placeholder="Message..."></textarea>
+            <input type="submit"/>
+        </form>
+    </dd>
+    <dd></dd>
+</dl>
+
+    <script src="../download/firebase.min.js"></script>
+
+    <script src="js/default.js"></script>
+    <script>
+        init();
+    </script>
+  </body>
+</html>

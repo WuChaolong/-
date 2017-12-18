@@ -1,0 +1,10 @@
+dd{
+    padding:.5em;
+}
+textarea{
+    width: 100%;
+    min-height: 5em;
+}
+textarea,input{
+    font-size:1.2em;
+}

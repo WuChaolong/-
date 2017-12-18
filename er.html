@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html manifest="demo.appcache">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>接龙</title>
+    <link rel="icon" href="download/logo.png">
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/long.css" />
+</head>
+
+<body>
+<!-- <h4>三牛寺</h4>
+<p style="text-align:center;">你要不要也加入? -->
+<h4>游戏规则</h4>
+<ol>
+    <li>此书籍接龙要用钱来玩，1月动1次，1次1人15元（邮费+服务费），所以你加入后别忘了捐点￥哦。
+    <li>所有人提供的得是些好书，至少得让别人看了后觉得15元花的值
+</ol>
+<img src="download/booksserveces.png"/>
+
+<h4>你也来?</h4>
+<img src="download/logo.png" style="width: 3em;vertical-align: text-top;
+    max-width: 50%;
+    margin: auto;
+    display: block;">
+<img src="download/long-qrcode.png" style="
+    max-width: 50%;
+    margin: auto;
+    display: block;
+"/>
+<script src="download/iframeResizer/iframeResizer.min.js"></script>
+<script type="text/javascript" src="download/iframeResizer/iframeResizer.contentWindow.min.js" defer></script>
+
+<script src="js/long.js"></script>
+
+<script>
+        iFrameResize({}, 'iframe[src]');
+
+</script>
+</body>
+
+</html>
