@@ -163,9 +163,8 @@
             return false;
         }
 
-        var elems = createElementByString('<div class="wechat-qrcode"><h4>' + data.wechatQrcodeTitle + '</h4><a class="qrcode" target="_blank"></a><div class="help">' + data.wechatQrcodeHelper + '</div></div>');
+        var elems = createElementByString('<div class="wechat-qrcode"><h4>' + data.wechatQrcodeTitle + '</h4><a href="'+data.url+'" class="qrcode" target="_blank"></a><div class="help">' + data.wechatQrcodeHelper + '</div></div>');
         var qrcode = getElementsByClassName(elems[0], 'qrcode', 'div');
-        qrcode.href = data.url;
         wechat[0].appendChild(elems[0]);
         new QRCode(qrcode[0], {text: data.url, width: data.wechatQrcodeSize, height: data.wechatQrcodeSize});
     }
